@@ -4,33 +4,17 @@ class Program
 {
     static void Main()
     {
-        Console.WriteLine("Enter a string:");
-        string input = Console.ReadLine();
+        Console.Write("Enter a number: ");
+        int num = Convert.ToInt32(Console.ReadLine());
 
-        if (IsPalindrome(input))
-        {
-            Console.WriteLine($"{input} is a palindrome.");
-        }
-        else
-        {
-            Console.WriteLine($"{input} is not a palindrome.");
-        }
-    }
+        int count = 0;
 
-    static bool IsPalindrome(string str)
-    {
-        // Convert to lower case and remove spaces for accurate comparison
-        str = str.ToLower().Replace(" ", "");
-
-        // Compare the string with its reverse
-        int len = str.Length;
-        for (int i = 0; i < len / 2; i++)
+        while (num != 0)
         {
-            if (str[i] != str[len - 1 - i])
-            {
-                return false;
-            }
+            num /= 10;
+            count++;
         }
-        return true;
+
+        Console.WriteLine("Number of digits: " + count);
     }
 }
