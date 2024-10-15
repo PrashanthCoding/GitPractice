@@ -1,24 +1,22 @@
 using System;
+using System.Threading.Tasks;
 
 class Program
 {
-    static void Main()
+    static async Task Main(string[] args)
     {
-        int a, b, temp;
+        Console.WriteLine("Starting tasks...");
+        Task task1 = Task.Run(() => PerformTask(1, 2000));
+        Task task2 = Task.Run(() => PerformTask(2, 1000));
 
-        Console.Write("Enter the first number: ");
-        a = Convert.ToInt32(Console.ReadLine());
+        await Task.WhenAll(task1, task2);
+        Console.WriteLine("All tasks completed.");
+    }
 
-        Console.Write("Enter the second number: ");
-        b = Convert.ToInt32(Console.ReadLine());
-
-        Console.WriteLine($"Before Swap: a = {a}, b = {b}");
-
-        // Swapping logic using temporary variable
-        temp = a;
-        a = b;
-        b = temp;
-
-        Console.WriteLine($"After Swap: a = {a}, b = {b}");
+    static void PerformTask(int taskId, int delay)
+    {
+        Console.WriteLine($"Task {taskId} is running...");
+        Task.Delay(delay).Wait();
+        Console.WriteLine($"Task {taskId} completed.");
     }
 }
