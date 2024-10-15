@@ -4,17 +4,44 @@ class Program
 {
     static void Main()
     {
-        Console.Write("Enter a number: ");
-        int num = Convert.ToInt32(Console.ReadLine());
+        Console.Write("Enter first number: ");
+        double num1 = Convert.ToDouble(Console.ReadLine());
 
-        int sum = 0;
+        Console.Write("Enter second number: ");
+        double num2 = Convert.ToDouble(Console.ReadLine());
 
-        while (num != 0)
+        Console.Write("Enter an operator (+, -, *, /): ");
+        char operation = Convert.ToChar(Console.ReadLine());
+
+        double result = 0;
+
+        switch (operation)
         {
-            sum += num % 10;
-            num /= 10;
+            case '+':
+                result = num1 + num2;
+                break;
+            case '-':
+                result = num1 - num2;
+                break;
+            case '*':
+                result = num1 * num2;
+                break;
+            case '/':
+                if (num2 != 0)
+                {
+                    result = num1 / num2;
+                }
+                else
+                {
+                    Console.WriteLine("Cannot divide by zero.");
+                    return;
+                }
+                break;
+            default:
+                Console.WriteLine("Invalid operator.");
+                return;
         }
 
-        Console.WriteLine("Sum of digits: " + sum);
+        Console.WriteLine($"Result: {result}");
     }
 }
