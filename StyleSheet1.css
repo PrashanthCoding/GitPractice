@@ -2,3 +2,41 @@
 selector {
     property: value;
 }
+
+
+h1 {
+    color: blue;
+    font-size: 24px;
+}
+
+
+/* Text color */
+p {
+    color: #333;
+}
+
+/* Text alignment */
+h1 {
+    text-align: center;
+}
+
+/* Text decoration (underline, overline, etc.) */
+a {
+    text-decoration: none;
+}
+
+/* Font size and family */
+p {
+    font-size: 16px;
+    font-family: Arial, sans-serif;
+}
+
+/* Font weight (bold, normal) */
+h2 {
+    font-weight: bold;
+}
+
+/* Text transformation (uppercase, lowercase, capitalize) */
+h1 {
+    text-transform: uppercase;
+}
