@@ -1,40 +1,23 @@
 using System;
 
-class Node
-{
-    public int data;
-    public Node next;
-    public Node(int data)
-    {
-        this.data = data;
-        this.next = null;
-    }
-}
-
 class Program
 {
     static void Main()
     {
-        Node head = new Node(1);
-        head.next = new Node(2);
-        head.next.next = new Node(3);
-        head.next.next.next = head;  // Creating a cycle
+        Console.Write("Enter a number: ");
+        int number = int.Parse(Console.ReadLine());
+        int sum = 0, temp = number, digits = number.ToString().Length;
 
-        bool hasCycle = DetectCycle(head);
-        Console.WriteLine($"Cycle detected: {hasCycle}");
-    }
-
-    static bool DetectCycle(Node head)
-    {
-        Node slow = head, fast = head;
-        while (fast != null && fast.next != null)
+        while (temp != 0)
         {
-            slow = slow.next;
-            fast = fast.next.next;
-
-            if (slow == fast)
-                return true;
+            int remainder = temp % 10;
+            sum += (int)Math.Pow(remainder, digits);
+            temp /= 10;
         }
-        return false;
+
+        if (sum == number)
+            Console.WriteLine($"{number} is an Armstrong number.");
+        else
+            Console.WriteLine($"{number} is not an Armstrong number.");
     }
 }

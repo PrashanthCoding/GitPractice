@@ -4,30 +4,33 @@ class Program
 {
     static void Main()
     {
-        int[,] matrix1 = { { 1, 2 }, { 3, 4 } };
-        int[,] matrix2 = { { 5, 6 }, { 7, 8 } };
-        int[,] result = new int[2, 2];
+        int[] arr = { 1, 3, 5, 7, 9, 11 };
+        int target = 5;
+        int index = BinarySearch(arr, target);
 
-        for (int i = 0; i < 2; i++)
+        if (index != -1)
+            Console.WriteLine($"Element found at index {index}");
+        else
+            Console.WriteLine("Element not found");
+    }
+
+    static int BinarySearch(int[] arr, int target)
+    {
+        int left = 0;
+        int right = arr.Length - 1;
+
+        while (left <= right)
         {
-            for (int j = 0; j < 2; j++)
-            {
-                result[i, j] = 0;
-                for (int k = 0; k < 2; k++)
-                {
-                    result[i, j] += matrix1[i, k] * matrix2[k, j];
-                }
-            }
+            int mid = left + (right - left) / 2;
+
+            if (arr[mid] == target)
+                return mid;
+            else if (arr[mid] < target)
+                left = mid + 1;
+            else
+                right = mid - 1;
         }
 
-        Console.WriteLine("Matrix Multiplication Result:");
-        for (int i = 0; i < 2; i++)
-        {
-            for (int j = 0; j < 2; j++)
-            {
-                Console.Write(result[i, j] + " ");
-            }
-            Console.WriteLine();
-        }
+        return -1;
     }
 }
