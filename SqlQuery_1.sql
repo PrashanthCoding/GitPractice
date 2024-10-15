@@ -1,2 +1,2 @@
 ﻿SELECT * FROM Customers
-WHERE NOT Country = 'Spain';
+WHERE NOT Country = 'Australia';
