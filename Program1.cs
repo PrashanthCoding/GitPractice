@@ -1,63 +1,40 @@
 using System;
 
+class Node
+{
+    public int data;
+    public Node next;
+    public Node(int data)
+    {
+        this.data = data;
+        this.next = null;
+    }
+}
+
 class Program
 {
-    static int N = 8;
-
     static void Main()
     {
-        int[,] board = new int[N, N];
-        SolveNQueens(board, 0);
+        Node head = new Node(1);
+        head.next = new Node(2);
+        head.next.next = new Node(3);
+        head.next.next.next = head;  // Creating a cycle
+
+        bool hasCycle = DetectCycle(head);
+        Console.WriteLine($"Cycle detected: {hasCycle}");
     }
 
-    static bool IsSafe(int[,] board, int row, int col)
+    static bool DetectCycle(Node head)
     {
-        for (int i = 0; i < col; i++)
-            if (board[row, i] == 1)
-                return false;
-
-        for (int i = row, j = col; i >= 0 && j >= 0; i--, j--)
-            if (board[i, j] == 1)
-                return false;
-
-        for (int i = row, j = col; i < N && j >= 0; i++, j--)
-            if (board[i, j] == 1)
-                return false;
-
-        return true;
-    }
-
-    static bool SolveNQueens(int[,] board, int col)
-    {
-        if (col >= N)
+        Node slow = head, fast = head;
+        while (fast != null && fast.next != null)
         {
-            PrintBoard(board);
-            return true;
+            slow = slow.next;
+            fast = fast.next.next;
+
+            if (slow == fast)
+                return true;
         }
-
-        for (int i = 0; i < N; i++)
-        {
-            if (IsSafe(board, i, col))
-            {
-                board[i, col] = 1;
-
-                if (SolveNQueens(board, col + 1))
-                    return true;
-
-                board[i, col] = 0;
-            }
-        }
-
         return false;
-    }
-
-    static void PrintBoard(int[,] board)
-    {
-        for (int i = 0; i < N; i++)
-        {
-            for (int j = 0; j < N; j++)
-                Console.Write(board[i, j] + " ");
-            Console.WriteLine();
-        }
     }
 }
