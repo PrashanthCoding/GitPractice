@@ -1,30 +1,21 @@
 using System;
+using System.Linq;
 
 class Program
 {
     static void Main()
     {
-        Console.Write("Enter a number: ");
-        int num = Convert.ToInt32(Console.ReadLine());
+        Console.Write("Enter a string: ");
+        string str = Console.ReadLine();
+        string reverseStr = new string(str.Reverse().ToArray());
 
-        bool isPrime = true;
-
-        for (int i = 2; i <= num / 2; i++)
+        if (str == reverseStr)
         {
-            if (num % i == 0)
-            {
-                isPrime = false;
-                break;
-            }
-        }
-
-        if (isPrime)
-        {
-            Console.WriteLine(num + " is a prime number.");
+            Console.WriteLine($"{str} is a palindrome.");
         }
         else
         {
-            Console.WriteLine(num + " is not a prime number.");
+            Console.WriteLine($"{str} is not a palindrome.");
         }
     }
 }
