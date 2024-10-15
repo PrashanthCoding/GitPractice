@@ -1,20 +1,16 @@
 using System;
+using System.Linq;
 
 class Program
 {
     static void Main()
     {
-        Console.Write("Enter a number: ");
-        int num = Convert.ToInt32(Console.ReadLine());
+        int[] numbers = { 1, 2, 3, 4, 5, 1, 2, 6, 7, 8, 9, 3 };
 
-        int sum = 0;
+        var duplicates = numbers.GroupBy(n => n)
+                                .Where(g => g.Count() > 1)
+                                .Select(g => g.Key);
 
-        while (num != 0)
-        {
-            sum += num % 10;
-            num /= 10;
-        }
-
-        Console.WriteLine("Sum of digits: " + sum);
+        Console.WriteLine("Duplicate numbers: " + string.Join(", ", duplicates));
     }
 }
