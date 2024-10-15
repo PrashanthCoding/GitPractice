@@ -6,7 +6,7 @@ class Program
     {
         Console.WriteLine("Enter a string:");
         string input = Console.ReadLine();
-        
+
         if (IsPalindrome(input))
         {
             Console.WriteLine($"{input} is a palindrome.");
