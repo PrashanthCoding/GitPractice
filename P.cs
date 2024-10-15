@@ -1,24 +1,21 @@
-﻿using System;
+using System;
 
 class Program
 {
     static void Main()
     {
-        int a, b, temp;
+        Console.Write("Enter the base number: ");
+        int baseNum = Convert.ToInt32(Console.ReadLine());
 
-        Console.Write("Enter the first number: ");
-        a = Convert.ToInt32(Console.ReadLine());
+        Console.Write("Enter the exponent: ");
+        int exponent = Convert.ToInt32(Console.ReadLine());
 
-        Console.Write("Enter the second number: ");
-        b = Convert.ToInt32(Console.ReadLine());
+        int result = 1;
+        for (int i = 1; i <= exponent; i++)
+        {
+            result *= baseNum;
+        }
 
-        Console.WriteLine($"Before Swap: a = {a}, b = {b}");
-
-        // Swapping logic using temporary variable
-        temp = a;
-        a = b;
-        b = temp;
-
-        Console.WriteLine($"After Swap: a = {a}, b = {b}");
+        Console.WriteLine($"{baseNum} to the power of {exponent} is: " + result);
     }
 }
