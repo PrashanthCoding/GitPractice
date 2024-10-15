@@ -11,6 +11,9 @@ SELECT CustomerName, ContactName, Address
 FROM Customers
 WHERE Address IS NULL;
 
+SELECT * FROM Customers
+LIMIT 3;
+
 SELECT CustomerName, ContactName, Address
 FROM Customers
 WHERE Address IS NOT NULL;
@@ -22,3 +25,8 @@ WHERE CustomerID = 1;
 UPDATE Customers
 SET ContactName='Prashanth'
 WHERE Country='Australia';
+
+SELECT * FROM Customers
+FETCH FIRST 3 ROWS ONLY;
+
+SELECT TOP 50 PERCENT * FROM Customers;
