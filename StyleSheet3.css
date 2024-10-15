@@ -1,4 +1,19 @@
-﻿body
-{
-    background:bottom;
+/* Add a solid border */
+div {
+    border: 2px solid black;
+}
+
+/* Add padding inside the element */
+div {
+    padding: 10px;
+}
+
+/* Add margin outside the element */
+div {
+    margin: 20px;
+}
+
+/* Border radius (for rounded corners) */
+button {
+    border-radius: 5px;
 }
