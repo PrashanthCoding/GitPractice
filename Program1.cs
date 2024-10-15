@@ -4,9 +4,6 @@ class Program
 {
     static void Main()
     {
-        Console.WriteLine("Hello, World!");
-
-
         Console.Write("Enter first number: ");
         int a = Convert.ToInt32(Console.ReadLine());
 
