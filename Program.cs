@@ -4,17 +4,21 @@ class Program
 {
     static void Main()
     {
-        Console.Write("Enter a number: ");
-        int num = Convert.ToInt32(Console.ReadLine());
+        int a, b, temp;
 
-        int count = 0;
+        Console.Write("Enter the first number: ");
+        a = Convert.ToInt32(Console.ReadLine());
 
-        while (num != 0)
-        {
-            num /= 10;
-            count++;
-        }
+        Console.Write("Enter the second number: ");
+        b = Convert.ToInt32(Console.ReadLine());
 
-        Console.WriteLine("Number of digits: " + count);
+        Console.WriteLine($"Before Swap: a = {a}, b = {b}");
+
+        // Swapping logic using temporary variable
+        temp = a;
+        a = b;
+        b = temp;
+
+        Console.WriteLine($"After Swap: a = {a}, b = {b}");
     }
 }
