@@ -4,21 +4,19 @@ class Program
 {
     static void Main()
     {
-        int a, b, temp;
+        int num1 = 0, num2 = 1, num3, i, n;
 
-        Console.Write("Enter the first number: ");
-        a = Convert.ToInt32(Console.ReadLine());
+        Console.Write("Enter the number of elements: ");
+        n = Convert.ToInt32(Console.ReadLine());
 
-        Console.Write("Enter the second number: ");
-        b = Convert.ToInt32(Console.ReadLine());
+        Console.Write($"{num1} {num2} "); // printing first two elements
 
-        Console.WriteLine($"Before Swap: a = {a}, b = {b}");
-
-        // Swapping logic using temporary variable
-        temp = a;
-        a = b;
-        b = temp;
-
-        Console.WriteLine($"After Swap: a = {a}, b = {b}");
+        for (i = 2; i < n; ++i) // loop starts from 2
+        {
+            num3 = num1 + num2;
+            Console.Write(num3 + " ");
+            num1 = num2;
+            num2 = num3;
+        }
     }
 }
