@@ -1,5 +1,5 @@
 ﻿INSERT INTO Customers (CustomerName, City, Country)
-VALUES ('Cardinal', 'Stavanger', 'Norway');
+VALUES ('Cardinal', 'Sydney', 'Australia');
 
 INSERT INTO Customers (CustomerName, ContactName, Address, City, PostalCode, Country)
 VALUES
@@ -16,5 +16,9 @@ FROM Customers
 WHERE Address IS NOT NULL;
 
 UPDATE Customers
-SET ContactName = 'Alfred Schmidt', City= 'Frankfurt'
+SET ContactName = 'Prashanth', City= 'Melbourne'
 WHERE CustomerID = 1;
+
+UPDATE Customers
+SET ContactName='Prashanth'
+WHERE Country='Australia';
