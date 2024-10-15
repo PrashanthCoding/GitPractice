@@ -1,4 +1,4 @@
-﻿body
-{
-    padding:inherit;
+/* This is a comment in CSS */
+selector {
+    property: value;
 }
