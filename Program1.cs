@@ -1,21 +1,20 @@
 using System;
-using System.Linq;
 
 class Program
 {
     static void Main()
     {
-        Console.Write("Enter a string: ");
-        string str = Console.ReadLine();
-        string reverseStr = new string(str.Reverse().ToArray());
+        Console.Write("Enter a number: ");
+        int num = Convert.ToInt32(Console.ReadLine());
 
-        if (str == reverseStr)
+        int sum = 0;
+
+        while (num != 0)
         {
-            Console.WriteLine($"{str} is a palindrome.");
+            sum += num % 10;
+            num /= 10;
         }
-        else
-        {
-            Console.WriteLine($"{str} is not a palindrome.");
-        }
+
+        Console.WriteLine("Sum of digits: " + sum);
     }
 }
