@@ -1,20 +1,16 @@
-﻿using System;
+using System;
 
 class Program
 {
     static void Main()
     {
-        Console.Write("Enter a number: ");
-        int num = Convert.ToInt32(Console.ReadLine());
+        Console.Write("Enter a string: ");
+        string str = Console.ReadLine();
 
-        int sum = 0;
+        char[] charArray = str.ToCharArray();
+        Array.Reverse(charArray);
+        string reversed = new string(charArray);
 
-        while (num != 0)
-        {
-            sum += num % 10;
-            num /= 10;
-        }
-
-        Console.WriteLine("Sum of digits: " + sum);
+        Console.WriteLine("Reversed string: " + reversed);
     }
 }
