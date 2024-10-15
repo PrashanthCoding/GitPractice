@@ -1,22 +1,34 @@
 using System;
+using System.Collections.Concurrent;
 using System.Threading.Tasks;
 
 class Program
 {
-    static async Task Main(string[] args)
+    static void Main()
     {
-        Console.WriteLine("Starting tasks...");
-        Task task1 = Task.Run(() => PerformTask(1, 2000));
-        Task task2 = Task.Run(() => PerformTask(2, 1000));
+        BlockingCollection<int> collection = new BlockingCollection<int>(5);
 
-        await Task.WhenAll(task1, task2);
-        Console.WriteLine("All tasks completed.");
-    }
+        Task producer = Task.Run(() =>
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                collection.Add(i);
+                Console.WriteLine($"Produced: {i}");
+                Task.Delay(500).Wait();
+            }
+            collection.CompleteAdding();
+        });
 
-    static void PerformTask(int taskId, int delay)
-    {
-        Console.WriteLine($"Task {taskId} is running...");
-        Task.Delay(delay).Wait();
-        Console.WriteLine($"Task {taskId} completed.");
+        Task consumer = Task.Run(() =>
+        {
+            foreach (var item in collection.GetConsumingEnumerable())
+            {
+                Console.WriteLine($"Consumed: {item}");
+                Task.Delay(1000).Wait();
+            }
+        });
+
+        Task.WaitAll(producer, consumer);
+        Console.WriteLine("All work is done.");
     }
 }
