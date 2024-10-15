@@ -1,4 +1,11 @@
-﻿body
-{
-    nav-down:auto;
+/* Background color */
+body {
+    background-color: #f0f0f0;
+}
+
+/* Background image */
+div {
+    background-image: url('background.jpg');
+    background-size: cover;
+    background-position: center;
 }
