@@ -1,26 +1,36 @@
 using System;
 
-public class DivisionDto
+class Program
 {
-    public int DivisionId { get; set; }
+    static void Main()
+    {
+        Console.WriteLine("Enter a string:");
+        string input = Console.ReadLine();
+        
+        if (IsPalindrome(input))
+        {
+            Console.WriteLine($"{input} is a palindrome.");
+        }
+        else
+        {
+            Console.WriteLine($"{input} is not a palindrome.");
+        }
+    }
 
-    [MaxLength(25)]
-    public string DivisionCode { get; set; }
+    static bool IsPalindrome(string str)
+    {
+        // Convert to lower case and remove spaces for accurate comparison
+        str = str.ToLower().Replace(" ", "");
 
-    public string Description { get; set; }
-
-    [MaxLength(1)]
-    public string Status { get; set; }
-
-    public int OrganizationId { get; set; }
-    public int MakerId { get; set; }
-    public DateTime MakeTime { get; set; }
-    public int LastModifiedBy { get; set; }
-    public DateTime LastModifiedOn { get; set; }
-    public string Others { get; set; }
-
-    // New properties for dropdowns
-    public int EmployeeId { get; set; } // KAM employee ID
-    public int ServiceId { get; set; } // Service ID from the dropdown
-    public int SubServiceId { get; set; } // Sub-service ID from the dropdown
+        // Compare the string with its reverse
+        int len = str.Length;
+        for (int i = 0; i < len / 2; i++)
+        {
+            if (str[i] != str[len - 1 - i])
+            {
+                return false;
+            }
+        }
+        return true;
+    }
 }
