@@ -21,3 +21,7 @@ class Program
             Console.WriteLine($"{number} is not an Armstrong number.");
     }
 }
+SELECT* FROM Customers;
+
+SELECT* FROM Products
+ORDER BY Price;
