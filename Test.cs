@@ -1,84 +1,40 @@
 ﻿/*
- * C# Program to Implement Overloaded Indexers
+ *  C# Program to Implement Let Condition using LINQ
  */
 using System;
-namespace IndexerApplication
+using System.Collections.Generic;
+using System.Linq;
+
+class Student
 {
-    class IndexN
+    public string Name { get; set; }
+    public string Regno { get; set; }
+    public int Marks { get; set; }
+
+}
+class Program
+{
+    static void Main(string[] args)
     {
-        private string[] list = new string[size];
-        static public int size = 10;
-        public IndexN()
-        {
-            for (int i = 0; i < size; i++)
-            {
-                list[i] = "N. A.";
-            }
-        }
-        public string this[int index]
-        {
-            get
-            {
-                string tmp;
+        //Object Initialization for Student class
+        List<Student> objStudent = new List<Student>{
+                    new Student{ Name="Tom",Regno="R001",Marks=80},
+                    new Student{ Name="Bob",Regno="R002",Marks=40},
+                    new Student{ Name="jerry",Regno="R003",Marks=25},
+                    new Student{ Name="Syed",Regno="R004",Marks=30},
+                    new Student{ Name="Mob",Regno="R005",Marks=70},
+                };
 
-                if (index >= 0 && index <= size - 1)
-                {
-                    tmp = list[index];
-                }
-                else
-                {
-                    tmp = "";
-                }
-
-                return (tmp);
-            }
-            set
-            {
-                if (index >= 0 && index <= size - 1)
-                {
-                    list[index] = value;
-                }
-            }
-        }
-        public int this[string name]
+        var objresult = from stu in objStudent
+                        let totalMarks = objStudent.Sum(mark => mark.Marks)
+                        let avgMarks = totalMarks / 5
+                        where avgMarks > stu.Marks
+                        select stu;
+        foreach (var stu in objresult)
         {
-            get
-            {
-                int index = 0;
-                while (index < size)
-                {
-                    if (list[index] == name)
-                    {
-                        return index;
-                    }
-                    index++;
-                }
-                return index;
-            }
+            Console.WriteLine("Student: {0} {1}", stu.Name, stu.Regno);
 
         }
-
-        static void Main(string[] args)
-        {
-            IndexN names = new IndexN();
-            names[0] = "Rose";
-            names[1] = "Lilly";
-            names[2] = "Jasmine";
-            names[3] = "Mango";
-            names[4] = "Apple";
-            names[5] = "Orange";
-            names[6] = "Grapes";
-            names[7] = "Strawberry";
-            names[8] = "BlueBerry";
-            //using the first indexer with int parameter
-            for (int i = 0; i < IndexN.size; i++)
-            {
-                Console.WriteLine(names[i]);
-            }
-            //using the second indexer with the string parameter
-            Console.WriteLine("The Name ORANGE is Found at the Position : " +
-                               names["Orange"]);
-            Console.ReadKey();
-        }
+        Console.ReadLine();
     }
 }
