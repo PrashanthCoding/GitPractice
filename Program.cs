@@ -1,26 +1,27 @@
 /*
- * C# Program to Accept a Number from the user and Display it 
- * if it is Positive
+ * C# Program to Check whether the Entered Number is Even or Odd
  */
 using System;
-class program
+
+namespace check1
 {
-    public static void Main(string[] args)
+    class Program
     {
-        Console.WriteLine("Enter a number: ");
-        int number = Convert.ToInt32(Console.ReadLine());
-        if (number > 0)
+        static void Main(string[] args)
         {
-            Console.WriteLine("Number is positive");
+            int i;
+            Console.Write("Enter a Number : ");
+            i = int.Parse(Console.ReadLine());
+            if (i % 2 == 0)
+            {
+                Console.Write("Entered Number is an Even Number");
+                Console.Read();
+            }
+            else
+            {
+                Console.Write("Entered Number is an Odd Number");
+                Console.Read();
+            }
         }
-        else if (number == 0)
-        {
-            Console.WriteLine("Number is 0");
-        }
-        else
-        {
-            Console.WriteLine("Number is negative");
-        }
-        Console.ReadLine();
     }
 }
