@@ -1,23 +1,21 @@
 ﻿Imports System
-Imports System.Text
 
 Module Module1
     Sub Main()
-        Dim length As Integer = 12
-        Dim password As String = GeneratePassword(length)
-        Console.WriteLine("Generated Password: " & password)
+        Dim arr() As Integer = {10, 20, 4, 45, 99}
+
+        Dim largest As Integer = Integer.MinValue
+        Dim secondLargest As Integer = Integer.MinValue
+
+        For Each num As Integer In arr
+            If num > largest Then
+                secondLargest = largest
+                largest = num
+            ElseIf num > secondLargest AndAlso num <> largest Then
+                secondLargest = num
+            End If
+        Next
+
+        Console.WriteLine("The second largest element is " & secondLargest)
     End Sub
-
-    Function GeneratePassword(length As Integer) As String
-        Const validChars As String = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()"
-        Dim res As New StringBuilder()
-        Dim rnd As New Random()
-
-        While length > 0
-            res.Append(validChars(rnd.Next(validChars.Length)))
-            length -= 1
-        End While
-
-        Return res.ToString()
-    End Function
 End Module
