@@ -1,27 +1,20 @@
 ﻿/*
- * C# Program to Illustrate Regular Expression Pattern
+ * C# Program to Demonstrate Pass by Reference Parameter 
  */
 using System;
-using System.Text.RegularExpressions;
-namespace Application
+class Program
 {
-    class Program
+    static void Main(string[] args)
     {
-        private static void showMatch(string text, string expr)
-        {
-            Console.WriteLine("The Expression : " + expr);
-            MatchCollection m = Regex.Matches(text, expr);
-            foreach (Match m1 in m)
-            {
-                Console.WriteLine(m1);
-            }
-        }
-        static void Main(string[] args)
-        {
-            string str = "Sanfoundry , a high end Technology Training company";
-            Console.WriteLine("Matching words that start with 'S': ");
-            showMatch(str, @"\bS\S*");
-            Console.ReadKey();
-        }
+        int val;
+        val = 4;
+        Console.WriteLine("Value Before : {0}", val);
+        square(ref val);
+        Console.WriteLine("Value After : {0}", val);
+        Console.Read();
+    }
+    static void square(ref int refParam)
+    {
+        refParam *= refParam;
     }
 }
