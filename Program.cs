@@ -1,33 +1,25 @@
 /*
- *  C# Program to Illustrate Single Inheritance
+ * C# Program to Create a Simple Thread
  */
 using System;
-namespace Inheritance
+using System.Threading;
+class program
 {
-    class Program
+    public void WorkThreadFunction()
     {
-        static void Main(string[] args)
+        for (int i = 0; i < 5; i++)
         {
-            Teacher d = new Teacher();
-            d.Teach();
-            Student s = new Student();
-            s.Learn();
-            s.Teach();
-            Console.ReadKey();
+            Console.WriteLine("Simple Thread");
         }
-        class Teacher
-        {
-            public void Teach()
-            {
-                Console.WriteLine("Teach");
-            }
-        }
-        class Student : Teacher
-        {
-            public void Learn()
-            {
-                Console.WriteLine("Learn");
-            }
-        }
+    }
+}
+class threprog
+{
+    public static void Main()
+    {
+        program pg = new program();
+        Thread thread = new Thread(new ThreadStart(pg.WorkThreadFunction));
+        thread.Start();
+        Console.Read();
     }
 }
