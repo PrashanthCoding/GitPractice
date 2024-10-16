@@ -1,36 +1,25 @@
 using System;
+using System.Text;
 
 class Program
 {
     static void Main()
     {
-        int[] arr = { 1, 3, 5, 7, 9, 11 };
-        int target = 5;
-        int index = BinarySearch(arr, target);
-
-        if (index != -1)
-            Console.WriteLine($"Element found at index {index}");
-        else
-            Console.WriteLine("Element not found");
+        int length = 12;
+        string password = GeneratePassword(length);
+        Console.WriteLine($"Generated Password: {password}");
     }
 
-    static int BinarySearch(int[] arr, int target)
+    static string GeneratePassword(int length)
     {
-        int left = 0;
-        int right = arr.Length - 1;
+        const string validChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()";
+        StringBuilder res = new StringBuilder();
+        Random rnd = new Random();
 
-        while (left <= right)
+        while (0 < length--)
         {
-            int mid = left + (right - left) / 2;
-
-            if (arr[mid] == target)
-                return mid;
-            else if (arr[mid] < target)
-                left = mid + 1;
-            else
-                right = mid - 1;
+            res.Append(validChars[rnd.Next(validChars.Length)]);
         }
-
-        return -1;
+        return res.ToString();
     }
 }
