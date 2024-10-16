@@ -1,27 +1,33 @@
+using System;
+
+class Program
 {
-  "locationCode": "LOC001",
-  "locationDescription": "Main Warehouse",
-  "locationType": "Warehouse",
-  "addressId": 123,
-  "companyContactNo": "1234567890",
-  "companyContactPerson": "John Doe",
-  "mobileNo": "0987654321",
-  "email": "example@domain.com",
-  "geoFenceRange": 500,
-  "shipPointId": 101,
-  "rangeUomId": 1,
-  "geoFenceName": "Fence001",
-  "nameOfBank": "XYZ Bank",
-  "branchName": "Main Branch",
-  "IFSCCode": "IFSC0001",
-  "accountNumber": "1234567890",
-  "groupCompanyCode": "GC001",
-  "groupCompanyName": "ABC Group",
-  "organizationId": 10,
-  "status": "Active",
-  "others": "Additional details",
-  "makerId": 1,
-  "makeTime": "2024-01-01T10:00:00",
-  "lastModifiedBy": 2,
-  "lastModifiedOn": "2024-01-01T12:00:00"
+    static void Main()
+    {
+        int[,] matrix1 = { { 1, 2 }, { 3, 4 } };
+        int[,] matrix2 = { { 5, 6 }, { 7, 8 } };
+        int[,] result = new int[2, 2];
+
+        for (int i = 0; i < 2; i++)
+        {
+            for (int j = 0; j < 2; j++)
+            {
+                result[i, j] = 0;
+                for (int k = 0; k < 2; k++)
+                {
+                    result[i, j] += matrix1[i, k] * matrix2[k, j];
+                }
+            }
+        }
+
+        Console.WriteLine("Matrix Multiplication Result:");
+        for (int i = 0; i < 2; i++)
+        {
+            for (int j = 0; j < 2; j++)
+            {
+                Console.Write(result[i, j] + " ");
+            }
+            Console.WriteLine();
+        }
+    }
 }
