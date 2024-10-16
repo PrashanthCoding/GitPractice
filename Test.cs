@@ -18,11 +18,12 @@ class Program
     {
         //Object Initialization for Student class
         List<Student> objStudent = new List<Student>{
-                    new Student{ Name="Prashanth",Regno="R001",Marks=80},
-                    new Student{ Name="Manoj",Regno="R002",Marks=40},
-                    new Student{ Name="Nazriya",Regno="R003",Marks=25},
-                    new Student{ Name="Darini",Regno="R004",Marks=30},
-                    new Student{ Name="Arjun",Regno="R005",Marks=70},
+                    new Student{ Name="Prashanth",  Regno="R001",   Marks=80},
+                    new Student{ Name="Manoj",     Regno="R002",   Marks=40},
+                    new Student{ Name="Nazriya",   Regno="R003",   Marks=25},
+                    new Student{ Name="Darini",    Regno="R004",   Marks=30},
+                    new Student{ Name="Arjun",     Regno="R005",   Marks=70},
+                    new Student{ Name = "Vijay",   Regno = "R006", Marks = 67}
                 };
 
         var objresult = from stu in objStudent
