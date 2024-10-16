@@ -68,6 +68,8 @@ namespace IndexerApplication
             names[4] = "Apple";
             names[5] = "Orange";
             names[6] = "Grapes";
+            names[7] = "Strawberry";
+            names[8] = "BlueBerry";
             //using the first indexer with int parameter
             for (int i = 0; i < IndexN.size; i++)
             {
