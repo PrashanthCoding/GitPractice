@@ -1,27 +1,56 @@
 /*
- * C# Program to Check whether the Entered Number is Even or Odd
+ * C# Program to Find Multiplication of two Binary Numbers
  */
 using System;
-
-namespace check1
+class program
 {
-    class Program
+    public static void Main()
     {
-        static void Main(string[] args)
+
+        int binary1, binary2, multiply = 0;
+        int digit, factor = 1;
+        prog pg = new prog();
+        Console.WriteLine("Enter the first binary number: ");
+        binary1 = int.Parse(Console.ReadLine());
+        Console.WriteLine("Enter the second binary number: ");
+        binary2 = int.Parse(Console.ReadLine());
+        while (binary2 != 0)
         {
-            int i;
-            Console.Write("Enter a Number : ");
-            i = int.Parse(Console.ReadLine());
-            if (i % 2 == 0)
+            digit = binary2 % 10;
+            if (digit == 1)
             {
-                Console.Write("Entered Number is an Even Number");
-                Console.Read();
+                binary1 = binary1 * factor;
+                multiply = pg.binaryproduct(binary1, multiply);
             }
             else
             {
-                Console.Write("Entered Number is an Odd Number");
-                Console.Read();
+                binary1 = binary1 * factor;
+                binary2 = binary2 / 10;
+                factor = 10;
             }
+            Console.WriteLine("Product of two binary numbers: {0}", multiply);
+            Console.ReadLine();
         }
     }
-}
+    class prog
+    {
+        public int binaryproduct(int binary1, int binary2)
+        {
+            int i = 0, remainder = 0;
+            int[] sum = new int[20];
+            int binaryprod = 0;
+            while (binary1 != 0 || binary2 != 0)
+            {
+                sum[i++] = (binary1 % 10 + binary2 % 10 + remainder) % 2;
+                remainder = (binary1 % 10 + binary2 % 10 + remainder) / 2;
+                binary1 = binary1 / 10;
+                binary2 = binary2 / 10;
+            }
+            if (remainder != 0)
+                sum[i++] = remainder;
+            --i;
+            while (i >= 0)
+                binaryprod = binaryprod * 10 + sum[i--];
+            return binaryprod;
+        }
+    }
