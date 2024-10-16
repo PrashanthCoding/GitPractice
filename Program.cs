@@ -1,14 +1,47 @@
 /*
- * C# Program to get the Universal Time
+ * C# Program to Implement Delegates
  */
 using System;
-class Program
+using System.IO;
+delegate void delegatewriter(string message);
+class delgwriter
 {
-    static void Main()
+    StreamWriter w;
+    public delgwriter(string path)
     {
-        TimeZone zone = TimeZone.CurrentTimeZone;
-        DateTime univ = zone.ToUniversalTime(DateTime.Now);
-        Console.WriteLine("Universal Time is {0}", univ);
+        w = File.CreateText(path);
+    }
+    public void display(string msg)
+    {
+        w.WriteLine(msg);
+    }
+    public void Flush()
+    {
+        w.Flush();
+    }
+    public void Close()
+    {
+        w.Close();
+    }
+}
+class Test
+{
+    static delegatewriter delgwri;
+    static void display(string s)
+    {
+        Console.WriteLine(s);
+    }
+    static void Main(string[] arg)
+    {
+        delgwriter x = new delgwriter("log.txt");
+        delgwri += new delegatewriter(display);
+        delgwri += new delegatewriter(x.display);
+        delgwri("C");
+        delgwri("C++");
+        delgwri("C#");
+        delgwri("Java");
+        x.Flush();
+        x.Close();
         Console.Read();
     }
 }
