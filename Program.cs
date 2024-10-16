@@ -1,27 +1,26 @@
+/*
+ * C# Program to Accept a Number from the user and Display it 
+ * if it is Positive
+ */
 using System;
-
-class Program
+class program
 {
-    static void Main()
+    public static void Main(string[] args)
     {
-        int[] arr = { 10, 20, 4, 45, 99 };
-
-        int largest = int.MinValue;
-        int secondLargest = int.MinValue;
-
-        foreach (int num in arr)
+        Console.WriteLine("Enter a number: ");
+        int number = Convert.ToInt32(Console.ReadLine());
+        if (number > 0)
         {
-            if (num > largest)
-            {
-                secondLargest = largest;
-                largest = num;
-            }
-            else if (num > secondLargest && num != largest)
-            {
-                secondLargest = num;
-            }
+            Console.WriteLine("Number is positive");
         }
-
-        Console.WriteLine($"The second largest element is {secondLargest}");
+        else if (number == 0)
+        {
+            Console.WriteLine("Number is 0");
+        }
+        else
+        {
+            Console.WriteLine("Number is negative");
+        }
+        Console.ReadLine();
     }
 }
