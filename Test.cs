@@ -1,7 +1,4 @@
-﻿/*
- * C# Program to Demonstrate Multiple Exceptions
- */
-using System;
+﻿using System;
 class Exercise
 {
     static void Main()
@@ -63,4 +60,3 @@ static double Calculator(double v1, double v2, char op)
     }
     return Result;
 }
-}s
