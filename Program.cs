@@ -1,27 +1,27 @@
+using System;
+
+class Program
 {
-    "locationCode": "LOC001",
-  "locationDescription": "Main Warehouse",
-  "locationType": "Warehouse",
-  "addressId": 123,
-  "companyContactNo": "1234567890",
-  "companyContactPerson": "John Doe",
-  "mobileNo": "0987654321",
-  "email": "example@domain.com",
-  "geoFenceRange": 500,
-  "shipPointId": 101,
-  "rangeUomId": 1,
-  "geoFenceName": "Fence001",
-  "nameOfBank": "XYZ Bank",
-  "branchName": "Main Branch",
-  "IFSCCode": "IFSC0001",
-  "accountNumber": "1234567890",
-  "groupCompanyCode": "GC001",
-  "groupCompanyName": "ABC Group",
-  "organizationId": 10,
-  "status": "Active",
-  "others": "Additional details",
-  "makerId": 1,
-  "makeTime": "2024-01-01T10:00:00",
-  "lastModifiedBy": 2,
-  "lastModifiedOn": "2024-01-01T12:00:00"
+    static void Main()
+    {
+        int[] arr = { 10, 20, 4, 45, 99 };
+
+        int largest = int.MinValue;
+        int secondLargest = int.MinValue;
+
+        foreach (int num in arr)
+        {
+            if (num > largest)
+            {
+                secondLargest = largest;
+                largest = num;
+            }
+            else if (num > secondLargest && num != largest)
+            {
+                secondLargest = num;
+            }
+        }
+
+        Console.WriteLine($"The second largest element is {secondLargest}");
+    }
 }
