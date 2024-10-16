@@ -1,21 +1,19 @@
 ﻿/*
- * C# Program to Find Magnitude of Integer
+ * C# Program to Demonstrate Prefix Operator
  */
 using System;
-public class Program
+namespace Program
 {
-    public static void Main()
+    internal class Program
     {
-        int num, mag = 0;
-        Console.WriteLine("Enter the Number : ");
-        num = int.Parse(Console.ReadLine());
-        Console.WriteLine("Number: " + num);
-        while (num > 0)
+        private static void Main(string[] args)
         {
-            mag++;
-            num = num / 10;
-        };
-        Console.WriteLine("Magnitude: " + mag);
-        Console.Read();
+            int Input = 100;
+            Input = ++Input;
+            Console.WriteLine("Number After pre Increment : " + Input.ToString());
+            Input = --Input;
+            Console.WriteLine("Number After pre Decrement : " + Input.ToString());
+            Console.ReadLine();
+        }
     }
 }
