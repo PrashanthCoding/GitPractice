@@ -1,1 +1,10 @@
-Test
+{
+  "holidayDate": "2024-12-25T00:00:00",
+  "holidayDescription": "Christmas",
+  "status": "Active",
+  "organizationId": 10,
+  "makerId": 1,
+  "makeTime": "2024-01-01T10:00:00",
+  "lastModifiedBy": 2,
+  "lastModifiedOn": "2024-01-01T12:00:00"
+}
