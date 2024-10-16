@@ -1,33 +1,34 @@
 using System;
+using System.Collections.Concurrent;
+using System.Threading.Tasks;
 
 class Program
 {
     static void Main()
     {
-        int[,] matrix1 = { { 1, 2 }, { 3, 4 } };
-        int[,] matrix2 = { { 5, 6 }, { 7, 8 } };
-        int[,] result = new int[2, 2];
+        BlockingCollection<int> collection = new BlockingCollection<int>(5);
 
-        for (int i = 0; i < 2; i++)
+        Task producer = Task.Run(() =>
         {
-            for (int j = 0; j < 2; j++)
+            for (int i = 0; i < 10; i++)
             {
-                result[i, j] = 0;
-                for (int k = 0; k < 2; k++)
-                {
-                    result[i, j] += matrix1[i, k] * matrix2[k, j];
-                }
+                collection.Add(i);
+                Console.WriteLine($"Produced: {i}");
+                Task.Delay(500).Wait();
             }
-        }
+            collection.CompleteAdding();
+        });
 
-        Console.WriteLine("Matrix Multiplication Result:");
-        for (int i = 0; i < 2; i++)
+        Task consumer = Task.Run(() =>
         {
-            for (int j = 0; j < 2; j++)
+            foreach (var item in collection.GetConsumingEnumerable())
             {
-                Console.Write(result[i, j] + " ");
+                Console.WriteLine($"Consumed: {item}");
+                Task.Delay(1000).Wait();
             }
-            Console.WriteLine();
-        }
+        });
+
+        Task.WaitAll(producer, consumer);
+        Console.WriteLine("All work is done.");
     }
 }
