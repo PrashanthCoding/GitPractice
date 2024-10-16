@@ -1,20 +1,20 @@
 ﻿/*
- * C# Program to Demonstrate Pass by Reference Parameter 
+ * C# Program to Create an Instance of StackTrace and to Get all Frames
  */
 using System;
-class Program
+using System.Diagnostics;
+class program
 {
-    static void Main(string[] args)
+    public static void Main()
     {
-        int val;
-        val = 4;
-        Console.WriteLine("Value Before : {0}", val);
-        square(ref val);
-        Console.WriteLine("Value After : {0}", val);
+        StackTrace stackTrace = new StackTrace();
+        StackFrame[] stackFrames = stackTrace.GetFrames();
+        // write call stack method names
+        Console.WriteLine("Method Names : ");
+        foreach (StackFrame stackFrame in stackFrames)
+        {
+            Console.WriteLine(stackFrame.GetMethod().Name);
+        }
         Console.Read();
-    }
-    static void square(ref int refParam)
-    {
-        refParam *= refParam;
     }
 }
