@@ -1,33 +1,20 @@
 ﻿/*
- * C# Program to Demonstrate Boxing Operations
+ * C# Program to Demonstrate Pass by Reference Parameter 
  */
 using System;
-class sample
+class Program
 {
-    int x = 10;
-    object obj;
-    void boxmethod()
+    static void Main(string[] args)
     {
-        sample s = new sample();
-        bool b;
-        object ob = "CSHARP";
-        b = s.obj is int;
-        Console.WriteLine(b);
-        s.obj = x;
-        b = s.obj is int;
-        Console.WriteLine("{0},{1},{2}", s.obj, s.x, b);
-        s.x = (int)s.obj;
-        s.x = 20;
-        b = s.obj is int;
-        Console.WriteLine("{0},{1},{2}", s.obj, s.x, b);
-        s.obj = "CSHARP";
-        b = s.obj is int;
-        Console.WriteLine("{0},{1},{2}", s.obj, s.x, b);
-        Console.ReadLine();
+        int val;
+        val = 4;
+        Console.WriteLine("Value Before : {0}", val);
+        square(ref val);
+        Console.WriteLine("Value After : {0}", val);
+        Console.Read();
     }
-    public static void Main()
+    static void square(ref int refParam)
     {
-        sample s = new sample();
-        s.boxmethod();
+        refParam *= refParam;
     }
 }
