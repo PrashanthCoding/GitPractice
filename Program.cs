@@ -1,47 +1,35 @@
 /*
- * C# Program to Implement Delegates
+ * C# Program to Demonstrate the Difference between 
+ * Value Type Parameter and Reference Type Parameter
  */
 using System;
-using System.IO;
-delegate void delegatewriter(string message);
-class delgwriter
+namespace Example1
 {
-    StreamWriter w;
-    public delgwriter(string path)
+    class Program
     {
-        w = File.CreateText(path);
-    }
-    public void display(string msg)
-    {
-        w.WriteLine(msg);
-    }
-    public void Flush()
-    {
-        w.Flush();
-    }
-    public void Close()
-    {
-        w.Close();
-    }
-}
-class Test
-{
-    static delegatewriter delgwri;
-    static void display(string s)
-    {
-        Console.WriteLine(s);
-    }
-    static void Main(string[] arg)
-    {
-        delgwriter x = new delgwriter("log.txt");
-        delgwri += new delegatewriter(display);
-        delgwri += new delegatewriter(x.display);
-        delgwri("C");
-        delgwri("C++");
-        delgwri("C#");
-        delgwri("Java");
-        x.Flush();
-        x.Close();
-        Console.Read();
+        public static void value(int num)
+        {
+            num++;
+        }
+        public static void reference(ref int num)
+        {
+            num++;
+        }
+
+        static void Main(string[] args)
+        {
+            int num;
+            Console.Write("Enter a Number:\t");
+            num = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("\n\tValue Type:");
+            Console.Write("\nPrevious Value:\t{0}", num);
+            Program.value(num);
+            Console.Write("\nCurrent Value:\t{0}", num);
+            Console.WriteLine("\n\tReference Type");
+            Console.Write("\nPrevious Value:\t{0}", num);
+            Program.reference(ref num);
+            Console.Write("\nCurrent Value:\t{0}", num);
+            Console.ReadLine();
+        }
     }
 }
