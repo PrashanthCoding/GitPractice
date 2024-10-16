@@ -1,20 +1,27 @@
-﻿var builder = WebApplication.CreateBuilder(args);
-
-// Add services to the container.
-builder.Services.AddDbContext<MasterDataContext>(options =>
-    options.UseSqlServer("YourConnectionStringHere")); // Replace with your actual connection string
-
-builder.Services.AddControllers()
-    .AddJsonOptions(options =>
-    {
-        options.JsonSerializerOptions.PropertyNamingPolicy = null; // Prevents camelCasing
-    });
-
-var app = builder.Build();
-
-app.UseHttpsRedirection();
-app.UseRouting();
-app.UseAuthorization();
-app.MapControllers();
-
-app.Run();
+{
+  "locationCode": "LOC001",
+  "locationDescription": "Main Warehouse",
+  "locationType": "Warehouse",
+  "addressId": 123,
+  "companyContactNo": "1234567890",
+  "companyContactPerson": "John Doe",
+  "mobileNo": "0987654321",
+  "email": "example@domain.com",
+  "geoFenceRange": 500,
+  "shipPointId": 101,
+  "rangeUomId": 1,
+  "geoFenceName": "Fence001",
+  "nameOfBank": "XYZ Bank",
+  "branchName": "Main Branch",
+  "IFSCCode": "IFSC0001",
+  "accountNumber": "1234567890",
+  "groupCompanyCode": "GC001",
+  "groupCompanyName": "ABC Group",
+  "organizationId": 10,
+  "status": "Active",
+  "others": "Additional details",
+  "makerId": 1,
+  "makeTime": "2024-01-01T10:00:00",
+  "lastModifiedBy": 2,
+  "lastModifiedOn": "2024-01-01T12:00:00"
+}
