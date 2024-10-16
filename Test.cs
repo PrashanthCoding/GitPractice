@@ -1,32 +1,33 @@
-﻿using System;
-delegate void dele(string s);
-class TestClass
+﻿/*
+ * C# Program to Demonstrate Boxing Operations
+ */
+using System;
+class sample
 {
-    static void Good(string s)
+    int x = 10;
+    object obj;
+    void boxmethod()
     {
-        System.Console.WriteLine("  Good, {0}!", s);
-    }
-
-    static void Morning(string s)
-    {
-        System.Console.WriteLine("  Morning, {0}!", s);
-    }
-
-    static void Main()
-    {
-        dele firstdel, secondDel, multiDel, multiMinusfirstdel;
-        firstdel = Good;
-        secondDel = Morning;
-        multiDel = firstdel + secondDel;
-        multiMinusfirstdel = multiDel - firstdel;
-        Console.WriteLine("Invoking delegate firstdel:");
-        firstdel("A");
-        Console.WriteLine("Invoking delegate secondDel:");
-        secondDel("B");
-        Console.WriteLine("Invoking delegate multiDel:");
-        multiDel("C");
-        Console.WriteLine("Invoking delegate multiMinusfirstdel:");
-        multiMinusfirstdel("D");
+        sample s = new sample();
+        bool b;
+        object ob = "CSHARP";
+        b = s.obj is int;
+        Console.WriteLine(b);
+        s.obj = x;
+        b = s.obj is int;
+        Console.WriteLine("{0},{1},{2}", s.obj, s.x, b);
+        s.x = (int)s.obj;
+        s.x = 20;
+        b = s.obj is int;
+        Console.WriteLine("{0},{1},{2}", s.obj, s.x, b);
+        s.obj = "CSHARP";
+        b = s.obj is int;
+        Console.WriteLine("{0},{1},{2}", s.obj, s.x, b);
         Console.ReadLine();
+    }
+    public static void Main()
+    {
+        sample s = new sample();
+        s.boxmethod();
     }
 }
