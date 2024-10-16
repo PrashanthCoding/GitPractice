@@ -1,20 +1,28 @@
 ﻿/*
- * C# Program to Demonstrate Pass by Reference Parameter 
+ * C# Program to Count File Extensions and Group it using LINQ
  */
 using System;
-class Program
+using System.IO;
+using System.Linq;
+namespace ConsoleApplication9
 {
-    static void Main(string[] args)
+    class Program
     {
-        int val;
-        val = 4;
-        Console.WriteLine("Value Before : {0}", val);
-        square(ref val);
-        Console.WriteLine("Value After : {0}", val);
-        Console.Read();
-    }
-    static void square(ref int refParam)
-    {
-        refParam *= refParam;
+        public static void Main()
+        {
+            string[] arr = { "aaa.txt", "bbb.TXT", "xyz.abc.pdf", "aaaa.PDF",
+                             "abc.xml", "ccc.txt", "zzz.txt" };
+            var egrp = arr.Select(file => Path.GetExtension(file).TrimStart('.').ToLower())
+                       .GroupBy(x => x, (ext, extCnt) => new
+                       {
+                           Extension = ext,
+                           Count = extCnt.Count()
+                       });
+
+            foreach (var v in egrp)
+                Console.WriteLine("{0} File(s) with {1} Extension ",
+                                    v.Count, v.Extension);
+            Console.ReadLine();
+        }
     }
 }
