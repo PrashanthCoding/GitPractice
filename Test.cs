@@ -1,18 +1,20 @@
 ﻿/*
- * C# Program to Divide Sequence into Groups using LINQ
+ * C# Program to Demonstrate Pass by Reference Parameter 
  */
 using System;
-using System.Linq;
 class Program
 {
     static void Main(string[] args)
     {
-        var seq = Enumerable.Range(100, 100).Select(x => x / 10f);
-        var grps = from x in seq.Select((i, j) => new { i, Grp = j / 10 })
-                   group x.i by x.Grp into y
-                   select new { Min = y.Min(), Max = y.Max() };
-        foreach (var grp in grps)
-            Console.WriteLine("Min: " + grp.Min + " Max:" + grp.Max);
-        Console.ReadLine();
+        int val;
+        val = 4;
+        Console.WriteLine("Value Before : {0}", val);
+        square(ref val);
+        Console.WriteLine("Value After : {0}", val);
+        Console.Read();
+    }
+    static void square(ref int refParam)
+    {
+        refParam *= refParam;
     }
 }
