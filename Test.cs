@@ -1,52 +1,46 @@
 ﻿/*
- * C# Program to Demonstrate Tower Of Hanoi
+ *  C# Program to Create a HangMan Game
  */
 using System;
-class TowerOfHanoi
+
+namespace Hangman
 {
-    int m_numdiscs;
-    public TowerOfHanoi()
+    class Program
     {
-        numdiscs = 0;
-    }
-    public TowerOfHanoi(int newval)
-    {
-        numdiscs = newval;
-    }
-    public int numdiscs
-    {
-        get
+        static void Main(string[] args)
         {
-            return m_numdiscs;
+
+            Console.WriteLine("Welcome to Hangman!!!!!!!!!!");
+            string[] listwords = new string[10];
+            listwords[0] = "sheep";
+            listwords[1] = "goat";
+            listwords[2] = "computer";
+            listwords[3] = "america";
+            listwords[4] = "watermelon";
+            listwords[5] = "icecream";
+            listwords[6] = "jasmine";
+            listwords[7] = "pineapple";
+            listwords[8] = "orange";
+            listwords[9] = "mango";
+            Random randGen = new Random();
+            var idx = randGen.Next(0, 9);
+            string mysteryWord = listwords[idx];
+            char[] guess = new char[mysteryWord.Length];
+            Console.Write("Please enter your guess: ");
+
+            for (int p = 0; p < mysteryWord.Length; p++)
+                guess[p] = '*';
+
+            while (true)
+            {
+                char playerGuess = char.Parse(Console.ReadLine());
+                for (int j = 0; j < mysteryWord.Length; j++)
+                {
+                    if (playerGuess == mysteryWord[j])
+                        guess[j] = playerGuess;
+                }
+                Console.WriteLine(guess);
+            }
         }
-        set
-        {
-            if (value > 0)
-                m_numdiscs = value;
-        }
-    }
-    public void movetower(int n, int from, int to, int other)
-    {
-        if (n > 0)
-        {
-            movetower(n - 1, from, other, to);
-            Console.WriteLine("Move disk {0} from tower {1} to tower {2}",
-                               n, from, to);
-            movetower(n - 1, other, to, from);
-        }
-    }
-}
-class TowersOfHanoiApp
-{
-    public static int Main()
-    {
-        TowerOfHanoi T = new TowerOfHanoi();
-        string cnumdiscs;
-        Console.Write("Enter the number of discs: ");
-        cnumdiscs = Console.ReadLine();
-        T.numdiscs = Convert.ToInt32(cnumdiscs);
-        T.movetower(T.numdiscs, 1, 3, 2);
-        Console.ReadLine();
-        return 0;
     }
 }
