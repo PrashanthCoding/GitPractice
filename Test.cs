@@ -1,49 +1,52 @@
 ﻿/*
- * C# Program to Perform a Number Guessing Game
+ * C# Program to Demonstrate Tower Of Hanoi
  */
 using System;
-class Program
+class TowerOfHanoi
 {
-    static void Main(string[] args)
+    int m_numdiscs;
+    public TowerOfHanoi()
     {
-        while (true)
-        {
-            int randno = Newnum(1, 101);
-            int count = 1;
-            while (true)
-            {
-                Console.Write("Enter a number between 1 and 100(0 to quit):");
-                int input = Convert.ToInt32(Console.ReadLine());
-                if (input == 0)
-                    return;
-                else if (input < randno)
-                {
-                    Console.WriteLine("Low, try again.");
-                    ++count;
-                    continue;
-                }
-                else if (input > randno)
-                {
-                    Console.WriteLine("High, try again.");
-                    ++count;
-                    continue;
-                }
-                else
-                {
-                    Console.WriteLine("You guessed it! The number was {0}!",
-                                       randno);
-                    Console.WriteLine("It took you {0} {1}.\n", count,
-                                       count == 1 ? "try" : "tries");
-                    break;
-                }
-            }
-        }
-
+        numdiscs = 0;
     }
-    static int Newnum(int min, int max)
+    public TowerOfHanoi(int newval)
     {
-        Random random = new Random();
-        return random.Next(min, max);
+        numdiscs = newval;
+    }
+    public int numdiscs
+    {
+        get
+        {
+            return m_numdiscs;
+        }
+        set
+        {
+            if (value > 0)
+                m_numdiscs = value;
+        }
+    }
+    public void movetower(int n, int from, int to, int other)
+    {
+        if (n > 0)
+        {
+            movetower(n - 1, from, other, to);
+            Console.WriteLine("Move disk {0} from tower {1} to tower {2}",
+                               n, from, to);
+            movetower(n - 1, other, to, from);
+        }
     }
 }
+class TowersOfHanoiApp
+{
+    public static int Main()
+    {
+        TowerOfHanoi T = new TowerOfHanoi();
+        string cnumdiscs;
+        Console.Write("Enter the number of discs: ");
+        cnumdiscs = Console.ReadLine();
+        T.numdiscs = Convert.ToInt32(cnumdiscs);
+        T.movetower(T.numdiscs, 1, 3, 2);
+        Console.ReadLine();
+        return 0;
+    }
 }
