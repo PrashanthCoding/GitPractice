@@ -1,64 +1,138 @@
 /*
- * C# Program to Demonstrate Heap Sort
+ * C# Program to Implement Stack with Push and Pop operations
  */
 using System;
-class heap
+namespace ConsoleApplication1
 {
-    int[] r = { 2, 5, 1, 10, 6, 9, 3, 7, 4, 8 };
-    public void hsort()
+    class Program
     {
-        int i, t;
-        for (i = 5; i >= 0; i--)
+        static void Main(string[] args)
         {
-            adjust(i, 9);
-        }
-        for (i = 8; i >= 0; i--)
-        {
-            t = r[i + 1];
-            r[i + 1] = r[0];
-            r[0] = t;
-            adjust(0, i);
-        }
-    }
-    private void adjust(int i, int n)
-    {
-        int t, j;
-        try
-        {
-            t = r[i];
-            j = 2 * i;
-            while (j <= n)
+            stack st = new stack();
+            while (true)
             {
-                if (j < n && r[j] < r[j + 1])
-                    j++;
-                if (t >= r[j])
-                    break;
-                r[j / 2] = r[j];
-                j *= 2;
+                Console.Clear();
+                Console.WriteLine("\nStack MENU(size -- 10)");
+                Console.WriteLine("1. Add an element");
+                Console.WriteLine("2. See the Top element.");
+                Console.WriteLine("3. Remove top element.");
+                Console.WriteLine("4. Display stack elements.");
+                Console.WriteLine("5. Exit");
+                Console.Write("Select your choice: ");
+                int choice = Convert.ToInt32(Console.ReadLine());
+                switch (choice)
+                {
+                    case 1:
+                        Console.WriteLine("Enter an Element : ");
+                        st.Push(Console.ReadLine());
+                        break;
+
+                    case 2:
+                        Console.WriteLine("Top element is: {0}", st.Peek());
+                        break;
+
+                    case 3:
+                        Console.WriteLine("Element removed: {0}", st.Pop());
+                        break;
+
+                    case 4:
+                        st.Display();
+                        break;
+
+                    case 5:
+                        System.Environment.Exit(1);
+                        break;
+                }
+                Console.ReadKey();
             }
-            r[j / 2] = t;
-        }
-        catch (IndexOutOfRangeException e)
-        {
-            Console.WriteLine("Array Out of Bounds ", e);
         }
     }
-    public void print()
+
+    interface StackADT
     {
-        for (int i = 0; i < 10; i++)
+        Boolean isEmpty();
+        void Push(Object element);
+        Object Pop();
+        Object Peek();
+        void Display();
+    }
+    class stack : StackADT
+    {
+        private int StackSize;
+        public int StackSizeSet
         {
-            Console.WriteLine("{0}", r[i]);
+            get { return StackSize; }
+            set { StackSize = value; }
+        }
+        public int top;
+        Object[] item;
+        public stack()
+        {
+            StackSizeSet = 10;
+            item = new Object[StackSizeSet];
+            top = -1;
+        }
+        public stack(int capacity)
+        {
+            StackSizeSet = capacity;
+            item = new Object[StackSizeSet];
+            top = -1;
+        }
+        public bool isEmpty()
+        {
+            if (top == -1) return true;
+
+            return false;
+        }
+        public void Push(object element)
+        {
+            if (top == (StackSize - 1))
+            {
+                Console.WriteLine("Stack is full!");
+            }
+
+            else
+            {
+
+                item[++top] = element;
+                Console.WriteLine("Item pushed successfully!");
+            }
+        }
+        public object Pop()
+        {
+            if (isEmpty())
+            {
+                Console.WriteLine("Stack is empty!");
+                return "No elements";
+            }
+            else
+            {
+
+                return item[top--];
+            }
+        }
+        public object Peek()
+        {
+            if (isEmpty())
+            {
+
+                Console.WriteLine("Stack is empty!");
+                return "No elements";
+            }
+            else
+            {
+                return item[top];
+            }
         }
 
-    }
-    public static void Main()
-    {
-        heap obj = new heap();
-        Console.WriteLine("Elements Before sorting : ");
-        obj.print();
-        obj.hsort();
-        Console.WriteLine("Elements After sorting : ");
-        obj.print();
-        Console.Read();
+
+        public void Display()
+        {
+            for (int i = top; i > -1; i--)
+            {
+
+                Console.WriteLine("Item {0}: {1}", (i + 1), item[i]);
+            }
+        }
     }
 }
