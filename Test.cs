@@ -1,20 +1,32 @@
 /*
- * C# Program to Swap the Contents of two Numbers using Bitwise XOR Operation
+ * C# Program to Obtain the Character from the User and Convert 
+ * the Case of the Character
  */
 using System;
-class program
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+namespace casechange
 {
-    public static void Main()
+    class Program
     {
-        int i, k;
-        Console.WriteLine("Enter two integers \n");
-        i = int.Parse(Console.ReadLine());
-        k = int.Parse(Console.ReadLine());
-        Console.WriteLine("\n Before swapping i= {0} and k = {1}", i, k);
-        i = i ^ k;
-        k = i ^ k;
-        i = i ^ k;
-        Console.WriteLine("\n After swapping i= {0} and k = {1}", i, k);
-        Console.ReadLine();
+        static void Main(string[] args)
+        {
+            char a;
+            int i;
+            Console.WriteLine("Enter the Character : ");
+            a = Convert.ToChar(Console.ReadLine());
+            i=(int)a;
+            if (a >= 65 && a <= 90)
+            {
+ 
+                Console.WriteLine("The Character is : {0}", char.ToLower(a));
+ 
+            }
+            else if (a >= 97 && a <= 122)
+            {
+                Console.WriteLine("The Character is : {0}", char.ToUpper(a));
+            }
+            Console.ReadLine();
+        }
     }
-}
