@@ -1,20 +1,17 @@
-// Numbers:
-let length = 16;
-let weight = 7.5;
-
-// Strings:
-let color = "Yellow";
-let lastName = "Johnson";
-
-// Booleans
-let x = true;
-let y = false;
-
-// Object:
-const person = { firstName: "John", lastName: "Doe" };
-
-// Array object:
-const cars = ["Saab", "Volvo", "BMW"];
-
-// Date object:
-const date = new Date("2022-03-25");
+<html>
+<head>
+    <title> Using the strict mode gloablly </title>
+</head>
+<body>
+    <script>
+        x = 100; // This is valid
+        document.write("The value of the X is - " + x);
+        function test() {
+            "use strict";
+            y = 50; // This is not valid
+            document.write("The value of the y is: " + x);
+        }
+        test();
+    </script>
+</body>
+</html>
