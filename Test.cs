@@ -1,28 +1,20 @@
 /*
- * C# Program to Convert Decimal to Binary
+ * C# Program to Swap the Contents of two Numbers using Bitwise XOR Operation
  */
 using System;
-class myclass
+class program
 {
-    static void Main()
+    public static void Main()
     {
-        int num;
-        Console.Write("Enter a Number : ");
-        num = int.Parse(Console.ReadLine());
-        int quot;
-        string rem = "";
-        while (num >= 1)
-        {
-            quot = num / 2;
-            rem += (num % 2).ToString();
-            num = quot;
-        }
-        string bin = "";
-        for (int i = rem.Length - 1; i >= 0; i--)
-        {
-            bin = bin + rem[i];
-        }
-        Console.WriteLine("The Binary format for given number is {0}", bin);
-        Console.Read();
+        int i, k;
+        Console.WriteLine("Enter two integers \n");
+        i = int.Parse(Console.ReadLine());
+        k = int.Parse(Console.ReadLine());
+        Console.WriteLine("\n Before swapping i= {0} and k = {1}", i, k);
+        i = i ^ k;
+        k = i ^ k;
+        i = i ^ k;
+        Console.WriteLine("\n After swapping i= {0} and k = {1}", i, k);
+        Console.ReadLine();
     }
 }
