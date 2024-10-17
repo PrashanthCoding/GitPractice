@@ -1,29 +1,69 @@
 /*
- * C# Program to Obtain the Character from the User and Convert 
- * the Case of the Character
+ * C# Program to Interchange any 2 Rows of a Matrix
  */
 using System;
-namespace casechange
+class interchangerow
 {
-    class Program
+    int m, n;
+    int[,] a;
+    public interchangerow(int x, int y)
     {
-        static void Main(string[] args)
+        m = x;
+        n = y;
+        a = new int[m, n];
+    }
+    public void readmatrix()
+    {
+        Console.WriteLine("Enter the Elements : ");
+        for (int i = 0; i < m; i++)
         {
-            char a;
-            int i;
-            Console.WriteLine("Enter the Character : ");
-            a = Convert.ToChar(Console.ReadLine());
-            i = (int)a;
-            if (a >= 65 && a <= 90)
+            for (int j = 0; j < n; j++)
             {
-
-                Console.WriteLine("The Character is : {0}", char.ToLower(a));
-
+                Console.WriteLine("a[{0},{1}]=", i, j);
+                a[i, j] = Convert.ToInt32(Console.ReadLine());
             }
-            else if (a >= 97 && a <= 122)
-            {
-                Console.WriteLine("The Character is : {0}", char.ToUpper(a));
-            }
-            Console.ReadLine();
         }
     }
+    public void printmax()
+    {
+        Console.WriteLine("Given Matrix : ");
+        for (int i = 0; i < m; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                Console.Write("{0}\t", a[i, j]);
+
+            }
+            Console.WriteLine();
+        }
+    }
+    public void interchange()
+    {
+        Console.WriteLine("Enter the Row Number to Interchange : ");
+        int i = Convert.ToInt32(Console.ReadLine());
+        Console.WriteLine("Enter the Row Number with which " +
+                          "Interchange is to be Accomplished :");
+        int j = Convert.ToInt32(Console.ReadLine());
+        for (int k = 0; k < n; k++)
+        {
+            int temp = a[i - 1, k];
+            a[i - 1, k] = a[j - 1, k];
+            a[j - 1, k] = temp;
+        }
+    }
+    public static void Main()
+    {
+        int x, y;
+        interchangerow obj;
+        Console.Write("Enter the Number of Rows");
+        x = Convert.ToInt32(Console.ReadLine());
+        Console.Write("Enter the Number of Columns");
+        y = Convert.ToInt32(Console.ReadLine());
+        obj = new interchangerow(x, y);
+        obj.readmatrix();
+        obj.printmax();
+        obj.interchange();
+        obj.printmax();
+        Console.ReadLine();
+    }
+}
