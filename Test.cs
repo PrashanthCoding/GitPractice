@@ -1,59 +1,40 @@
 /*
- *  C# Program to Perform Merge Sort
+ * C# Program to Implement Sequential Sort
  */
 using System;
-namespace prog
+using System.Collections.Generic;
+public static class BubbleSortMethods
 {
-    class Program
+    public static void BubbleSort<T>(this List<T> list) where T : IComparable
     {
-        static public void mergemethod(int[] numbers, int left, int mid, int right)
+        bool changes;
+        int count = list.Count;
+        do
         {
-            int[] temp = new int[25];
-            int i, left_end, num_elements, tmp_pos;
-            left_end = (mid - 1);
-            tmp_pos = left;
-            num_elements = (right - left + 1);
-            while ((left <= left_end) && (mid <= right))
+            changes = false;
+            count--;
+            for (int i = 0; i < count; i++)
             {
-                if (numbers[left] <= numbers[mid])
-                    temp[tmp_pos++] = numbers[left++];
-                else
-                    temp[tmp_pos++] = numbers[mid++];
+                if (list[i].CompareTo(list[i + 1]) > 0)
+                {
+                    T temp = list[i + 1];
+                    list[i + 1] = list[i];
+                    list[i] = temp;
+                    changes = true;
+                }
             }
-            while (left <= left_end)
-                temp[tmp_pos++] = numbers[left++];
-            while (mid <= right)
-                temp[tmp_pos++] = numbers[mid++];
-            for (i = 0; i < num_elements; i++)
-            {
-                numbers[right] = temp[right];
-                right--;
-            }
+        } while (changes);
+    }
+}
 
-        }
-        static public void sortmethod(int[] numbers, int left, int right)
-        {
-            int mid;
-            if (right > left)
-            {
-                mid = (right + left) / 2;
-                sortmethod(numbers, left, mid);
-                sortmethod(numbers, (mid + 1), right);
-                mergemethod(numbers, left, (mid + 1), right);
-
-            }
-        }
-        static void Main(string[] args)
-
-        {
-
-            int[] numbers = { 3, 8, 7, 5, 2, 1, 9, 6, 4 };
-            int len = 9;
-            Console.WriteLine("MergeSort :");
-            sortmethod(numbers, 0, len - 1);
-            for (int i = 0; i < 9; i++)
-                Console.WriteLine(numbers[i]);
-            Console.Read();
-        }
+class Program
+{
+    static void Main()
+    {
+        List<int> testList = new List<int> { 3, 17, 13, 2, 11, 20, 10, 14, 4 };
+        testList.BubbleSort();
+        Console.WriteLine("The Sorted Array is : ");
+        foreach (var t in testList) Console.Write(t + " ");
+        Console.ReadLine();
     }
 }
