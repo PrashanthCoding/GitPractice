@@ -1,5 +1,10 @@
-let str1 = '';
-let str2 = 'Hello';
-let str3 = 'World';
-console.log(str1 && str2); // returns '' empty string
-console.log(str2 && str3); // returns World
+<html>
+    <body>
+        <div id="output"></div>
+        <script>
+            const x = 3;
+            const y = -2;
+  document.getElementById("output").innerHTML = x > 0 && y > 2;
+        </script>
+    </body>
+</html>
