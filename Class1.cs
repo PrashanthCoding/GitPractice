@@ -15,6 +15,8 @@ namespace ConsoleApplication1
             names.Add("Abs");
             names.Add("Edward");
             names.Add("Sita");
+            names.Add("Prashanth");
+            names.Add("Darini");
             names.Sort();
             foreach (string s in names)
                 Console.WriteLine(s);
