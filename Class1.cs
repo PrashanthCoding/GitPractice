@@ -1,84 +1,64 @@
 ﻿/*
- * C# Program to Perform Radix Sort
+ * C# Program to Demonstrate Heap Sort
  */
 using System;
-using System.Collections.Generic;
-
-namespace ConsoleApplication2
+class heap
 {
-    class Example
+    int[] r = { 2, 5, 1, 10, 6, 9, 3, 7, 4, 8 };
+    public void hsort()
     {
-        private int[] data;
-        private IList<IList<int>> digits = new List<IList<int>>();
-        private int maxLength = 0;
-        public Example()
+        int i, t;
+        for (i = 5; i >= 0; i--)
         {
-            for (int i = 0; i < 10; i++)
+            adjust(i, 9);
+        }
+        for (i = 8; i >= 0; i--)
+        {
+            t = r[i + 1];
+            r[i + 1] = r[0];
+            r[0] = t;
+            adjust(0, i);
+        }
+    }
+    private void adjust(int i, int n)
+    {
+        int t, j;
+        try
+        {
+            t = r[i];
+            j = 2 * i;
+            while (j <= n)
             {
-                digits.Add(new List<int>());
+                if (j < n && r[j] < r[j + 1])
+                    j++;
+                if (t >= r[j])
+                    break;
+                r[j / 2] = r[j];
+                j *= 2;
             }
-            Console.Write("Enter the Number of Records : ");
-            int count = int.Parse(Console.ReadLine());
-            data = new int[count];
-            Console.ReadLine();
-            for (int i = 0; i < count; i++)
-            {
-                Console.Write("Enter Record {0} : ", i + 1);
-
-                data[i] = int.Parse(Console.ReadLine());
-
-                if (maxLength < data[i].ToString().Length)
-                    maxLength = data[i].ToString().Length;
-            }
+            r[j / 2] = t;
+        }
+        catch (IndexOutOfRangeException e)
+        {
+            Console.WriteLine("Array Out of Bounds ", e);
+        }
+    }
+    public void print()
+    {
+        for (int i = 0; i < 10; i++)
+        {
+            Console.WriteLine("{0}", r[i]);
         }
 
-        public void RadixSort()
-        {
-            for (int i = 0; i < maxLength; i++)
-            {
-                for (int j = 0; j < data.Length; j++)
-                {
-                    int digit = (int)((data[j] % Math.Pow(10, i + 1)) / Math.Pow(10, i));
-
-                    digits[digit].Add(data[j]);
-                }
-
-                int index = 0;
-                for (int k = 0; k < digits.Count; k++)
-                {
-                    IList<int> selDigit = digits[k];
-
-                    for (int l = 0; l < selDigit.Count; l++)
-                    {
-                        data[index++] = selDigit[l];
-                    }
-                }
-                ClearDigits();
-            }
-            printSortedData();
-        }
-
-        private void ClearDigits()
-        {
-            for (int k = 0; k < digits.Count; k++)
-            {
-                digits[k].Clear();
-            }
-        }
-
-        public void printSortedData()
-        {
-            Console.WriteLine("The Sorted Numbers are : ");
-            for (int i = 0; i < data.Length; i++)
-            {
-                Console.WriteLine(data[i]);
-            }
-        }
-        static void Main(string[] args)
-        {
-            new Example().RadixSort();
-
-            Console.ReadLine();
-        }
+    }
+    public static void Main()
+    {
+        heap obj = new heap();
+        Console.WriteLine("Elements Before sorting : ");
+        obj.print();
+        obj.hsort();
+        Console.WriteLine("Elements After sorting : ");
+        obj.print();
+        Console.Read();
     }
 }
