@@ -9,6 +9,7 @@ namespace Program
     {
         static void Main(string[] args)
         {
+            // Maximum Number
             int num, binary_val, decimal_val = 0, base_val = 1, rem;
             Console.Write("Enter a Binary Number(1s and 0s) : ");
             num = int.Parse(Console.ReadLine()); /* maximum five digits */
