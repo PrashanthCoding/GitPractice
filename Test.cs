@@ -1,32 +1,27 @@
 ﻿/*
- * C# Program to Read a String and find the Sum of all Digits in the String
+ * C# Program to Compute Average for the Set of Values
  */
 using System;
 class program
 {
     public static void Main()
     {
-        char[] string1 = new char[20];
-        int count, nc = 0, sum = 0, n, i;
-        Console.WriteLine("Enter the Length of the sentence  :");
-        n = int.Parse(Console.ReadLine());
-        Console.WriteLine("Enter the string1 containing both digits and alphabet :");
-        for (i = 0; i < n; i++)
+        int m, i, sum = 0, avg = 0;
+        Console.WriteLine("Enter the Number of Terms in the Array ");
+        m = int.Parse(Console.ReadLine());
+        int[] a = new int[m];
+        Console.WriteLine("Enter the Array Elements ");
+        for (i = 0; i < m; i++)
         {
-            string1[i] = Convert.ToChar(Console.Read());
+            a[i] = int.Parse(Console.ReadLine());
         }
-
-        for (count = 0; string1[count] != '\0'; count++)
+        for (i = 0; i < m; i++)
         {
-            if ((string1[count] >= '0') && (string1[count] <= '9'))
-            {
-                nc += 1;
-                sum += (string1[count] - '0');
-            }
+            sum += a[i];
         }
-        Console.WriteLine("NO. of Digits in the string1 = {0}", nc);
-        Console.WriteLine("Sum of all digits = {0}", sum);
-        Console.ReadLine();
+        avg = sum / m;
+        Console.WriteLine("Average is {0}", avg);
         Console.ReadLine();
     }
 }
+s
