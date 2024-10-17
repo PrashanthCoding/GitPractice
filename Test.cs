@@ -1,138 +1,199 @@
-/*
- * C# Program to Implement Stack with Push and Pop operations
- */
 using System;
-namespace ConsoleApplication1
+using System.Collections.Generic;
+
+// Product class
+public class Product
 {
-    class Program
+    public int ProductId { get; set; }
+    public string ProductName { get; set; }
+    public decimal Price { get; set; }
+    public int Stock { get; set; }
+
+    public Product(int id, string name, decimal price, int stock)
     {
-        static void Main(string[] args)
+        ProductId = id;
+        ProductName = name;
+        Price = price;
+        Stock = stock;
+    }
+
+    public void DisplayProduct()
+    {
+        Console.WriteLine($"ID: {ProductId}, Name: {ProductName}, Price: {Price}, Stock: {Stock}");
+    }
+}
+
+// Customer class
+public class Customer
+{
+    public int CustomerId { get; set; }
+    public string CustomerName { get; set; }
+    public string Email { get; set; }
+    public List<Order> Orders { get; set; } = new List<Order>();
+
+    public Customer(int id, string name, string email)
+    {
+        CustomerId = id;
+        CustomerName = name;
+        Email = email;
+    }
+
+    public void DisplayCustomer()
+    {
+        Console.WriteLine($"ID: {CustomerId}, Name: {CustomerName}, Email: {Email}");
+    }
+}
+
+// CartItem class
+public class CartItem
+{
+    public Product Product { get; set; }
+    public int Quantity { get; set; }
+
+    public CartItem(Product product, int quantity)
+    {
+        Product = product;
+        Quantity = quantity;
+    }
+
+    public decimal TotalPrice()
+    {
+        return Product.Price * Quantity;
+    }
+
+    public void DisplayCartItem()
+    {
+        Console.WriteLine($"Product: {Product.ProductName}, Quantity: {Quantity}, Total: {TotalPrice()}");
+    }
+}
+
+// ShoppingCart class
+public class ShoppingCart
+{
+    public List<CartItem> Items { get; set; } = new List<CartItem>();
+
+    public void AddItem(Product product, int quantity)
+    {
+        var existingItem = Items.Find(i => i.Product.ProductId == product.ProductId);
+        if (existingItem != null)
         {
-            stack st = new stack();
-            while (true)
-            {
-                Console.Clear();
-                Console.WriteLine("\nStack MENU(size -- 10)");
-                Console.WriteLine("1. Add an element");
-                Console.WriteLine("2. See the Top element.");
-                Console.WriteLine("3. Remove top element.");
-                Console.WriteLine("4. Display stack elements.");
-                Console.WriteLine("5. Exit");
-                Console.Write("Select your choice: ");
-                int choice = Convert.ToInt32(Console.ReadLine());
-                switch (choice)
-                {
-                    case 1:
-                        Console.WriteLine("Enter an Element : ");
-                        st.Push(Console.ReadLine());
-                        break;
-
-                    case 2:
-                        Console.WriteLine("Top element is: {0}", st.Peek());
-                        break;
-
-                    case 3:
-                        Console.WriteLine("Element removed: {0}", st.Pop());
-                        break;
-
-                    case 4:
-                        st.Display();
-                        break;
-
-                    case 5:
-                        System.Environment.Exit(1);
-                        break;
-                }
-                Console.ReadKey();
-            }
+            existingItem.Quantity += quantity;
+        }
+        else
+        {
+            Items.Add(new CartItem(product, quantity));
         }
     }
 
-    interface StackADT
+    public void DisplayCart()
     {
-        Boolean isEmpty();
-        void Push(Object element);
-        Object Pop();
-        Object Peek();
-        void Display();
+        Console.WriteLine("Cart Items:");
+        foreach (var item in Items)
+        {
+            item.DisplayCartItem();
+        }
     }
-    class stack : StackADT
+
+    public decimal GetCartTotal()
     {
-        private int StackSize;
-        public int StackSizeSet
+        decimal total = 0;
+        foreach (var item in Items)
         {
-            get { return StackSize; }
-            set { StackSize = value; }
+            total += item.TotalPrice();
         }
-        public int top;
-        Object[] item;
-        public stack()
-        {
-            StackSizeSet = 10;
-            item = new Object[StackSizeSet];
-            top = -1;
-        }
-        public stack(int capacity)
-        {
-            StackSizeSet = capacity;
-            item = new Object[StackSizeSet];
-            top = -1;
-        }
-        public bool isEmpty()
-        {
-            if (top == -1) return true;
+        return total;
+    }
 
-            return false;
-        }
-        public void Push(object element)
+    public void Checkout(Customer customer)
+    {
+        Console.WriteLine("\n--- Checkout Process ---");
+        Console.WriteLine($"Customer: {customer.CustomerName}");
+        foreach (var item in Items)
         {
-            if (top == (StackSize - 1))
-            {
-                Console.WriteLine("Stack is full!");
-            }
-
-            else
-            {
-
-                item[++top] = element;
-                Console.WriteLine("Item pushed successfully!");
-            }
-        }
-        public object Pop()
-        {
-            if (isEmpty())
-            {
-                Console.WriteLine("Stack is empty!");
-                return "No elements";
-            }
-            else
-            {
-
-                return item[top--];
-            }
-        }
-        public object Peek()
-        {
-            if (isEmpty())
-            {
-
-                Console.WriteLine("Stack is empty!");
-                return "No elements";
-            }
-            else
-            {
-                return item[top];
-            }
+            item.Product.Stock -= item.Quantity;
         }
 
+        customer.Orders.Add(new Order(customer.CustomerId, this));
 
-        public void Display()
+        Console.WriteLine("Order placed successfully!");
+        Console.WriteLine($"Total: {GetCartTotal()}");
+
+        Items.Clear();
+    }
+}
+
+// Order class
+public class Order
+{
+    public int OrderId { get; set; }
+    public int CustomerId { get; set; }
+    public List<CartItem> OrderItems { get; set; }
+    public DateTime OrderDate { get; set; }
+
+    public Order(int customerId, ShoppingCart cart)
+    {
+        OrderId = new Random().Next(1000, 9999); // Generate a random order ID
+        CustomerId = customerId;
+        OrderItems = new List<CartItem>(cart.Items);
+        OrderDate = DateTime.Now;
+    }
+
+    public void DisplayOrder()
+    {
+        Console.WriteLine($"\nOrder ID: {OrderId}, Customer ID: {CustomerId}, Date: {OrderDate}");
+        foreach (var item in OrderItems)
         {
-            for (int i = top; i > -1; i--)
-            {
-
-                Console.WriteLine("Item {0}: {1}", (i + 1), item[i]);
-            }
+            Console.WriteLine($"Product: {item.Product.ProductName}, Quantity: {item.Quantity}");
         }
+    }
+}
+
+// Main Program
+class ECommerceSystem
+{
+    static void Main(string[] args)
+    {
+        // Sample products
+        Product product1 = new Product(1, "Laptop", 1500, 10);
+        Product product2 = new Product(2, "Smartphone", 700, 20);
+        Product product3 = new Product(3, "Tablet", 400, 15);
+
+        // Displaying available products
+        Console.WriteLine("--- Available Products ---");
+        product1.DisplayProduct();
+        product2.DisplayProduct();
+        product3.DisplayProduct();
+
+        // Customer creation
+        Customer customer = new Customer(1, "John Doe", "john@example.com");
+        Console.WriteLine("\n--- Customer Details ---");
+        customer.DisplayCustomer();
+
+        // Shopping Cart
+        ShoppingCart cart = new ShoppingCart();
+
+        // Adding items to cart
+        cart.AddItem(product1, 1); // 1 Laptop
+        cart.AddItem(product2, 2); // 2 Smartphones
+
+        // Displaying cart details
+        Console.WriteLine("\n--- Cart Details ---");
+        cart.DisplayCart();
+
+        // Checking out
+        cart.Checkout(customer);
+
+        // Displaying customer's orders
+        Console.WriteLine("\n--- Customer Orders ---");
+        foreach (var order in customer.Orders)
+        {
+            order.DisplayOrder();
+        }
+
+        // Display remaining stock
+        Console.WriteLine("\n--- Updated Product Stock ---");
+        product1.DisplayProduct();
+        product2.DisplayProduct();
+        product3.DisplayProduct();
     }
 }
