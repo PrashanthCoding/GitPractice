@@ -1,69 +1,59 @@
 /*
- * C# Program to Interchange any 2 Rows of a Matrix
+ *  C# Program to Perform Merge Sort
  */
 using System;
-class interchangerow
+namespace prog
 {
-    int m, n;
-    int[,] a;
-    public interchangerow(int x, int y)
+    class Program
     {
-        m = x;
-        n = y;
-        a = new int[m, n];
-    }
-    public void readmatrix()
-    {
-        Console.WriteLine("Enter the Elements : ");
-        for (int i = 0; i < m; i++)
+        static public void mergemethod(int[] numbers, int left, int mid, int right)
         {
-            for (int j = 0; j < n; j++)
+            int[] temp = new int[25];
+            int i, left_end, num_elements, tmp_pos;
+            left_end = (mid - 1);
+            tmp_pos = left;
+            num_elements = (right - left + 1);
+            while ((left <= left_end) && (mid <= right))
             {
-                Console.WriteLine("a[{0},{1}]=", i, j);
-                a[i, j] = Convert.ToInt32(Console.ReadLine());
+                if (numbers[left] <= numbers[mid])
+                    temp[tmp_pos++] = numbers[left++];
+                else
+                    temp[tmp_pos++] = numbers[mid++];
             }
-        }
-    }
-    public void printmax()
-    {
-        Console.WriteLine("Given Matrix : ");
-        for (int i = 0; i < m; i++)
-        {
-            for (int j = 0; j < n; j++)
+            while (left <= left_end)
+                temp[tmp_pos++] = numbers[left++];
+            while (mid <= right)
+                temp[tmp_pos++] = numbers[mid++];
+            for (i = 0; i < num_elements; i++)
             {
-                Console.Write("{0}\t", a[i, j]);
+                numbers[right] = temp[right];
+                right--;
+            }
+
+        }
+        static public void sortmethod(int[] numbers, int left, int right)
+        {
+            int mid;
+            if (right > left)
+            {
+                mid = (right + left) / 2;
+                sortmethod(numbers, left, mid);
+                sortmethod(numbers, (mid + 1), right);
+                mergemethod(numbers, left, (mid + 1), right);
 
             }
-            Console.WriteLine();
         }
-    }
-    public void interchange()
-    {
-        Console.WriteLine("Enter the Row Number to Interchange : ");
-        int i = Convert.ToInt32(Console.ReadLine());
-        Console.WriteLine("Enter the Row Number with which " +
-                          "Interchange is to be Accomplished :");
-        int j = Convert.ToInt32(Console.ReadLine());
-        for (int k = 0; k < n; k++)
+        static void Main(string[] args)
+
         {
-            int temp = a[i - 1, k];
-            a[i - 1, k] = a[j - 1, k];
-            a[j - 1, k] = temp;
+
+            int[] numbers = { 3, 8, 7, 5, 2, 1, 9, 6, 4 };
+            int len = 9;
+            Console.WriteLine("MergeSort :");
+            sortmethod(numbers, 0, len - 1);
+            for (int i = 0; i < 9; i++)
+                Console.WriteLine(numbers[i]);
+            Console.Read();
         }
-    }
-    public static void Main()
-    {
-        int x, y;
-        interchangerow obj;
-        Console.Write("Enter the Number of Rows");
-        x = Convert.ToInt32(Console.ReadLine());
-        Console.Write("Enter the Number of Columns");
-        y = Convert.ToInt32(Console.ReadLine());
-        obj = new interchangerow(x, y);
-        obj.readmatrix();
-        obj.printmax();
-        obj.interchange();
-        obj.printmax();
-        Console.ReadLine();
     }
 }
