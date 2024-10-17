@@ -1,27 +1,22 @@
 /*
- * C# Program to Reverse a Number & Check if it is a Palindrome
+ * C# Program to Accept the Height of a Person & Categorize as 
+ * Tall, Dwarf or Average
  */
 using System;
 class program
 {
     public static void Main()
     {
-        int num, temp, remainder, reverse = 0;
-        Console.WriteLine("Enter an integer \n");
-        num = int.Parse(Console.ReadLine());
-        temp = num;
-        while (num > 0)
-        {
-            remainder = num % 10;
-            reverse = reverse * 10 + remainder;
-            num /= 10;
-        }
-        Console.WriteLine("Given number is = {0}", temp);
-        Console.WriteLine("Its reverse is  = {0}", reverse);
-        if (temp == reverse)
-            Console.WriteLine("Number is a palindrome \n");
+        float height;
+        Console.WriteLine("Enter  the Height (in centimeters) \n");
+        height = int.Parse(Console.ReadLine());
+        if (height < 150.0)
+            Console.WriteLine("Dwarf \n");
+        else if ((height >= 150.0) && (height <= 165.0))
+            Console.WriteLine(" Average Height \n");
+        else if ((height >= 165.0) && (height <= 195.0))
+            Console.WriteLine("Taller \n");
         else
-            Console.WriteLine("Number is not a palindrome \n");
-        Console.ReadLine();
+            Console.WriteLine("Abnormal height \n");
     }
 }
