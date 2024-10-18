@@ -1,28 +1,22 @@
-/*
- * C# Program to Implement Sequential Sort
- */
 using System;
-using System.Collections.Generic;
-public static class BubbleSortMethods
+class Demo
 {
-    public static void BubbleSort<T>(this List<T> list) where T : IComparable
+    public static void Main()
     {
-        bool changes;
-        int count = list.Count;
-        do
+        int decValue, counter, i = 1, j;
+        int[] octalValue = new int[80];
+        decValue = 127;
+        counter = decValue;
+        Console.WriteLine("Decimal Number:{0}", decValue);
+        while (counter != 0)
         {
-            changes = false;
-            count--;
-            for (int i = 0; i < count; i++)
-            {
-                if (list[i].CompareTo(list[i + 1]) > 0)
-                {
-                    T temp = list[i + 1];
-                    list[i + 1] = list[i];
-                    list[i] = temp;
-                    changes = true;
-                }
-            }
-        } while (changes);
+            octalValue[i++] = counter % 8;
+            counter /= 8;
+        }
+
+        Console.Write("Octal Number: ");
+        for (j = i - 1; j > 0; j--)
+            Console.Write(octalValue[j]);
+        Console.Read();
     }
 }
