@@ -1,5 +1,3 @@
-// Author: Joseph Cowdell
-
 copyText = function (textToCopy) {
     this.copied = false
 
@@ -35,13 +33,4 @@ copyText = function (textToCopy) {
 copyById = function (id) {
     let text = document.getElementById(id)
     copyText(text.value)
-}
-
-copyPreviousSibling = function (curr) {
-    let el = curr.previousElementSibling
-    if (el.value !== undefined) {
-        copyText(el.value)
-    } else {
-        copyText(el.textContent)
-    }
 }
