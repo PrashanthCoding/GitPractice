@@ -1,63 +1,167 @@
-// IEFE
-(() => {
-    // state variables
-    let toDoListArray = [];
-    // ui variables
-    const form = document.querySelector(".form");
-    const input = form.querySelector(".form__input");
-    const ul = document.querySelector(".toDoList");
+(function () {
+    var questions = [{
+        question: "What is 2*5?",
+        choices: [2, 5, 10, 15, 20],
+        correctAnswer: 2
+    }, {
+        question: "What is 3*6?",
+        choices: [3, 6, 9, 12, 18],
+        correctAnswer: 4
+    }, {
+        question: "What is 8*9?",
+        choices: [72, 99, 108, 134, 156],
+        correctAnswer: 0
+    }, {
+        question: "What is 1*7?",
+        choices: [4, 5, 6, 7, 8],
+        correctAnswer: 3
+    }, {
+        question: "What is 8*8?",
+        choices: [20, 30, 40, 50, 64],
+        correctAnswer: 4
+    }];
 
-    // event listeners
-    form.addEventListener('submit', e => {
-        // prevent default behaviour - Page reload
+    var questionCounter = 0; //Tracks question number
+    var selections = []; //Array containing user choices
+    var quiz = $('#quiz'); //Quiz div object
+
+    // Display initial question
+    displayNext();
+
+    // Click handler for the 'next' button
+    $('#next').on('click', function (e) {
         e.preventDefault();
-        // give item a unique ID
-        let itemId = String(Date.now());
-        // get/assign input value
-        let toDoItem = input.value;
-        //pass ID and item into functions
-        addItemToDOM(itemId, toDoItem);
-        addItemToArray(itemId, toDoItem);
-        // clear the input box. (this is default behaviour but we got rid of that)
-        input.value = '';
+
+        // Suspend click listener during fade animation
+        if (quiz.is(':animated')) {
+            return false;
+        }
+        choose();
+
+        // If no user selection, progress is stopped
+        if (isNaN(selections[questionCounter])) {
+            alert('Please make a selection!');
+        } else {
+            questionCounter++;
+            displayNext();
+        }
     });
 
-    ul.addEventListener('click', e => {
-        let id = e.target.getAttribute('data-id')
-        if (!id) return // user clicked in something else      
-        //pass id through to functions
-        removeItemFromDOM(id);
-        removeItemFromArray(id);
+    // Click handler for the 'prev' button
+    $('#prev').on('click', function (e) {
+        e.preventDefault();
+
+        if (quiz.is(':animated')) {
+            return false;
+        }
+        choose();
+        questionCounter--;
+        displayNext();
     });
 
-    // functions 
-    function addItemToDOM(itemId, toDoItem) {
-        // create an li
-        const li = document.createElement('li')
-        li.setAttribute("data-id", itemId);
-        // add toDoItem text to li
-        li.innerText = toDoItem
-        // add li to the DOM
-        ul.appendChild(li);
+    // Click handler for the 'Start Over' button
+    $('#start').on('click', function (e) {
+        e.preventDefault();
+
+        if (quiz.is(':animated')) {
+            return false;
+        }
+        questionCounter = 0;
+        selections = [];
+        displayNext();
+        $('#start').hide();
+    });
+
+    // Animates buttons on hover
+    $('.button').on('mouseenter', function () {
+        $(this).addClass('active');
+    });
+    $('.button').on('mouseleave', function () {
+        $(this).removeClass('active');
+    });
+
+    // Creates and returns the div that contains the questions and 
+    // the answer selections
+    function createQuestionElement(index) {
+        var qElement = $('<div>', {
+            id: 'question'
+        });
+
+        var header = $('<h2>Question ' + (index + 1) + ':</h2>');
+        qElement.append(header);
+
+        var question = $('<p>').append(questions[index].question);
+        qElement.append(question);
+
+        var radioButtons = createRadios(index);
+        qElement.append(radioButtons);
+
+        return qElement;
     }
 
-    function addItemToArray(itemId, toDoItem) {
-        // add item to array as an object with an ID so we can find and delete it later
-        toDoListArray.push({ itemId, toDoItem });
-        console.log(toDoListArray)
+    // Creates a list of the answer choices as radio inputs
+    function createRadios(index) {
+        var radioList = $('<ul>');
+        var item;
+        var input = '';
+        for (var i = 0; i < questions[index].choices.length; i++) {
+            item = $('<li>');
+            input = '<input type="radio" name="answer" value=' + i + ' />';
+            input += questions[index].choices[i];
+            item.append(input);
+            radioList.append(item);
+        }
+        return radioList;
     }
 
-    function removeItemFromDOM(id) {
-        // get the list item by data ID
-        var li = document.querySelector('[data-id="' + id + '"]');
-        // remove list item
-        ul.removeChild(li);
+    // Reads the user selection and pushes the value to an array
+    function choose() {
+        selections[questionCounter] = +$('input[name="answer"]:checked').val();
     }
 
-    function removeItemFromArray(id) {
-        // create a new toDoListArray with all li's that don't match the ID
-        toDoListArray = toDoListArray.filter(item => item.itemId !== id);
-        console.log(toDoListArray);
+    // Displays next requested element
+    function displayNext() {
+        quiz.fadeOut(function () {
+            $('#question').remove();
+
+            if (questionCounter < questions.length) {
+                var nextQuestion = createQuestionElement(questionCounter);
+                quiz.append(nextQuestion).fadeIn();
+                if (!(isNaN(selections[questionCounter]))) {
+                    $('input[value=' + selections[questionCounter] + ']').prop('checked', true);
+                }
+
+                // Controls display of 'prev' button
+                if (questionCounter === 1) {
+                    $('#prev').show();
+                } else if (questionCounter === 0) {
+
+                    $('#prev').hide();
+                    $('#next').show();
+                }
+            } else {
+                var scoreElem = displayScore();
+                quiz.append(scoreElem).fadeIn();
+                $('#next').hide();
+                $('#prev').hide();
+                $('#start').show();
+            }
+        });
     }
 
+    // Computes score and returns a paragraph element to be displayed
+    function displayScore() {
+        var score = $('<p>', { id: 'question' });
+
+        var numCorrect = 0;
+        for (var i = 0; i < selections.length; i++) {
+            if (selections[i] === questions[i].correctAnswer) {
+                numCorrect++;
+            }
+        }
+
+        score.append('You got ' + numCorrect + ' questions out of ' +
+            questions.length + ' right!!!');
+        return score;
+    }
 })();
