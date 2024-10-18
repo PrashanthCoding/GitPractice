@@ -1,42 +1,38 @@
 using System;
-
-namespace ReverseAnArrayDemo
+namespace CSharpProgram
 {
-    public class Program
+    class Program
     {
         static void Main(string[] args)
         {
-            //Creating an Integer Array
-            int[] arr = { 1, 2, 3, 4, 5 };
-
-            Console.Write("Original Array Elements :");
-            for (int i = 0; i < arr.Length; i++)
-            {
-                Console.Write(arr[i] + " ");
-            }
-
-            ReverseElements(arr, 0, (arr.Length - 1));
-
-            Console.Write("\nReversed Array Elements :");
-            for (int i = 0; i < arr.Length; i++)
-            {
-                Console.Write(arr[i] + " ");
-            }
-
-            Console.ReadKey();
+            // Creating an array  
+            int[] arr = new int[6] { 5, 8, 9, 25, 0, 7 };
+            // Creating an empty array  
+            int[] arr2 = new int[6];
+            // Displaying length of array  
+            Console.WriteLine("length of first array: " + arr.Length);
+            // Sorting array  
+            Array.Sort(arr);
+            Console.Write("First array elements: ");
+            // Displaying sorted array  
+            PrintArray(arr);
+            // Finding index of an array element  
+            Console.WriteLine("\nIndex position of 25 is " + Array.IndexOf(arr, 25));
+            // Coping first array to empty array  
+            Array.Copy(arr, arr2, arr.Length);
+            Console.Write("Second array elements: ");
+            // Displaying second array  
+            PrintArray(arr2);
+            Array.Reverse(arr);
+            Console.Write("\nFirst Array elements in reverse order: ");
+            PrintArray(arr);
         }
-
-        public static void ReverseElements(int[] arr, int startIndex, int endIndex)
+        // User defined method for iterating array elements  
+        static void PrintArray(int[] arr)
         {
-            while (startIndex < endIndex)
+            foreach (Object elem in arr)
             {
-                int temp = arr[startIndex];
-                arr[startIndex] = arr[endIndex];
-
-                arr[endIndex] = temp;
-
-                startIndex++;
-                endIndex--;
+                Console.Write(elem + " ");
             }
         }
     }
