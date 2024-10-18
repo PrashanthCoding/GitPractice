@@ -1,24 +1,21 @@
 ﻿/*
- *C# Program to Print the Sum of all the Multiples of 3 and 5
+ * C# Program to Multiply given Number by 4 using Bitwise Operators
  */
 using System;
-class program
+
+namespace ConsoleApplication
 {
-    public static void Main()
+    class Program
     {
-        int a, b, i, Sum = 0;
-        for (i = 1; i < 100; i++)
+        static void Main(string[] args)
         {
-            a = i % 3;
-            b = i % 5;
-            if (a == 0 || b == 0)
-            {
-                Console.Write("{0}\t", i);
-                Sum = Sum + i;
-            }
+            int number, tempnum;
+            Console.WriteLine("Enter an integer :");
+            number = int.Parse(Console.ReadLine());
+            tempnum = number;
+            number = number << 2;
+            Console.WriteLine("{0},{1}", tempnum, number);
+            Console.ReadLine();
         }
-        Console.WriteLine("\nThe Sum of all the Multiples of 3 or 5 Below 100 : {0}",
-                          Sum);
-        Console.Read();
     }
 }
