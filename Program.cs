@@ -1,35 +1,24 @@
 ﻿/*
- * C# Program to Read a Grade & Display the Equivalent Description
+ *C# Program to Print the Sum of all the Multiples of 3 and 5
  */
 using System;
 class program
 {
     public static void Main()
     {
-        char grade;
-        Console.WriteLine("Enter the Grade in UpperCase \n");
-        grade = Convert.ToChar(Console.ReadLine());
-        switch (grade)
+        int a, b, i, Sum = 0;
+        for (i = 1; i < 100; i++)
         {
-            case 'S':
-                Console.WriteLine(" SUPER");
-                break;
-            case 'A':
-                Console.WriteLine(" VERY GOOD");
-                break;
-            case 'B':
-                Console.WriteLine(" FAIR");
-                break;
-            case 'Y':
-                Console.WriteLine(" ABSENT");
-                break;
-            case 'F':
-                Console.WriteLine(" FAIL");
-                break;
-            default:
-                Console.WriteLine("ERROR IN GRADE \n");
-                break;
-                Console.ReadLine();
+            a = i % 3;
+            b = i % 5;
+            if (a == 0 || b == 0)
+            {
+                Console.Write("{0}\t", i);
+                Sum = Sum + i;
+            }
         }
+        Console.WriteLine("\nThe Sum of all the Multiples of 3 or 5 Below 100 : {0}",
+                          Sum);
+        Console.Read();
     }
 }
