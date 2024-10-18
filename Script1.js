@@ -45,5 +45,3 @@ copyPreviousSibling = function (curr) {
         copyText(el.textContent)
     }
 }
-
-// inpired by https://paulund.co.uk/javascript-copy-and-paste
