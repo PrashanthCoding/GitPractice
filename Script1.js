@@ -1,167 +1,233 @@
-(function () {
-    var questions = [{
-        question: "What is 2*5?",
-        choices: [2, 5, 10, 15, 20],
-        correctAnswer: 2
-    }, {
-        question: "What is 3*6?",
-        choices: [3, 6, 9, 12, 18],
-        correctAnswer: 4
-    }, {
-        question: "What is 8*9?",
-        choices: [72, 99, 108, 134, 156],
-        correctAnswer: 0
-    }, {
-        question: "What is 1*7?",
-        choices: [4, 5, 6, 7, 8],
-        correctAnswer: 3
-    }, {
-        question: "What is 8*8?",
-        choices: [20, 30, 40, 50, 64],
-        correctAnswer: 4
-    }];
+window.onload = function () {
 
-    var questionCounter = 0; //Tracks question number
-    var selections = []; //Array containing user choices
-    var quiz = $('#quiz'); //Quiz div object
+    var alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h',
+        'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's',
+        't', 'u', 'v', 'w', 'x', 'y', 'z'];
 
-    // Display initial question
-    displayNext();
+    var categories;         // Array of topics
+    var chosenCategory;     // Selected catagory
+    var getHint;          // Word getHint
+    var word;              // Selected word
+    var guess;             // Geuss
+    var geusses = [];      // Stored geusses
+    var lives;             // Lives
+    var counter;           // Count correct geusses
+    var space;              // Number of spaces in word '-'
 
-    // Click handler for the 'next' button
-    $('#next').on('click', function (e) {
-        e.preventDefault();
+    // Get elements
+    var showLives = document.getElementById("mylives");
+    var showCatagory = document.getElementById("scatagory");
+    var getHint = document.getElementById("hint");
+    var showClue = document.getElementById("clue");
 
-        // Suspend click listener during fade animation
-        if (quiz.is(':animated')) {
-            return false;
+
+
+    // create alphabet ul
+    var buttons = function () {
+        myButtons = document.getElementById('buttons');
+        letters = document.createElement('ul');
+
+        for (var i = 0; i < alphabet.length; i++) {
+            letters.id = 'alphabet';
+            list = document.createElement('li');
+            list.id = 'letter';
+            list.innerHTML = alphabet[i];
+            check();
+            myButtons.appendChild(letters);
+            letters.appendChild(list);
         }
-        choose();
-
-        // If no user selection, progress is stopped
-        if (isNaN(selections[questionCounter])) {
-            alert('Please make a selection!');
-        } else {
-            questionCounter++;
-            displayNext();
-        }
-    });
-
-    // Click handler for the 'prev' button
-    $('#prev').on('click', function (e) {
-        e.preventDefault();
-
-        if (quiz.is(':animated')) {
-            return false;
-        }
-        choose();
-        questionCounter--;
-        displayNext();
-    });
-
-    // Click handler for the 'Start Over' button
-    $('#start').on('click', function (e) {
-        e.preventDefault();
-
-        if (quiz.is(':animated')) {
-            return false;
-        }
-        questionCounter = 0;
-        selections = [];
-        displayNext();
-        $('#start').hide();
-    });
-
-    // Animates buttons on hover
-    $('.button').on('mouseenter', function () {
-        $(this).addClass('active');
-    });
-    $('.button').on('mouseleave', function () {
-        $(this).removeClass('active');
-    });
-
-    // Creates and returns the div that contains the questions and 
-    // the answer selections
-    function createQuestionElement(index) {
-        var qElement = $('<div>', {
-            id: 'question'
-        });
-
-        var header = $('<h2>Question ' + (index + 1) + ':</h2>');
-        qElement.append(header);
-
-        var question = $('<p>').append(questions[index].question);
-        qElement.append(question);
-
-        var radioButtons = createRadios(index);
-        qElement.append(radioButtons);
-
-        return qElement;
     }
 
-    // Creates a list of the answer choices as radio inputs
-    function createRadios(index) {
-        var radioList = $('<ul>');
-        var item;
-        var input = '';
-        for (var i = 0; i < questions[index].choices.length; i++) {
-            item = $('<li>');
-            input = '<input type="radio" name="answer" value=' + i + ' />';
-            input += questions[index].choices[i];
-            item.append(input);
-            radioList.append(item);
+
+    // Select Catagory
+    var selectCat = function () {
+        if (chosenCategory === categories[0]) {
+            catagoryName.innerHTML = "The Chosen Category Is Premier League Football Teams";
+        } else if (chosenCategory === categories[1]) {
+            catagoryName.innerHTML = "The Chosen Category Is Films";
+        } else if (chosenCategory === categories[2]) {
+            catagoryName.innerHTML = "The Chosen Category Is Cities";
         }
-        return radioList;
     }
 
-    // Reads the user selection and pushes the value to an array
-    function choose() {
-        selections[questionCounter] = +$('input[name="answer"]:checked').val();
-    }
+    // Create geusses ul
+    result = function () {
+        wordHolder = document.getElementById('hold');
+        correct = document.createElement('ul');
 
-    // Displays next requested element
-    function displayNext() {
-        quiz.fadeOut(function () {
-            $('#question').remove();
-
-            if (questionCounter < questions.length) {
-                var nextQuestion = createQuestionElement(questionCounter);
-                quiz.append(nextQuestion).fadeIn();
-                if (!(isNaN(selections[questionCounter]))) {
-                    $('input[value=' + selections[questionCounter] + ']').prop('checked', true);
-                }
-
-                // Controls display of 'prev' button
-                if (questionCounter === 1) {
-                    $('#prev').show();
-                } else if (questionCounter === 0) {
-
-                    $('#prev').hide();
-                    $('#next').show();
-                }
+        for (var i = 0; i < word.length; i++) {
+            correct.setAttribute('id', 'my-word');
+            guess = document.createElement('li');
+            guess.setAttribute('class', 'guess');
+            if (word[i] === "-") {
+                guess.innerHTML = "-";
+                space = 1;
             } else {
-                var scoreElem = displayScore();
-                quiz.append(scoreElem).fadeIn();
-                $('#next').hide();
-                $('#prev').hide();
-                $('#start').show();
+                guess.innerHTML = "_";
             }
-        });
+
+            geusses.push(guess);
+            wordHolder.appendChild(correct);
+            correct.appendChild(guess);
+        }
     }
 
-    // Computes score and returns a paragraph element to be displayed
-    function displayScore() {
-        var score = $('<p>', { id: 'question' });
-
-        var numCorrect = 0;
-        for (var i = 0; i < selections.length; i++) {
-            if (selections[i] === questions[i].correctAnswer) {
-                numCorrect++;
+    // Show lives
+    comments = function () {
+        showLives.innerHTML = "You have " + lives + " lives";
+        if (lives < 1) {
+            showLives.innerHTML = "Game Over";
+        }
+        for (var i = 0; i < geusses.length; i++) {
+            if (counter + space === geusses.length) {
+                showLives.innerHTML = "You Win!";
             }
         }
-
-        score.append('You got ' + numCorrect + ' questions out of ' +
-            questions.length + ' right!!!');
-        return score;
     }
-})();
+
+    // Animate man
+    var animate = function () {
+        var drawMe = lives;
+        drawArray[drawMe]();
+    }
+
+
+    // Hangman
+    canvas = function () {
+
+        myStickman = document.getElementById("stickman");
+        context = myStickman.getContext('2d');
+        context.beginPath();
+        context.strokeStyle = "#fff";
+        context.lineWidth = 2;
+    };
+
+    head = function () {
+        myStickman = document.getElementById("stickman");
+        context = myStickman.getContext('2d');
+        context.beginPath();
+        context.arc(60, 25, 10, 0, Math.PI * 2, true);
+        context.stroke();
+    }
+
+    draw = function ($pathFromx, $pathFromy, $pathTox, $pathToy) {
+
+        context.moveTo($pathFromx, $pathFromy);
+        context.lineTo($pathTox, $pathToy);
+        context.stroke();
+    }
+
+    frame1 = function () {
+        draw(0, 150, 150, 150);
+    };
+
+    frame2 = function () {
+        draw(10, 0, 10, 600);
+    };
+
+    frame3 = function () {
+        draw(0, 5, 70, 5);
+    };
+
+    frame4 = function () {
+        draw(60, 5, 60, 15);
+    };
+
+    torso = function () {
+        draw(60, 36, 60, 70);
+    };
+
+    rightArm = function () {
+        draw(60, 46, 100, 50);
+    };
+
+    leftArm = function () {
+        draw(60, 46, 20, 50);
+    };
+
+    rightLeg = function () {
+        draw(60, 70, 100, 100);
+    };
+
+    leftLeg = function () {
+        draw(60, 70, 20, 100);
+    };
+
+    drawArray = [rightLeg, leftLeg, rightArm, leftArm, torso, head, frame4, frame3, frame2, frame1];
+
+
+    // OnClick Function
+    check = function () {
+        list.onclick = function () {
+            var geuss = (this.innerHTML);
+            this.setAttribute("class", "active");
+            this.onclick = null;
+            for (var i = 0; i < word.length; i++) {
+                if (word[i] === geuss) {
+                    geusses[i].innerHTML = geuss;
+                    counter += 1;
+                }
+            }
+            var j = (word.indexOf(geuss));
+            if (j === -1) {
+                lives -= 1;
+                comments();
+                animate();
+            } else {
+                comments();
+            }
+        }
+    }
+
+
+    // Play
+    play = function () {
+        categories = [
+            ["everton", "liverpool", "swansea", "chelsea", "hull", "manchester-city", "newcastle-united"],
+            ["alien", "dirty-harry", "gladiator", "finding-nemo", "jaws"],
+            ["manchester", "milan", "madrid", "amsterdam", "prague"]
+        ];
+
+        chosenCategory = categories[Math.floor(Math.random() * categories.length)];
+        word = chosenCategory[Math.floor(Math.random() * chosenCategory.length)];
+        word = word.replace(/\s/g, "-");
+        console.log(word);
+        buttons();
+
+        geusses = [];
+        lives = 10;
+        counter = 0;
+        space = 0;
+        result();
+        comments();
+        selectCat();
+        canvas();
+    }
+
+    play();
+
+    // Hint
+
+    hint.onclick = function () {
+
+        hints = [
+            ["Based in Mersyside", "Based in Mersyside", "First Welsh team to reach the Premier Leauge", "Owned by A russian Billionaire", "Once managed by Phil Brown", "2013 FA Cup runners up", "Gazza's first club"],
+            ["Science-Fiction horror film", "1971 American action film", "Historical drama", "Anamated Fish", "Giant great white shark"],
+            ["Northern city in the UK", "Home of AC and Inter", "Spanish capital", "Netherlands capital", "Czech Republic capital"]
+        ];
+
+        var catagoryIndex = categories.indexOf(chosenCategory);
+        var hintIndex = chosenCategory.indexOf(word);
+        showClue.innerHTML = "Clue: - " + hints[catagoryIndex][hintIndex];
+    };
+
+    // Reset
+
+    document.getElementById('reset').onclick = function () {
+        correct.parentNode.removeChild(correct);
+        letters.parentNode.removeChild(letters);
+        showClue.innerHTML = "";
+        context.clearRect(0, 0, 400, 400);
+        play();
+    }
+}
