@@ -1,45 +1,49 @@
-const items = document.querySelectorAll('img');
-const itemCount = items.length;
-const nextItem = document.querySelector('.next');
-const previousItem = document.querySelector('.previous');
-let count = 0;
+// Author: Joseph Cowdell
 
-function showNextItem() {
-    items[count].classList.remove('active');
+copyText = function (textToCopy) {
+    this.copied = false
 
-    if (count < itemCount - 1) {
-        count++;
+    // Create textarea element
+    const textarea = document.createElement('textarea')
+
+    // Set the value of the text
+    textarea.value = textToCopy
+
+    // Make sure we cant change the text of the textarea
+    textarea.setAttribute('readonly', '');
+
+    // Hide the textarea off the screnn
+    textarea.style.position = 'absolute';
+    textarea.style.left = '-9999px';
+
+    // Add the textarea to the page
+    document.body.appendChild(textarea);
+
+    // Copy the textarea
+    textarea.select()
+
+    try {
+        var successful = document.execCommand('copy');
+        this.copied = true
+    } catch (err) {
+        this.copied = false
+    }
+
+    textarea.remove()
+}
+
+copyById = function (id) {
+    let text = document.getElementById(id)
+    copyText(text.value)
+}
+
+copyPreviousSibling = function (curr) {
+    let el = curr.previousElementSibling
+    if (el.value !== undefined) {
+        copyText(el.value)
     } else {
-        count = 0;
-    }
-
-    items[count].classList.add('active');
-    console.log(count);
-}
-
-function showPreviousItem() {
-    items[count].classList.remove('active');
-
-    if (count > 0) {
-        count--;
-    } else {
-        count = itemCount - 1;
-    }
-
-    items[count].classList.add('active');
-    console.log(count);
-}
-
-function keyPress(e) {
-    e = e || window.event;
-
-    if (e.keyCode == '37') {
-        showPreviousItem();
-    } else if (e.keyCode == '39') {
-        showNextItem();
+        copyText(el.textContent)
     }
 }
 
-nextItem.addEventListener('click', showNextItem);
-previousItem.addEventListener('click', showPreviousItem);
-document.addEventListener('keydown', keyPress);
+// inpired by https://paulund.co.uk/javascript-copy-and-paste
