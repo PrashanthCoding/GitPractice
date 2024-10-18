@@ -26,15 +26,3 @@ public static class BubbleSortMethods
         } while (changes);
     }
 }
-
-class Program
-{
-    static void Main()
-    {
-        List<int> testList = new List<int> { 3, 17, 13, 2, 11, 20, 10, 14, 4 };
-        testList.BubbleSort();
-        Console.WriteLine("The Sorted Array is : ");
-        foreach (var t in testList) Console.Write(t + " ");
-        Console.ReadLine();
-    }
-}
