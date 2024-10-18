@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 // Author: Joseph Cowdell
 
 copyText = function (textToCopy) {
@@ -45,3 +46,8 @@ copyPreviousSibling = function (curr) {
         copyText(el.textContent)
     }
 }
+=======
+
+
+let c = 10;
+>>>>>>> Stashed changes
