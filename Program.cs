@@ -1,25 +1,16 @@
-/*
- * C# Program to Create a Simple Thread
- */
 using System;
-using System.Threading;
-class program
+using System.IO;
+public class StreamReaderExample
 {
-    public void WorkThreadFunction()
+    public static void Main(string[] args)
     {
-        for (int i = 0; i < 5; i++)
-        {
-            Console.WriteLine("Simple Thread");
-        }
-    }
-}
-class threprog
-{
-    public static void Main()
-    {
-        program pg = new program();
-        Thread thread = new Thread(new ThreadStart(pg.WorkThreadFunction));
-        thread.Start();
-        Console.Read();
+        FileStream f = new FileStream("e:\\output.txt", FileMode.OpenOrCreate);
+        StreamReader s = new StreamReader(f);
+
+        string line = s.ReadLine();
+        Console.WriteLine(line);
+
+        s.Close();
+        f.Close();
     }
 }
