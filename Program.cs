@@ -1,21 +1,22 @@
-﻿/*
- * C# Program to Multiply given Number by 4 using Bitwise Operators
- */
-using System;
+﻿using System;
 
-namespace ConsoleApplication
+class Program
 {
-    class Program
+    static void Main()
     {
-        static void Main(string[] args)
+        int num1 = 0, num2 = 1, num3, i, n;
+
+        Console.Write("Enter the number of elements: ");
+        n = Convert.ToInt32(Console.ReadLine());
+
+        Console.Write($"{num1} {num2} "); // printing first two elements
+
+        for (i = 2; i < n; ++i) // loop starts from 2
         {
-            int number, tempnum;
-            Console.WriteLine("Enter an integer :");
-            number = int.Parse(Console.ReadLine());
-            tempnum = number;
-            number = number << 2;
-            Console.WriteLine("{0},{1}", tempnum, number);
-            Console.ReadLine();
+            num3 = num1 + num2;
+            Console.Write(num3 + " ");
+            num1 = num2;
+            num2 = num3;
         }
     }
 }
