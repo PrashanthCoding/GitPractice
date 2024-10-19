@@ -1,31 +1,20 @@
 ﻿using System;
-class PrimeChecker
+using System.Linq;
+class Palindrome
 {
     static void Main()
     {
-        int num, i, m = 0, flag = 0;
-        Console.Write("Enter a number: ");
-        num = int.Parse(Console.ReadLine());
-        m = num / 2;
-        if (num == 0 || num == 1)
+        Console.Write("Enter a string: ");
+        string str = Console.ReadLine();
+        string reversedStr = new string(str.Reverse().ToArray());
+
+        if (str.Equals(reversedStr, StringComparison.OrdinalIgnoreCase))
         {
-            Console.WriteLine(num + " is not prime.");
+            Console.WriteLine(str + " is a palindrome.");
         }
         else
         {
-            for (i = 2; i <= m; i++)
-            {
-                if (num % i == 0)
-                {
-                    Console.WriteLine(num + " is not prime.");
-                    flag = 1;
-                    break;
-                }
-            }
-            if (flag == 0)
-            {
-                Console.WriteLine(num + " is a prime number.");
-            }
+            Console.WriteLine(str + " is not a palindrome.");
         }
     }
 }
