@@ -1,70 +1,39 @@
 ﻿using System;
-using System.Threading.Tasks;
 
-[HttpPost]
-[Route("AddDivision")]
-public async Task<IActionResult> AddDivision([FromBody] DivisionDto divisionDto)
+namespace DateTimeFormatInCSharpSample
 {
-    Respons_M response = new Respons_M();
-
-    if (!ModelState.IsValid)
+    class Program
     {
-        response.Status = false;
-        response.StatusMsg = "Invalid data.";
-        return BadRequest(response);
-    }
-
-    try
-    {
-        // Find the Employee based on the provided Employee ID (KAM)
-        var employee = await DbContextAccess.Employee.FindAsync(divisionDto.EmployeeId);
-
-        if (employee == null)
+        static void Main(string[] args)
         {
-            response.Status = false;
-            response.StatusMsg = "Employee not found.";
-            return BadRequest(response);
+            // Get current DateTime. It can be any DateTime object in your code.
+            DateTime aDate = DateTime.Now;
+
+            // Format Datetime in different formats and display them
+            Console.WriteLine(aDate.ToString("MM/dd/yyyy"));
+            Console.WriteLine(aDate.ToString("dddd, dd MMMM yyyy"));
+            Console.WriteLine(aDate.ToString("dddd, dd MMMM yyyy"));
+            Console.WriteLine(aDate.ToString("dddd, dd MMMM yyyy"));
+            Console.WriteLine(aDate.ToString("dddd, dd MMMM yyyy"));
+            Console.WriteLine(aDate.ToString("dddd, dd MMMM yyyy"));
+            Console.WriteLine(aDate.ToString("dddd, dd MMMM yyyy HH:mm:ss"));
+            Console.WriteLine(aDate.ToString("MM/dd/yyyy HH:mm"));
+            Console.WriteLine(aDate.ToString("MM/dd/yyyy hh:mm tt"));
+            Console.WriteLine(aDate.ToString("MM/dd/yyyy H:mm"));
+            Console.WriteLine(aDate.ToString("MM/dd/yyyy h:mm tt"));
+            Console.WriteLine(aDate.ToString("MM/dd/yyyy HH:mm:ss"));
+            Console.WriteLine(aDate.ToString("MMMM dd"));
+            Console.WriteLine(aDate.ToString("yyyy’-‘MM’-‘dd’T’HH’:’mm’:’ss.fffffffK"));
+            Console.WriteLine(aDate.ToString("ddd, dd MMM yyy HH’:’mm’:’ss ‘GMT’"));
+            Console.WriteLine(aDate.ToString("yyyy’-‘MM’-‘dd’T’HH’:’mm’:’ss"));
+            Console.WriteLine(aDate.ToString("HH:mm"));
+            Console.WriteLine(aDate.ToString("hh:mm tt"));
+            Console.WriteLine(aDate.ToString("H:mm"));
+            Console.WriteLine(aDate.ToString("h:mm tt"));
+            Console.WriteLine(aDate.ToString("HH:mm:ss"));
+            Console.WriteLine(aDate.ToString("yyyy MMMM"));
+
+            Console.ReadKey();
         }
-
-        // You may also want to get services and sub-services based on the employee, if applicable.
-        var service = await DbContextAccess.Services.FirstOrDefaultAsync(s => s.EmployeeId == divisionDto.EmployeeId); // Update based on your relationship
-        var subService = await DbContextAccess.Services.FirstOrDefaultAsync(s => s.EmployeeId == divisionDto.EmployeeId); // Update based on your relationship
-
-        // Check if all required entities are valid
-        if (service == null || subService == null)
-        {
-            response.Status = false;
-            response.StatusMsg = "Service or Sub-service not found for the given employee.";
-            return BadRequest(response);
-        }
-
-        // If not exists, add the new Division
-        Division newDivision = new Division
-        {
-            division_code = divisionDto.DivisionCode,
-            description = divisionDto.Description,
-            status = divisionDto.Status,
-            organization_id = divisionDto.OrganizationId,
-            maker_id = divisionDto.MakerId,
-            make_time = divisionDto.MakeTime,
-            last_modified_by = divisionDto.LastModifiedBy,
-            last_modified_on = divisionDto.LastModifiedOn,
-            others = divisionDto.Others
-        };
-
-        // Add the entity and save changes
-        DbContextAccess.Division.Add(newDivision);
-        await DbContextAccess.SaveChangesAsync();
-
-        response.Status = true;
-        response.StatusMsg = "Division added successfully.";
-        return Ok(response);
-    }
-    catch (Exception ex)
-    {
-        // Handle any exceptions and return an internal server error
-        response.Status = false;
-        response.StatusMsg = ex.Message;
-        return StatusCode(StatusCodes.Status500InternalServerError, response);
     }
 }
