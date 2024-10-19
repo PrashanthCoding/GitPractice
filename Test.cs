@@ -1,17 +1,31 @@
 ﻿using System;
-class Factorial
+class PrimeChecker
 {
     static void Main()
     {
+        int num, i, m = 0, flag = 0;
         Console.Write("Enter a number: ");
-        int number = int.Parse(Console.ReadLine());
-        int fact = 1;
-
-        for (int i = 1; i <= number; i++)
+        num = int.Parse(Console.ReadLine());
+        m = num / 2;
+        if (num == 0 || num == 1)
         {
-            fact *= i;
+            Console.WriteLine(num + " is not prime.");
         }
-
-        Console.WriteLine("Factorial of " + number + " is: " + fact);
+        else
+        {
+            for (i = 2; i <= m; i++)
+            {
+                if (num % i == 0)
+                {
+                    Console.WriteLine(num + " is not prime.");
+                    flag = 1;
+                    break;
+                }
+            }
+            if (flag == 0)
+            {
+                Console.WriteLine(num + " is a prime number.");
+            }
+        }
     }
 }
