@@ -1,34 +1,66 @@
 using System;
-using System.Text.RegularExpressions;
 
-public class Test
+namespace SwitchCaseExample
 {
-    public static void Main()
+    class Program
     {
-        Regex rx = new Regex(@"\b(?<word>\w+)\s+(\k<word>)\b",
-          RegexOptions.Compiled | RegexOptions.IgnoreCase);
-
-        // Define a test string.
-        string text = "C# C# syntax is highly expressive, yet it is is also simple and easy to to learn learn.";
-        //string text = "Red Green Green Black Black Green.";
-
-        // Display the original string.
-        Console.WriteLine("Original string: \n" + text);
-
-        // Find matches.
-        MatchCollection matches = rx.Matches(text);
-
-        // Report the number of matches found.
-        Console.WriteLine("{0} matches found in the said string:\n   ", matches.Count);
-
-        // Report on each match.
-        foreach (Match match in matches)
+        static void Main(string[] args)
         {
-            GroupCollection groups = match.Groups;
-            Console.WriteLine("'{0}' repeated at positions {1} and {2}",
-                              groups["word"].Value,
-                              groups[0].Index,
-                              groups[1].Index);
+            Console.WriteLine("Simple Calculator using Switch Case");
+            Console.WriteLine("Enter the first number: ");
+            double num1 = Convert.ToDouble(Console.ReadLine());
+
+            Console.WriteLine("Enter the second number: ");
+            double num2 = Convert.ToDouble(Console.ReadLine());
+
+            Console.WriteLine("Choose an operation: ");
+            Console.WriteLine("1: Addition (+)");
+            Console.WriteLine("2: Subtraction (-)");
+            Console.WriteLine("3: Multiplication (*)");
+            Console.WriteLine("4: Division (/)");
+
+            Console.Write("Enter your choice (1-4): ");
+            int choice = Convert.ToInt32(Console.ReadLine());
+
+            double result = 0;
+            bool validOperation = true;
+
+            switch (choice)
+            {
+                case 1:
+                    result = num1 + num2;
+                    Console.WriteLine("Result: " + num1 + " + " + num2 + " = " + result);
+                    break;
+                case 2:
+                    result = num1 - num2;
+                    Console.WriteLine("Result: " + num1 + " - " + num2 + " = " + result);
+                    break;
+                case 3:
+                    result = num1 * num2;
+                    Console.WriteLine("Result: " + num1 + " * " + num2 + " = " + result);
+                    break;
+                case 4:
+                    if (num2 != 0)
+                    {
+                        result = num1 / num2;
+                        Console.WriteLine("Result: " + num1 + " / " + num2 + " = " + result);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Division by zero is not allowed.");
+                        validOperation = false;
+                    }
+                    break;
+                default:
+                    Console.WriteLine("Invalid choice. Please select between 1 and 4.");
+                    validOperation = false;
+                    break;
+            }
+
+            if (validOperation)
+            {
+                Console.WriteLine("Calculation successful!");
+            }
         }
     }
 }
