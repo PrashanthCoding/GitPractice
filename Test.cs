@@ -5,7 +5,6 @@ public class Test
 {
     public static void Main()
     {
-        // Define a regular expression for repeated words.
         Regex rx = new Regex(@"\b(?<word>\w+)\s+(\k<word>)\b",
           RegexOptions.Compiled | RegexOptions.IgnoreCase);
 
