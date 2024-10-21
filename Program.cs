@@ -1,25 +1,18 @@
-﻿using System;
+using System;
 
-class Calculator
+class Authentication
 {
     static void Main()
     {
-        Console.Write("Enter first number: ");
-        double num1 = Convert.ToDouble(Console.ReadLine());
+        Console.Write("Enter role (admin, user, guest): ");
+        string role = Console.ReadLine().ToLower();
 
-        Console.Write("Enter operator (+, -, *, /): ");
-        char op = Convert.ToChar(Console.ReadLine());
-
-        Console.Write("Enter second number: ");
-        double num2 = Convert.ToDouble(Console.ReadLine());
-
-        switch (op)
+        switch (role)
         {
-            case '+': Console.WriteLine($"Result: {num1 + num2}"); break;
-            case '-': Console.WriteLine($"Result: {num1 - num2}"); break;
-            case '*': Console.WriteLine($"Result: {num1 * num2}"); break;
-            case '/': Console.WriteLine($"Result: {num1 / num2}"); break;
-            default: Console.WriteLine("Invalid operator!"); break;
+            case "admin": Console.WriteLine("Access granted: Full access"); break;
+            case "user": Console.WriteLine("Access granted: Limited access"); break;
+            case "guest": Console.WriteLine("Access granted: Guest access"); break;
+            default: Console.WriteLine("Access denied!"); break;
         }
     }
 }
