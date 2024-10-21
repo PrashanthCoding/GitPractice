@@ -1,26 +1,27 @@
 using System;
 
-class TrafficSignal
+class MonthDisplay
 {
     static void Main()
     {
-        Console.Write("Enter the traffic light color (red, yellow, green): ");
-        string light = Console.ReadLine().ToLower();
+        Console.Write("Enter a number (1-12) for a month: ");
+        int month = int.Parse(Console.ReadLine());
 
-        switch (light)
+        switch (month)
         {
-            case "red":
-                Console.WriteLine("Stop");
-                break;
-            case "yellow":
-                Console.WriteLine("Get Ready");
-                break;
-            case "green":
-                Console.WriteLine("Go");
-                break;
-            default:
-                Console.WriteLine("Invalid color!");
-                break;
+            case 1: Console.WriteLine("January"); break;
+            case 2: Console.WriteLine("February"); break;
+            case 3: Console.WriteLine("March"); break;
+            case 4: Console.WriteLine("April"); break;
+            case 5: Console.WriteLine("May"); break;
+            case 6: Console.WriteLine("June"); break;
+            case 7: Console.WriteLine("July"); break;
+            case 8: Console.WriteLine("August"); break;
+            case 9: Console.WriteLine("September"); break;
+            case 10: Console.WriteLine("October"); break;
+            case 11: Console.WriteLine("November"); break;
+            case 12: Console.WriteLine("December"); break;
+            default: Console.WriteLine("Invalid month!"); break;
         }
     }
 }
