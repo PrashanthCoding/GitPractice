@@ -1,33 +1,28 @@
 ﻿using System;
 
-class ATMMenu
+class Weather
 {
     static void Main()
     {
-        Console.WriteLine("ATM Menu:");
-        Console.WriteLine("1. Check Balance");
-        Console.WriteLine("2. Deposit Money");
-        Console.WriteLine("3. Withdraw Money");
-        Console.WriteLine("4. Exit");
-        Console.Write("Choose an option: ");
-        int choice = int.Parse(Console.ReadLine());
+        Console.WriteLine("Enter the weather (sunny, rainy, cloudy, windy): ");
+        string weather = Console.ReadLine().ToLower();
 
-        switch (choice)
+        switch (weather)
         {
-            case 1:
-                Console.WriteLine("Your balance is $1000.");
+            case "sunny":
+                Console.WriteLine("It's a bright day.");
                 break;
-            case 2:
-                Console.WriteLine("Enter deposit amount: ");
+            case "rainy":
+                Console.WriteLine("Don't forget your umbrella.");
                 break;
-            case 3:
-                Console.WriteLine("Enter withdrawal amount: ");
+            case "cloudy":
+                Console.WriteLine("It might rain today.");
                 break;
-            case 4:
-                Console.WriteLine("Exiting...");
+            case "windy":
+                Console.WriteLine("Hold onto your hat!");
                 break;
             default:
-                Console.WriteLine("Invalid choice!");
+                Console.WriteLine("Unknown weather type!");
                 break;
         }
     }
