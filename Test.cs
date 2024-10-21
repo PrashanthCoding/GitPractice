@@ -14,11 +14,21 @@ class ATMMenu
 
         switch (choice)
         {
-            case 1: Console.WriteLine("Your balance is $1000."); break;
-            case 2: Console.WriteLine("Enter deposit amount: "); break;
-            case 3: Console.WriteLine("Enter withdrawal amount: "); break;
-            case 4: Console.WriteLine("Exiting..."); break;
-            default: Console.WriteLine("Invalid choice!"); break;
+            case 1:
+                Console.WriteLine("Your balance is $1000.");
+                break;
+            case 2:
+                Console.WriteLine("Enter deposit amount: ");
+                break;
+            case 3:
+                Console.WriteLine("Enter withdrawal amount: ");
+                break;
+            case 4:
+                Console.WriteLine("Exiting...");
+                break;
+            default:
+                Console.WriteLine("Invalid choice!");
+                break;
         }
     }
 }
