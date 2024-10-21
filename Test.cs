@@ -8,7 +8,13 @@ class HelloWorld
         Console.WriteLine("Enter a Number 2: ");
         int b = Console.ReadLine();
         int result = a + b;
-        Console.ReadLine($"Result is : {result}");
+        int result1 = a - b;
+        int result2 = a * b;
+        int result3 = a / b;
+        Console.WriteLine($"Result is : {result}");
+        Console.WriteLine($"Result1 is : {result1}");
+        Console.WriteLine($"Result2 is : {result2}");
+        Console.WriteLine($"Result3 is : {result3}");
         Console.ReadLine();
     }
 }
