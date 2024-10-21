@@ -1,52 +1,27 @@
 using System;
 
-class MonthDisplay
+class TemperatureConversion
 {
     static void Main()
     {
-        Console.Write("Enter a number (1-12) for a month: ");
-        int month = int.Parse(Console.ReadLine());
+        Console.WriteLine("Choose conversion (C to F, F to C): ");
+        string conversion = Console.ReadLine().ToLower();
 
-        switch (month)
+        Console.Write("Enter temperature: ");
+        double temp = double.Parse(Console.ReadLine());
+
+        switch (conversion)
         {
-            case 1:
-                Console.WriteLine("January");
+            case "c to f":
+                Console.WriteLine($"Temperature in Fahrenheit: {temp * 9 / 5 + 32}");
                 break;
-            case 2:
-                Console.WriteLine("February");
+
+            case "f to c":
+                Console.WriteLine($"Temperature in Celsius: {(temp - 32) * 5 / 9}");
                 break;
-            case 3:
-                Console.WriteLine("March");
-                break;
-            case 4:
-                Console.WriteLine("April");
-                break;
-            case 5:
-                Console.WriteLine("May");
-                break;
-            case 6:
-                Console.WriteLine("June");
-                break;
-            case 7:
-                Console.WriteLine("July");
-                break;
-            case 8:
-                Console.WriteLine("August");
-                break;
-            case 9:
-                Console.WriteLine("September");
-                break;
-            case 10:
-                Console.WriteLine("October");
-                break;
-            case 11:
-                Console.WriteLine("November");
-                break;
-            case 12:
-                Console.WriteLine("December");
-                break;
+
             default:
-                Console.WriteLine("Invalid month!");
+                Console.WriteLine("Unknown conversion!");
                 break;
         }
     }

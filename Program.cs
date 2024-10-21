@@ -1,19 +1,37 @@
 ﻿using System;
 
-class AnimalSounds
+class ShapeAreaCalculator
 {
     static void Main()
     {
-        Console.WriteLine("Enter an animal (dog, cat, cow, lion): ");
-        string animal = Console.ReadLine().ToLower();
+        Console.WriteLine("Choose a shape (circle, square, rectangle): ");
+        string shape = Console.ReadLine().ToLower();
 
-        switch (animal)
+        switch (shape)
         {
-            case "dog": Console.WriteLine("Dog says: Woof!"); break;
-            case "cat": Console.WriteLine("Cat says: Meow!"); break;
-            case "cow": Console.WriteLine("Cow says: Moo!"); break;
-            case "lion": Console.WriteLine("Lion says: Roar!"); break;
-            default: Console.WriteLine("Unknown animal!"); break;
+            case "circle":
+                Console.Write("Enter the radius: ");
+                double radius = double.Parse(Console.ReadLine());
+                Console.WriteLine($"Area of Circle: {Math.PI * radius * radius}");
+                break;
+
+            case "square":
+                Console.Write("Enter the side length: ");
+                double side = double.Parse(Console.ReadLine());
+                Console.WriteLine($"Area of Square: {side * side}");
+                break;
+
+            case "rectangle":
+                Console.Write("Enter the length: ");
+                double length = double.Parse(Console.ReadLine());
+                Console.Write("Enter the width: ");
+                double width = double.Parse(Console.ReadLine());
+                Console.WriteLine($"Area of Rectangle: {length * width}");
+                break;
+
+            default:
+                Console.WriteLine("Unknown shape!");
+                break;
         }
     }
 }
