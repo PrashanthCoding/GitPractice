@@ -8,67 +8,48 @@ namespace exercises
         // Main method - entry point of the program
         static void Main(string[] args)
         {
-            // Initialize a string variable with a password-like content
-            string text = "Suuu$21g@";
+            // Initialize a string variable with a hexadecimal color code
+            string hc = "#CD5C5C";
 
-            // Display the original string
-            Console.WriteLine("Original string: " + text);
+            // Display the hexadecimal code
+            Console.WriteLine("Hex Code: " + hc);
 
-            // Check if the string is a valid password
-            Console.WriteLine("Check the said string is a valid password? " + test(text));
+            // Check if the string is a valid hex code and display the result
+            Console.WriteLine("Check the said string is valid hex code or not: " + test(hc));
 
-            // Update the string variable with a different content
-            text = "W#1g@";
+            // Update the string variable with a new hexadecimal color code
+            hc = "#f08080";
 
-            // Display the updated string
-            Console.WriteLine("\nOriginal string: " + text);
+            // Display the new hexadecimal code
+            Console.WriteLine("\nHex Code: " + hc);
 
-            // Check if the updated string is a valid password
-            Console.WriteLine("Check the said string is a valid password? " + test(text));
+            // Check if the new string is a valid hex code and display the result
+            Console.WriteLine("Check the said string is valid hex code or not: " + test(hc));
 
-            // Update the string variable with another content
-            text = "a&&g@";
+            // Update the string variable with another hexadecimal color code
+            hc = "#E9967A";
 
-            // Display the updated string
-            Console.WriteLine("\nOriginal string: " + text);
+            // Display the new hexadecimal code
+            Console.WriteLine("\nHex Code: " + hc);
 
-            // Check if the updated string is a valid password
-            Console.WriteLine("Check the said string is a valid password? " + test(text));
+            // Check if the new string is a valid hex code and display the result
+            Console.WriteLine("Check the said string is valid hex code or not: " + test(hc));
 
-            // Update the string variable with more content
-            text = "sdsd723#$Amid";
+            // Update the string variable with another hexadecimal color code (with a mistake)
+            hc = "#EFFA07A";
 
-            // Display the updated string
-            Console.WriteLine("\nOriginal string: " + text);
+            // Display the new hexadecimal code
+            Console.WriteLine("\nHex Code: " + hc);
 
-            // Check if the updated string is a valid password
-            Console.WriteLine("Check the said string is a valid password? " + test(text));
-
-            // Update the string variable with even more content
-            text = "sdsd723#$Amidkiouy";
-
-            // Display the updated string
-            Console.WriteLine("\nOriginal string: " + text);
-
-            // Check if the updated string is a valid password
-            Console.WriteLine("Check the said string is a valid password? " + test(text));
+            // Check if the new string is a valid hex code and display the result
+            Console.WriteLine("Check the said string is valid hex code or not: " + test(hc));
         }
 
-        // Method to check if a string is a valid password
-        public static bool test(string text)
+        // Method to test if a string represents a valid hexadecimal color code
+        public static bool test(string hc)
         {
-            // Check if the length of the string is between 7 and 16 characters
-            // Check if the string contains at least one uppercase letter, one lowercase letter, one digit, and one special character
-            // Ensure that the string doesn't contain any character that doesn't belong to the allowed set
-            bool result = text.Length >= 7 && text.Length <= 16
-&& Regex.IsMatch(text, "[A-Z]")
-&& Regex.IsMatch(text, "[a-z]")
-&& Regex.IsMatch(text, @"\d")
-&& Regex.IsMatch(text, @"[!-/:-@\[-_{-~]")
-&& !Regex.IsMatch(text, @"[^\dA-Za-z!-/:-@\[-_{-~]");
-
-            // Return the result indicating whether the string is a valid password
-            return result;
+            // Use Regex to check if the string matches the pattern for a valid hex code
+            return Regex.IsMatch(hc, @"[#][0-9A-Fa-f]{6}\b");
         }
     }
 }
