@@ -3,12 +3,12 @@ class HelloWorld
 {
     static void Main()
     {
-        Console.WriteLine("Hello, World!");
-        Console.WriteLine("Hi Prashanth");
-        int a = 10;
-        int b = 20;
+        Console.WriteLine("Enter a Number 1: ");
+        int a = Console.ReadLine();
+        Console.WriteLine("Enter a Number 2: ");
+        int b = Console.ReadLine();
         int result = a + b;
-        Console.WriteLine($"Result : {result}");
+        Console.ReadLine($"Result is : {result}");
         Console.ReadLine();
     }
 }
