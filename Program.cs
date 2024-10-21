@@ -1,18 +1,18 @@
 ﻿using System;
 
-class TrafficSignal
+class FruitSelection
 {
     static void Main()
     {
-        Console.Write("Enter the traffic light color (red, yellow, green): ");
-        string light = Console.ReadLine().ToLower();
+        Console.Write("Choose a fruit (apple, banana, mango): ");
+        string fruit = Console.ReadLine().ToLower();
 
-        switch (light)
+        switch (fruit)
         {
-            case "red": Console.WriteLine("Stop"); break;
-            case "yellow": Console.WriteLine("Get Ready"); break;
-            case "green": Console.WriteLine("Go"); break;
-            default: Console.WriteLine("Invalid color!"); break;
+            case "apple": Console.WriteLine("Apple is red or green."); break;
+            case "banana": Console.WriteLine("Banana is yellow."); break;
+            case "mango": Console.WriteLine("Mango is sweet."); break;
+            default: Console.WriteLine("Unknown fruit!"); break;
         }
     }
 }
