@@ -1,29 +1,18 @@
 ﻿using System;
 
-class Weather
+class FruitSelection
 {
     static void Main()
     {
-        Console.WriteLine("Enter the weather (sunny, rainy, cloudy, windy): ");
-        string weather = Console.ReadLine().ToLower();
+        Console.Write("Choose a fruit (apple, banana, mango): ");
+        string fruit = Console.ReadLine().ToLower();
 
-        switch (weather)
+        switch (fruit)
         {
-            case "sunny":
-                Console.WriteLine("It's a bright day.");
-                break;
-            case "rainy":
-                Console.WriteLine("Don't forget your umbrella.");
-                break;
-            case "cloudy":
-                Console.WriteLine("It might rain today.");
-                break;
-            case "windy":
-                Console.WriteLine("Hold onto your hat!");
-                break;
-            default:
-                Console.WriteLine("Unknown weather type!");
-                break;
+            case "apple": Console.WriteLine("Apple is red or green."); break;
+            case "banana": Console.WriteLine("Banana is yellow."); break;
+            case "mango": Console.WriteLine("Mango is sweet."); break;
+            default: Console.WriteLine("Unknown fruit!"); break;
         }
     }
 }
