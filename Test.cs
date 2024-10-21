@@ -1,18 +1,21 @@
 using System;
 
-class InstrumentSounds
+class MenuSelection
 {
     static void Main()
     {
-        Console.WriteLine("Enter a musical instrument (guitar, piano, drum): ");
-        string instrument = Console.ReadLine().ToLower();
+        Console.WriteLine("1. View Profile");
+        Console.WriteLine("2. Edit Profile");
+        Console.WriteLine("3. Logout");
+        Console.Write("Enter your choice: ");
+        int choice = int.Parse(Console.ReadLine());
 
-        switch (instrument)
+        switch (choice)
         {
-            case "guitar": Console.WriteLine("Strum!"); break;
-            case "piano": Console.WriteLine("Pling!"); break;
-            case "drum": Console.WriteLine("Boom!"); break;
-            default: Console.WriteLine("Unknown instrument!"); break;
+            case 1: Console.WriteLine("Displaying Profile..."); break;
+            case 2: Console.WriteLine("Editing Profile..."); break;
+            case 3: Console.WriteLine("Logging Out..."); break;
+            default: Console.WriteLine("Invalid Choice!"); break;
         }
     }
 }
