@@ -1,33 +1,25 @@
 using System;
 
-class ATMMenu
+class TrafficSignal
 {
     static void Main()
     {
-        Console.WriteLine("ATM Menu:");
-        Console.WriteLine("1. Check Balance");
-        Console.WriteLine("2. Deposit Money");
-        Console.WriteLine("3. Withdraw Money");
-        Console.WriteLine("4. Exit");
-        Console.Write("Choose an option: ");
-        int choice = int.Parse(Console.ReadLine());
+        Console.Write("Enter the traffic light color (red, yellow, green): ");
+        string light = Console.ReadLine().ToLower();
 
-        switch (choice)
+        switch (light)
         {
-            case 1:
-                Console.WriteLine("Your balance is $1000.");
+            case "red":
+                Console.WriteLine("Stop");
                 break;
-            case 2:
-                Console.WriteLine("Enter deposit amount: ");
+            case "yellow":
+                Console.WriteLine("Get Ready");
                 break;
-            case 3:
-                Console.WriteLine("Enter withdrawal amount: ");
-                break;
-            case 4:
-                Console.WriteLine("Exiting...");
+            case "green":
+                Console.WriteLine("Go");
                 break;
             default:
-                Console.WriteLine("Invalid choice!");
+                Console.WriteLine("Invalid color!");
                 break;
         }
     }
