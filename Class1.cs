@@ -1,18 +1,18 @@
 ﻿using System;
 
-class MovieGenre
+class BeverageSelection
 {
     static void Main()
     {
-        Console.WriteLine("Enter movie genre (action, comedy, drama): ");
-        string genre = Console.ReadLine().ToLower();
+        Console.WriteLine("Select a beverage (coffee, tea, juice): ");
+        string beverage = Console.ReadLine().ToLower();
 
-        switch (genre)
+        switch (beverage)
         {
-            case "action": Console.WriteLine("You chose Action: Expect high energy!"); break;
-            case "comedy": Console.WriteLine("You chose Comedy: Get ready to laugh!"); break;
-            case "drama": Console.WriteLine("You chose Drama: Prepare for an emotional ride."); break;
-            default: Console.WriteLine("Unknown genre!"); break;
+            case "coffee": Console.WriteLine("Here is your coffee."); break;
+            case "tea": Console.WriteLine("Here is your tea."); break;
+            case "juice": Console.WriteLine("Here is your juice."); break;
+            default: Console.WriteLine("Invalid choice!"); break;
         }
     }
 }
