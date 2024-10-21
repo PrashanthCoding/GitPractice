@@ -1,25 +1,18 @@
 ﻿using System;
 
-class Calculator
+class VehicleType
 {
     static void Main()
     {
-        Console.Write("Enter first number: ");
-        double num1 = Convert.ToDouble(Console.ReadLine());
+        Console.WriteLine("Enter a vehicle type (car, bike, truck): ");
+        string vehicle = Console.ReadLine().ToLower();
 
-        Console.Write("Enter operator (+, -, *, /): ");
-        char op = Convert.ToChar(Console.ReadLine());
-
-        Console.Write("Enter second number: ");
-        double num2 = Convert.ToDouble(Console.ReadLine());
-
-        switch (op)
+        switch (vehicle)
         {
-            case '+': Console.WriteLine($"Result: {num1 + num2}"); break;
-            case '-': Console.WriteLine($"Result: {num1 - num2}"); break;
-            case '*': Console.WriteLine($"Result: {num1 * num2}"); break;
-            case '/': Console.WriteLine($"Result: {num1 / num2}"); break;
-            default: Console.WriteLine("Invalid operator!"); break;
+            case "car": Console.WriteLine("You chose a car."); break;
+            case "bike": Console.WriteLine("You chose a bike."); break;
+            case "truck": Console.WriteLine("You chose a truck."); break;
+            default: Console.WriteLine("Invalid vehicle type!"); break;
         }
     }
 }
