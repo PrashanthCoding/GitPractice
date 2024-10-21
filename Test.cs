@@ -1,28 +1,18 @@
 using System;
 
-class TemperatureConversion
+class InstrumentSounds
 {
     static void Main()
     {
-        Console.WriteLine("Choose conversion (C to F, F to C): ");
-        string conversion = Console.ReadLine().ToLower();
+        Console.WriteLine("Enter a musical instrument (guitar, piano, drum): ");
+        string instrument = Console.ReadLine().ToLower();
 
-        Console.Write("Enter temperature: ");
-        double temp = double.Parse(Console.ReadLine());
-
-        switch (conversion)
+        switch (instrument)
         {
-            case "c to f":
-                Console.WriteLine($"Temperature in Fahrenheit: {temp * 9 / 5 + 32}");
-                break;
-
-            case "f to c":
-                Console.WriteLine($"Temperature in Celsius: {(temp - 32) * 5 / 9}");
-                break;
-
-            default:
-                Console.WriteLine("Unknown conversion!");
-                break;
+            case "guitar": Console.WriteLine("Strum!"); break;
+            case "piano": Console.WriteLine("Pling!"); break;
+            case "drum": Console.WriteLine("Boom!"); break;
+            default: Console.WriteLine("Unknown instrument!"); break;
         }
     }
 }
