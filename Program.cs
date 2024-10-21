@@ -1,20 +1,25 @@
 ﻿using System;
 
-class GradingSystem
+class Calculator
 {
     static void Main()
     {
-        Console.Write("Enter marks (0-100): ");
-        int marks = int.Parse(Console.ReadLine());
+        Console.Write("Enter first number: ");
+        double num1 = Convert.ToDouble(Console.ReadLine());
 
-        switch (marks / 10)
+        Console.Write("Enter operator (+, -, *, /): ");
+        char op = Convert.ToChar(Console.ReadLine());
+
+        Console.Write("Enter second number: ");
+        double num2 = Convert.ToDouble(Console.ReadLine());
+
+        switch (op)
         {
-            case 9:
-            case 10: Console.WriteLine("Grade: A"); break;
-            case 8: Console.WriteLine("Grade: B"); break;
-            case 7: Console.WriteLine("Grade: C"); break;
-            case 6: Console.WriteLine("Grade: D"); break;
-            default: Console.WriteLine("Grade: F"); break;
+            case '+': Console.WriteLine($"Result: {num1 + num2}"); break;
+            case '-': Console.WriteLine($"Result: {num1 - num2}"); break;
+            case '*': Console.WriteLine($"Result: {num1 * num2}"); break;
+            case '/': Console.WriteLine($"Result: {num1 / num2}"); break;
+            default: Console.WriteLine("Invalid operator!"); break;
         }
     }
 }
