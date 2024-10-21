@@ -1,19 +1,34 @@
 ﻿using System;
-class Fibonacci
+
+class ATMMenu
 {
     static void Main()
     {
-        int n1 = 0, n2 = 1, n3, number;
-        Console.Write("Enter the number of elements: ");
-        number = int.Parse(Console.ReadLine());
-        Console.Write(n1 + " " + n2); // Print 0 and 1
+        Console.WriteLine("ATM Menu:");
+        Console.WriteLine("1. Check Balance");
+        Console.WriteLine("2. Deposit Money");
+        Console.WriteLine("3. Withdraw Money");
+        Console.WriteLine("4. Exit");
+        Console.Write("Choose an option: ");
+        int choice = int.Parse(Console.ReadLine());
 
-        for (int i = 2; i < number; ++i)
+        switch (choice)
         {
-            n3 = n1 + n2;
-            Console.Write(" " + n3);
-            n1 = n2;
-            n2 = n3;
+            case 1:
+                Console.WriteLine("Your balance is $1000.");
+                break;
+            case 2:
+                Console.WriteLine("Enter deposit amount: ");
+                break;
+            case 3:
+                Console.WriteLine("Enter withdrawal amount: ");
+                break;
+            case 4:
+                Console.WriteLine("Exiting...");
+                break;
+            default:
+                Console.WriteLine("Invalid choice!");
+                break;
         }
     }
 }
