@@ -1,17 +1,18 @@
 using System;
-class Factorial
+
+class BeverageSelection
 {
     static void Main()
     {
-        Console.Write("Enter a number: ");
-        int number = int.Parse(Console.ReadLine());
-        int fact = 1;
+        Console.WriteLine("Select a beverage (coffee, tea, juice): ");
+        string beverage = Console.ReadLine().ToLower();
 
-        for (int i = 1; i <= number; i++)
+        switch (beverage)
         {
-            fact *= i;
+            case "coffee": Console.WriteLine("Here is your coffee."); break;
+            case "tea": Console.WriteLine("Here is your tea."); break;
+            case "juice": Console.WriteLine("Here is your juice."); break;
+            default: Console.WriteLine("Invalid choice!"); break;
         }
-
-        Console.WriteLine("Factorial of " + number + " is: " + fact);
     }
 }
