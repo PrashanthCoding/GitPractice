@@ -1,28 +1,21 @@
 using System;
 
-class TemperatureConversion
+class MenuSelection
 {
     static void Main()
     {
-        Console.WriteLine("Choose conversion (C to F, F to C): ");
-        string conversion = Console.ReadLine().ToLower();
+        Console.WriteLine("1. View Profile");
+        Console.WriteLine("2. Edit Profile");
+        Console.WriteLine("3. Logout");
+        Console.Write("Enter your choice: ");
+        int choice = int.Parse(Console.ReadLine());
 
-        Console.Write("Enter temperature: ");
-        double temp = double.Parse(Console.ReadLine());
-
-        switch (conversion)
+        switch (choice)
         {
-            case "c to f":
-                Console.WriteLine($"Temperature in Fahrenheit: {temp * 9 / 5 + 32}");
-                break;
-
-            case "f to c":
-                Console.WriteLine($"Temperature in Celsius: {(temp - 32) * 5 / 9}");
-                break;
-
-            default:
-                Console.WriteLine("Unknown conversion!");
-                break;
+            case 1: Console.WriteLine("Displaying Profile..."); break;
+            case 2: Console.WriteLine("Editing Profile..."); break;
+            case 3: Console.WriteLine("Logging Out..."); break;
+            default: Console.WriteLine("Invalid Choice!"); break;
         }
     }
 }
