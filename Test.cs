@@ -1,21 +1,17 @@
 using System;
-
-class MenuSelection
+class Factorial
 {
     static void Main()
     {
-        Console.WriteLine("1. View Profile");
-        Console.WriteLine("2. Edit Profile");
-        Console.WriteLine("3. Logout");
-        Console.Write("Enter your choice: ");
-        int choice = int.Parse(Console.ReadLine());
+        Console.Write("Enter a number: ");
+        int number = int.Parse(Console.ReadLine());
+        int fact = 1;
 
-        switch (choice)
+        for (int i = 1; i <= number; i++)
         {
-            case 1: Console.WriteLine("Displaying Profile..."); break;
-            case 2: Console.WriteLine("Editing Profile..."); break;
-            case 3: Console.WriteLine("Logging Out..."); break;
-            default: Console.WriteLine("Invalid Choice!"); break;
+            fact *= i;
         }
+
+        Console.WriteLine("Factorial of " + number + " is: " + fact);
     }
 }
