@@ -1,28 +1,18 @@
 ﻿using System;
 
-class TemperatureConversion
+class BeverageSelection
 {
     static void Main()
     {
-        Console.WriteLine("Choose conversion (C to F, F to C): ");
-        string conversion = Console.ReadLine().ToLower();
+        Console.WriteLine("Select a beverage (coffee, tea, juice): ");
+        string beverage = Console.ReadLine().ToLower();
 
-        Console.Write("Enter temperature: ");
-        double temp = double.Parse(Console.ReadLine());
-
-        switch (conversion)
+        switch (beverage)
         {
-            case "c to f":
-                Console.WriteLine($"Temperature in Fahrenheit: {temp * 9 / 5 + 32}");
-                break;
-
-            case "f to c":
-                Console.WriteLine($"Temperature in Celsius: {(temp - 32) * 5 / 9}");
-                break;
-
-            default:
-                Console.WriteLine("Unknown conversion!");
-                break;
+            case "coffee": Console.WriteLine("Here is your coffee."); break;
+            case "tea": Console.WriteLine("Here is your tea."); break;
+            case "juice": Console.WriteLine("Here is your juice."); break;
+            default: Console.WriteLine("Invalid choice!"); break;
         }
     }
 }
