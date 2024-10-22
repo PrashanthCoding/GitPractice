@@ -1,21 +1,24 @@
 using System;
 
-class MenuSelection
+class ArithmeticOperations
 {
     static void Main()
     {
-        Console.WriteLine("1. View Profile");
-        Console.WriteLine("2. Edit Profile");
-        Console.WriteLine("3. Logout");
-        Console.Write("Enter your choice: ");
-        int choice = int.Parse(Console.ReadLine());
+        Console.WriteLine("Enter two numbers:");
+        int num1 = int.Parse(Console.ReadLine());
+        int num2 = int.Parse(Console.ReadLine());
 
-        switch (choice)
+        Console.WriteLine("Choose an operation (+, -, *, /, %):");
+        char operation = Convert.ToChar(Console.ReadLine());
+
+        switch (operation)
         {
-            case 1: Console.WriteLine("Displaying Profile..."); break;
-            case 2: Console.WriteLine("Editing Profile..."); break;
-            case 3: Console.WriteLine("Logging Out..."); break;
-            default: Console.WriteLine("Invalid Choice!"); break;
+            case '+': Console.WriteLine($"Sum: {num1 + num2}"); break;
+            case '-': Console.WriteLine($"Difference: {num1 - num2}"); break;
+            case '*': Console.WriteLine($"Product: {num1 * num2}"); break;
+            case '/': Console.WriteLine($"Quotient: {num1 / num2}"); break;
+            case '%': Console.WriteLine($"Remainder: {num1 % num2}"); break;
+            default: Console.WriteLine("Invalid operation!"); break;
         }
     }
 }
