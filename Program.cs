@@ -1,19 +1,17 @@
 ﻿using System;
-class Fibonacci
+class Factorial
 {
     static void Main()
     {
-        int n1 = 0, n2 = 1, n3, number;
-        Console.Write("Enter the number of elements: ");
-        number = int.Parse(Console.ReadLine());
-        Console.Write(n1 + " " + n2); // Print 0 and 1
+        Console.Write("Enter a number: ");
+        int number = int.Parse(Console.ReadLine());
+        int fact = 1;
 
-        for (int i = 2; i < number; ++i)
+        for (int i = 1; i <= number; i++)
         {
-            n3 = n1 + n2;
-            Console.Write(" " + n3);
-            n1 = n2;
-            n2 = n3;
+            fact *= i;
         }
+
+        Console.WriteLine("Factorial of " + number + " is: " + fact);
     }
 }
