@@ -1,9 +1,26 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 
-int[] arr = { 1, 2, 4, 5 };
-List<int> list = arr.ToList();
-list.Insert(2, 3); // Insert 3 at index 2
+class BeverageSelection
+{
+    static void Main()
+    {
+        Console.WriteLine("Select a beverage (coffee, tea, juice): ");
+        string beverage = Console.ReadLine().ToLower();
 
-Console.WriteLine("Array after insertion: " + string.Join(", ", list));
+        switch (beverage)
+        {
+            case "coffee":
+                Console.WriteLine("Here is your coffee.");
+                break;
+            case "tea":
+                Console.WriteLine("Here is your tea.");
+                break;
+            case "juice":
+                Console.WriteLine("Here is your juice.");
+                break;
+            default:
+                Console.WriteLine("Invalid choice!");
+                break;
+        }
+    }
+}
