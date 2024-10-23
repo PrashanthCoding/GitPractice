@@ -1,27 +1,36 @@
 ﻿using System;
 
-class TemperatureConversion
+class ShapeAreaCalculator
 {
     static void Main()
     {
-        Console.WriteLine("Choose conversion (C to F, F to C): ");
-        string conversion = Console.ReadLine().ToLower();
+        Console.WriteLine("Choose a shape (circle, square, rectangle): ");
+        string shape = Console.ReadLine().ToLower();
 
-        Console.Write("Enter temperature: ");
-        double temp = double.Parse(Console.ReadLine());
-
-        switch (conversion)
+        switch (shape)
         {
-            case "c to f":
-                Console.WriteLine($"Temperature in Fahrenheit: {temp * 9 / 5 + 32}");
+            case "circle":
+                Console.Write("Enter the radius: ");
+                double radius = double.Parse(Console.ReadLine());
+                Console.WriteLine($"Area of Circle: {Math.PI * radius * radius}");
                 break;
 
-            case "f to c":
-                Console.WriteLine($"Temperature in Celsius: {(temp - 32) * 5 / 9}");
+            case "square":
+                Console.Write("Enter the side length: ");
+                double side = double.Parse(Console.ReadLine());
+                Console.WriteLine($"Area of Square: {side * side}");
+                break;
+
+            case "rectangle":
+                Console.Write("Enter the length: ");
+                double length = double.Parse(Console.ReadLine());
+                Console.Write("Enter the width: ");
+                double width = double.Parse(Console.ReadLine());
+                Console.WriteLine($"Area of Rectangle: {length * width}");
                 break;
 
             default:
-                Console.WriteLine("Unknown conversion!");
+                Console.WriteLine("Unknown shape!");
                 break;
         }
     }
