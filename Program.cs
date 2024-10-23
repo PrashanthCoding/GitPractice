@@ -1,21 +1,20 @@
 ﻿using System;
 
-class MenuSelection
+class GradeCalculator
 {
     static void Main()
     {
-        Console.WriteLine("1. View Profile");
-        Console.WriteLine("2. Edit Profile");
-        Console.WriteLine("3. Logout");
-        Console.Write("Enter your choice: ");
-        int choice = int.Parse(Console.ReadLine());
+        Console.WriteLine("Enter your percentage: ");
+        int percentage = int.Parse(Console.ReadLine());
 
-        switch (choice)
+        switch (percentage / 10)
         {
-            case 1: Console.WriteLine("Displaying Profile..."); break;
-            case 2: Console.WriteLine("Editing Profile..."); break;
-            case 3: Console.WriteLine("Logging Out..."); break;
-            default: Console.WriteLine("Invalid Choice!"); break;
+            case 9:
+            case 10: Console.WriteLine("Grade: A"); break;
+            case 8: Console.WriteLine("Grade: B"); break;
+            case 7: Console.WriteLine("Grade: C"); break;
+            case 6: Console.WriteLine("Grade: D"); break;
+            default: Console.WriteLine("Grade: F"); break;
         }
     }
 }
