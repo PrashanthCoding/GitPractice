@@ -1,37 +1,21 @@
 ﻿using System;
 
-class ShapeAreaCalculator
+class MenuSelection
 {
     static void Main()
     {
-        Console.WriteLine("Choose a shape (circle, square, rectangle): ");
-        string shape = Console.ReadLine().ToLower();
+        Console.WriteLine("1. View Profile");
+        Console.WriteLine("2. Edit Profile");
+        Console.WriteLine("3. Logout");
+        Console.Write("Enter your choice: ");
+        int choice = int.Parse(Console.ReadLine());
 
-        switch (shape)
+        switch (choice)
         {
-            case "circle":
-                Console.Write("Enter the radius: ");
-                double radius = double.Parse(Console.ReadLine());
-                Console.WriteLine($"Area of Circle: {Math.PI * radius * radius}");
-                break;
-
-            case "square":
-                Console.Write("Enter the side length: ");
-                double side = double.Parse(Console.ReadLine());
-                Console.WriteLine($"Area of Square: {side * side}");
-                break;
-
-            case "rectangle":
-                Console.Write("Enter the length: ");
-                double length = double.Parse(Console.ReadLine());
-                Console.Write("Enter the width: ");
-                double width = double.Parse(Console.ReadLine());
-                Console.WriteLine($"Area of Rectangle: {length * width}");
-                break;
-
-            default:
-                Console.WriteLine("Unknown shape!");
-                break;
+            case 1: Console.WriteLine("Displaying Profile..."); break;
+            case 2: Console.WriteLine("Editing Profile..."); break;
+            case 3: Console.WriteLine("Logging Out..."); break;
+            default: Console.WriteLine("Invalid Choice!"); break;
         }
     }
 }
