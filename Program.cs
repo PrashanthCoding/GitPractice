@@ -1,9 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 
-int[] arr = { 1, 2, 4, 5 };
-List<int> list = arr.ToList();
-list.Insert(2, 3); // Insert 3 at index 2
+bool IsPrime(int num)
+{
+    if (num < 2) return false;
+    for (int i = 2; i <= Math.Sqrt(num); i++)
+    {
+        if (num % i == 0) return false;
+    }
+    return true;
+}
 
-Console.WriteLine("Array after insertion: " + string.Join(", ", list));
+int[] arr = { 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+var primes = arr.Where(IsPrime).ToArray();
+
+Console.WriteLine("Prime numbers: " + string.Join(", ", primes));
