@@ -1,6 +1,6 @@
 ﻿using System;
 
-int[] arr = { 5, 2, 9, 1, 5, 6 };
+int[] arr = { 1, 2, 3, 4, 5 };
 int max = arr[0];
 
 for (int i = 1; i < arr.Length; i++)
@@ -11,4 +11,4 @@ for (int i = 1; i < arr.Length; i++)
     }
 }
 
-Console.WriteLine("Maximum element is: " + max);
+Console.WriteLine("Maximum element is : " + max);
