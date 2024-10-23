@@ -1,18 +1,28 @@
 ﻿using System;
 
-class FruitPrice
+class TemperatureConversion
 {
     static void Main()
     {
-        Console.WriteLine("Enter fruit (apple, banana, orange): ");
-        string fruit = Console.ReadLine().ToLower();
+        Console.WriteLine("Choose conversion (C to F, F to C): ");
+        string conversion = Console.ReadLine().ToLower();
 
-        switch (fruit)
+        Console.Write("Enter temperature: ");
+        double temp = double.Parse(Console.ReadLine());
+
+        switch (conversion)
         {
-            case "apple": Console.WriteLine("Apple price is $2 per kg."); break;
-            case "banana": Console.WriteLine("Banana price is $1 per dozen."); break;
-            case "orange": Console.WriteLine("Orange price is $3 per kg."); break;
-            default: Console.WriteLine("Unknown fruit!"); break;
+            case "c to f":
+                Console.WriteLine($"Temperature in Fahrenheit: {temp * 9 / 5 + 32}");
+                break;
+
+            case "f to c":
+                Console.WriteLine($"Temperature in Celsius: {(temp - 32) * 5 / 9}");
+                break;
+
+            default:
+                Console.WriteLine("Unknown conversion!");
+                break;
         }
     }
 }
