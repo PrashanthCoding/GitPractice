@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
-int[] arr = { 12, 35, 1, 10, 34, 1 };
-Array.Sort(arr);
-int secondLargest = arr[arr.Length - 2];
+int[] arr = { 1, 2, 4, 5 };
+List<int> list = arr.ToList();
+list.Insert(2, 3); // Insert 3 at index 2
 
-Console.WriteLine("Second largest element is: " + secondLargest);
+Console.WriteLine("Array after insertion: " + string.Join(", ", list));
