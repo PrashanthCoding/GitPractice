@@ -1,18 +1,14 @@
 ﻿using System;
 
-class InstrumentSounds
-{
-    static void Main()
-    {
-        Console.WriteLine("Enter a musical instrument (guitar, piano, drum): ");
-        string instrument = Console.ReadLine().ToLower();
+int[] arr = { 5, 2, 9, 1, 5, 6 };
+int max = arr[0];
 
-        switch (instrument)
-        {
-            case "guitar": Console.WriteLine("Strum!"); break;
-            case "piano": Console.WriteLine("Pling!"); break;
-            case "drum": Console.WriteLine("Boom!"); break;
-            default: Console.WriteLine("Unknown instrument!"); break;
-        }
+for (int i = 1; i < arr.Length; i++)
+{
+    if (arr[i] > max)
+    {
+        max = arr[i];
     }
 }
+
+Console.WriteLine("Maximum element is: " + max);
