@@ -1,14 +1,12 @@
 ﻿using System;
 
-int[] arr = { 1, 2, 3, 4, 5 };
-int max = arr[0];
+int[] arr = { 2, 4, 6, 8, 10 };
+int sum = 0;
 
-for (int i = 1; i < arr.Length; i++)
+for (int i = 0; i < arr.Length; i++)
 {
-    if (arr[i] > max)
-    {
-        max = arr[i];
-    }
+    sum += arr[i];
 }
 
-Console.WriteLine("Maximum element is : " + max);
+double average = (double)sum / arr.Length;
+Console.WriteLine("Average of elements is: " + average);
