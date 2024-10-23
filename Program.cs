@@ -1,12 +1,7 @@
 ﻿using System;
 
-int[] arr = { 2, 4, 6, 8, 10 };
-int sum = 0;
+int[] arr = { 10, 2, 3, 5, 1 };
+Array.Sort(arr);
+Array.Reverse(arr);
 
-for (int i = 0; i < arr.Length; i++)
-{
-    sum += arr[i];
-}
-
-double average = (double)sum / arr.Length;
-Console.WriteLine("Average of elements is: " + average);
+Console.WriteLine("Sorted in descending: " + string.Join(", ", arr));
