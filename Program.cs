@@ -1,17 +1,37 @@
 ﻿using System;
-class Factorial
+
+class ShapeAreaCalculator
 {
     static void Main()
     {
-        Console.Write("Enter a number: ");
-        int number = int.Parse(Console.ReadLine());
-        int fact = 1;
+        Console.WriteLine("Choose a shape (circle, square, rectangle): ");
+        string shape = Console.ReadLine().ToLower();
 
-        for (int i = 1; i <= number; i++)
+        switch (shape)
         {
-            fact *= i;
-        }
+            case "circle":
+                Console.Write("Enter the radius: ");
+                double radius = double.Parse(Console.ReadLine());
+                Console.WriteLine($"Area of Circle: {Math.PI * radius * radius}");
+                break;
 
-        Console.WriteLine("Factorial of " + number + " is: " + fact);
+            case "square":
+                Console.Write("Enter the side length: ");
+                double side = double.Parse(Console.ReadLine());
+                Console.WriteLine($"Area of Square: {side * side}");
+                break;
+
+            case "rectangle":
+                Console.Write("Enter the length: ");
+                double length = double.Parse(Console.ReadLine());
+                Console.Write("Enter the width: ");
+                double width = double.Parse(Console.ReadLine());
+                Console.WriteLine($"Area of Rectangle: {length * width}");
+                break;
+
+            default:
+                Console.WriteLine("Unknown shape!");
+                break;
+        }
     }
 }
