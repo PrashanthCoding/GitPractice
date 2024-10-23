@@ -1,26 +1,18 @@
 ﻿using System;
 
-class BeverageSelection
+class FruitPrice
 {
     static void Main()
     {
-        Console.WriteLine("Select a beverage (coffee, tea, juice): ");
-        string beverage = Console.ReadLine().ToLower();
+        Console.WriteLine("Enter fruit (apple, banana, orange): ");
+        string fruit = Console.ReadLine().ToLower();
 
-        switch (beverage)
+        switch (fruit)
         {
-            case "coffee":
-                Console.WriteLine("Here is your coffee.");
-                break;
-            case "tea":
-                Console.WriteLine("Here is your tea.");
-                break;
-            case "juice":
-                Console.WriteLine("Here is your juice.");
-                break;
-            default:
-                Console.WriteLine("Invalid choice!");
-                break;
+            case "apple": Console.WriteLine("Apple price is $2 per kg."); break;
+            case "banana": Console.WriteLine("Banana price is $1 per dozen."); break;
+            case "orange": Console.WriteLine("Orange price is $3 per kg."); break;
+            default: Console.WriteLine("Unknown fruit!"); break;
         }
     }
 }
