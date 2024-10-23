@@ -1,7 +1,7 @@
 ﻿using System;
 
-int[] arr = { 10, 2, 3, 5, 1 };
+int[] arr = { 12, 35, 1, 10, 34, 1 };
 Array.Sort(arr);
-Array.Reverse(arr);
+int secondLargest = arr[arr.Length - 2];
 
-Console.WriteLine("Sorted in descending: " + string.Join(", ", arr));
+Console.WriteLine("Second largest element is: " + secondLargest);
