@@ -3,9 +3,16 @@ class Program
 {
     static void Main()
     {
-        for (int i = 1; i <= 10; i++)
+        Console.WriteLine("Enter a number: ");
+        int n = int.Parse(Console.ReadLine());
+        int sum = 0;
+
+
+        for (int i = 1; i <= n; i++)
         {
-            Console.WriteLine(i);
+            sum + = i;
         }
+
+        Console.WriteLine("Sum is :" + sum);
     }
 }
