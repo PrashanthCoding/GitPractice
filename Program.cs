@@ -1,20 +1,22 @@
-using System.Collections.Generic;
-using System.Linq;
+using Microsoft.AspNetCore.Mvc;
 
 namespace SimpleWebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class PaginatedItemsController : ControllerBase
+    public class ProductsController : ControllerBase
     {
-        private static List<string> items = Enumerable.Range(1, 100).Select(x => $"Item {x}").ToList();
-
-        // GET api/paginateditems?page=2&pageSize=10
+        // GET api/products
         [HttpGet]
-        public ActionResult<IEnumerable<string>> Get(int page = 1, int pageSize = 10)
+        public ActionResult<Product> Get()
         {
-            var paginatedItems = items.Skip((page - 1) * pageSize).Take(pageSize).ToList();
-            return Ok(paginatedItems);
+            var product = new Product
+            {
+                Id = 1,
+                Name = "Laptop",
+                Price = 750.99M
+            };
+            return Ok(product);
         }
     }
 }
