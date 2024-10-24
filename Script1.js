@@ -1,14 +1,8 @@
-function findLargestIn2DArray(arr) {
-    let largest = Number.NEGATIVE_INFINITY;
-    for (let i = 0; i < arr.length; i++) {
-        for (let j = 0; j < arr[i].length; j++) {
-            if (arr[i][j] > largest) {
-                largest = arr[i][j];
-            }
-        }
-    }
-    return largest;
-}
+const users = [
+    { id: 1, name: "John" },
+    { id: 2, name: "Jane" },
+    { id: 3, name: "Bob" }
+];
 
-const array2D = [[1, 2, 3], [4, 5, 6], [7, 8, 9]];
-console.log(findLargestIn2DArray(array2D));  // Output: 9
+const names = users.map(user => user.name);
+console.log(names);  // Output: ["John", "Jane", "Bob"]
