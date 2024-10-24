@@ -1,11 +1,9 @@
-function countOccurrences(str, char) {
-    let count = 0;
-    for (let i = 0; i < str.length; i++) {
-        if (str[i] === char) {
-            count++;
-        }
+function sumOfNaturalNumbers(n) {
+    let sum = 0;
+    for (let i = 1; i <= n; i++) {
+        sum += i;
     }
-    return count;
+    return sum;
 }
 
-console.log(countOccurrences("hello world", "l"));  // Output: 3
+console.log(sumOfNaturalNumbers(10));  // Output: 55
