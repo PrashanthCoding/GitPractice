@@ -1,5 +1,5 @@
-function mergeArrays(arr1, arr2) {
-    return arr1.concat(arr2);
+function celsiusToFahrenheit(celsius) {
+    return (celsius * 9/5) + 32;
 }
 
-console.log(mergeArrays([1, 2, 3], [4, 5, 6]));  // Output: [1, 2, 3, 4, 5, 6]
+console.log(celsiusToFahrenheit(0));  // Output: 32
