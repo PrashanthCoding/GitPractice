@@ -1,8 +1,8 @@
 const users = [
-    { id: 1, name: "John" },
-    { id: 2, name: "Jane" },
-    { id: 3, name: "Bob" }
+    { id: 1, name: "Prashanth" },
+    { id: 2, name: "Anty" },
+    { id: 3, name: "Red" }
 ];
 
 const names = users.map(user => user.name);
-console.log(names);  // Output: ["John", "Jane", "Bob"]
+console.log(names);  // Output: ["Prashanth", "Anty", "Red"]
