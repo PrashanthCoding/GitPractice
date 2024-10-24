@@ -1,5 +1,5 @@
-int[] arr = { 12, 35, 1, 10, 34, 1 };
-Array.Sort(arr);
-int secondLargest = arr[arr.Length - 2];
+function celsiusToFahrenheit(celsius) {
+    return (celsius * 9 / 5) + 32;
+}
 
-Console.WriteLine("Second largest element is: " + secondLargest);
+console.log(celsiusToFahrenheit(0));  // Output: 32
