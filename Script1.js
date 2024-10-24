@@ -1,5 +1,3 @@
-function mergeArrays(arr1, arr2) {
-    return arr1.concat(arr2);
-}
-
-console.log(mergeArrays([1, 2, 3], [4, 5, 6]));  // Output: [1, 2, 3, 4, 5, 6]
+const div = document.createElement('div');
+div.innerText = "Hello, World!";
+document.body.appendChild(div);  // Adds a new div with "Hello, World!" to the webpage
