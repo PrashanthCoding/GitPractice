@@ -1,8 +1,17 @@
-function isArmstrong(num) {
-    let digits = num.toString().split('');
-    let sum = digits.reduce((acc, digit) => acc + Math.pow(digit, digits.length), 0);
-    return sum === num;
+function isPrime(num) {
+    if (num <= 1) return false;
+    for (let i = 2; i < num; i++) {
+        if (num % i === 0) return false;
+    }
+    return true;
 }
 
-console.log(isArmstrong(153));  // Output: true (153 = 1³ + 5³ + 3³)
-console.log(isArmstrong(123));  // Output: false
+function findPrimes(start, end) {
+    let primes = [];
+    for (let i = start; i <= end; i++) {
+        if (isPrime(i)) primes.push(i);
+    }
+    return primes;
+}
+
+console.log(findPrimes(10, 30));  // Output: [11, 13, 17, 19, 23, 29]
