@@ -1,9 +1,7 @@
-function fibonacci(n) {
-    let fib = [0, 1];
-    for (let i = 2; i < n; i++) {
-        fib[i] = fib[i - 1] + fib[i - 2];
-    }
-    return fib;
+function isPalindrome(str) {
+    const reversed = str.split('').reverse().join('');
+    return str === reversed;
 }
 
-console.log(fibonacci(10));  // Output: [0, 1, 1, 2, 3, 5, 8, 13, 21, 34]
+console.log(isPalindrome("madam"));  // Output: true
+console.log(isPalindrome("hello"));  // Output: false
