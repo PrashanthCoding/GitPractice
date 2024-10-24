@@ -1,15 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Threading;
 
 class Program
 {
+    static void Task()
+    {
+        for (int i = 1; i <= 5; i++)
+        {
+            Console.WriteLine($"Task {i}");
+            Thread.Sleep(1000);
+        }
+    }
+
     static void Main()
     {
-        List<string> names = new List<string> { "Alice", "Bob", "Charlie" };
-
-        names.Add("David");
-
-        foreach (var name in names)
-            Console.WriteLine(name);
+        Thread thread = new Thread(Task);
+        thread.Start();
     }
 }
