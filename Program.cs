@@ -1,17 +1,42 @@
 ﻿using System;
-using System.Linq;
 
-bool IsPrime(int num)
+class Program
 {
-    if (num < 2) return false;
-    for (int i = 2; i <= Math.Sqrt(num); i++)
+    class Student
     {
-        if (num % i == 0) return false;
+        public string name;
+        public int age;
+
+        // Constructor chaining
+        public Student() : this("Unknown", 0)
+        {
+        }
+
+        public Student(string studentName) : this(studentName, 0)
+        {
+        }
+
+        public Student(string studentName, int studentAge)
+        {
+            name = studentName;
+            age = studentAge;
+        }
+
+        public void DisplayInfo()
+        {
+            Console.WriteLine($"Name: {name}, Age: {age}");
+        }
     }
-    return true;
+
+    static void Main()
+    {
+        Student student1 = new Student();
+        student1.DisplayInfo();
+
+        Student student2 = new Student("Paul");
+        student2.DisplayInfo();
+
+        Student student3 = new Student("Sarah", 23);
+        student3.DisplayInfo();
+    }
 }
-
-int[] arr = { 2, 3, 4, 5, 6, 7, 8, 9, 10 };
-var primes = arr.Where(IsPrime).ToArray();
-
-Console.WriteLine("Prime numbers: " + string.Join(", ", primes));

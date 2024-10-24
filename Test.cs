@@ -2,37 +2,31 @@
 
 class Program
 {
-    class Student
+    class Singleton
     {
-        public string name;
-        public int age;
+        private static Singleton instance;
 
-        // Parameterized Constructor
-        public Student(string studentName, int studentAge)
+        // Private Constructor
+        private Singleton() { }
+
+        public static Singleton GetInstance()
         {
-            name = studentName;
-            age = studentAge;
+            if (instance == null)
+            {
+                instance = new Singleton();
+            }
+            return instance;
         }
 
-        // Copy Constructor
-        public Student(Student student)
+        public void DisplayMessage()
         {
-            name = student.name;
-            age = student.age;
-        }
-
-        public void DisplayInfo()
-        {
-            Console.WriteLine($"Name: {name}, Age: {age}");
+            Console.WriteLine("Singleton instance is used.");
         }
     }
 
     static void Main()
     {
-        Student student1 = new Student("Alice", 22); // Parameterized constructor
-        Student student2 = new Student(student1); // Copy constructor
-
-        student1.DisplayInfo();
-        student2.DisplayInfo();
+        Singleton singleton = Singleton.GetInstance();
+        singleton.DisplayMessage();
     }
 }
