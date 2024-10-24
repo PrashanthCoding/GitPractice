@@ -1,16 +1,28 @@
 ﻿using System;
-using System.Collections.Generic;
 
 class Program
 {
+    class Student
+    {
+        public string name;
+        public int age;
+
+        // Default Constructor
+        public Student()
+        {
+            name = "Unknown";
+            age = 0;
+        }
+
+        public void DisplayInfo()
+        {
+            Console.WriteLine($"Name: {name}, Age: {age}");
+        }
+    }
+
     static void Main()
     {
-        List<int> numbers = new List<int> { 1, 2, 3, 4, 5, 6 };
-        Predicate<int> isEven = x => x % 2 == 0;
-
-        List<int> evenNumbers = numbers.FindAll(isEven);
-
-        Console.WriteLine("Even numbers: ");
-        evenNumbers.ForEach(Console.WriteLine);
+        Student student = new Student(); // Default constructor will be called
+        student.DisplayInfo();
     }
 }
