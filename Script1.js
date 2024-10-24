@@ -1,8 +1,13 @@
-const users = [
-    { id: 1, name: "Prashanth" },
-    { id: 2, name: "Anty" },
-    { id: 3, name: "Red" }
-];
+class Animal {
+    constructor(name, sound) {
+        this.name = name;
+        this.sound = sound;
+    }
 
-const names = users.map(user => user.name);
-console.log(names);  // Output: ["Prashanth", "Anty", "Red"]
+    makeSound() {
+        console.log(`${this.name} says ${this.sound}`);
+    }
+}
+
+const dog = new Animal("Dog", "Woof");
+dog.makeSound();  // Output: Dog says Woof
