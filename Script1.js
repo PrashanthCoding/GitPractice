@@ -1,6 +1,7 @@
-function elementExists(arr, element) {
-    return arr.includes(element);
+function secondLargest(arr) {
+    let largest = Math.max(...arr);
+    arr.splice(arr.indexOf(largest), 1);
+    return Math.max(...arr);
 }
 
-console.log(elementExists([1, 2, 3, 4], 3));  // Output: true
-console.log(elementExists([1, 2, 3, 4], 5));  // Output: false
+console.log(secondLargest([10, 20, 30, 5]));  // Output: 20
