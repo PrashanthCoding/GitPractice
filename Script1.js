@@ -1,17 +1,9 @@
-function isPrime(num) {
-    if (num <= 1) return false;
-    for (let i = 2; i < num; i++) {
-        if (num % i === 0) return false;
+function fibonacci(n) {
+    let fib = [0, 1];
+    for (let i = 2; i < n; i++) {
+        fib[i] = fib[i - 1] + fib[i - 2];
     }
-    return true;
+    return fib;
 }
 
-function findPrimes(start, end) {
-    let primes = [];
-    for (let i = start; i <= end; i++) {
-        if (isPrime(i)) primes.push(i);
-    }
-    return primes;
-}
-
-console.log(findPrimes(10, 30));  // Output: [11, 13, 17, 19, 23, 29]
+console.log(fibonacci(10));  // Output: [0, 1, 1, 2, 3, 5, 8, 13, 21, 34]
