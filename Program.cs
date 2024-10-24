@@ -1,10 +1,18 @@
 ﻿using System;
+using System.Threading.Tasks;
 
 class Program
 {
-    static void Main()
+    static async Task Main()
     {
-        Func<int, int, int> add = (x, y) => x + y;
-        Console.WriteLine("Sum: " + add(5, 3));
+        await PerformTask();
+        Console.WriteLine("Main method completed");
+    }
+
+    static async Task PerformTask()
+    {
+        Console.WriteLine("Task started...");
+        await Task.Delay(3000);
+        Console.WriteLine("Task completed!");
     }
 }
