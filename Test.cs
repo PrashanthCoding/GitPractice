@@ -7,11 +7,11 @@ class Program
         public string name;
         public int age;
 
-        // Default Constructor
-        public Student()
+        // Parameterized Constructor
+        public Student(string studentName, int studentAge)
         {
-            name = "Unknown";
-            age = 0;
+            name = studentName;
+            age = studentAge;
         }
 
         public void DisplayInfo()
@@ -22,7 +22,7 @@ class Program
 
     static void Main()
     {
-        Student student = new Student(); // Default constructor will be called
+        Student student = new Student("John", 20); // Parameterized constructor called
         student.DisplayInfo();
     }
 }
