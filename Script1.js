@@ -1,7 +1,4 @@
-function secondLargest(arr) {
-    let largest = Math.max(...arr);
-    arr.splice(arr.indexOf(largest), 1);
-    return Math.max(...arr);
-}
+int[] arr = { 1, 2, 2, 3, 4, 4, 5 };
+int[] uniqueArr = arr.Distinct().ToArray();
 
-console.log(secondLargest([10, 20, 30, 5]));
+Console.WriteLine("Array without duplicates: " + string.Join(", ", uniqueArr));
