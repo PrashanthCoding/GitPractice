@@ -1,4 +1,5 @@
-int[] arr = { 1, 2, 2, 3, 4, 4, 5 };
-int[] uniqueArr = arr.Distinct().ToArray();
+int[] arr = { 12, 35, 1, 10, 34, 1 };
+Array.Sort(arr);
+int secondLargest = arr[arr.Length - 2];
 
-Console.WriteLine("Array without duplicates: " + string.Join(", ", uniqueArr));
+Console.WriteLine("Second largest element is: " + secondLargest);
