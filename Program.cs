@@ -1,20 +1,14 @@
-﻿using System;
-using System.Threading;
-
-class Program
+﻿namespace SimpleWebAPI.Controllers
 {
-    static void Task()
+    [Route("api/[controller]")]
+    [ApiController]
+    public class DataController : ControllerBase
     {
-        for (int i = 1; i <= 5; i++)
+        // POST api/data
+        [HttpPost]
+        public IActionResult Post([FromBody] string value)
         {
-            Console.WriteLine($"Task {i}");
-            Thread.Sleep(1000);
+            return Ok($"Received value: {value}");
         }
-    }
-
-    static void Main()
-    {
-        Thread thread = new Thread(Task);
-        thread.Start();
     }
 }
