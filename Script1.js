@@ -4,4 +4,4 @@ function secondLargest(arr) {
     return Math.max(...arr);
 }
 
-console.log(secondLargest([10, 20, 30, 5]));  // Output: 20
+console.log(secondLargest([10, 20, 30, 5]));
