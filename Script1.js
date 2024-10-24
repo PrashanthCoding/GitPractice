@@ -1,12 +1,6 @@
-function countVowels(str) {
-    let count = 0;
-    const vowels = 'aeiouAEIOU';
-    for (let i = 0; i < str.length; i++) {
-        if (vowels.includes(str[i])) {
-            count++;
-        }
-    }
-    return count;
+function elementExists(arr, element) {
+    return arr.includes(element);
 }
 
-console.log(countVowels("hello world"));  // Output: 3
+console.log(elementExists([1, 2, 3, 4], 3));  // Output: true
+console.log(elementExists([1, 2, 3, 4], 5));  // Output: false
