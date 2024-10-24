@@ -1,9 +1,8 @@
-function sumOfNaturalNumbers(n) {
-    let sum = 0;
-    for (let i = 1; i <= n; i++) {
-        sum += i;
-    }
-    return sum;
+function isArmstrong(num) {
+    let digits = num.toString().split('');
+    let sum = digits.reduce((acc, digit) => acc + Math.pow(digit, digits.length), 0);
+    return sum === num;
 }
 
-console.log(sumOfNaturalNumbers(10));  // Output: 55
+console.log(isArmstrong(153));  // Output: true (153 = 1³ + 5³ + 3³)
+console.log(isArmstrong(123));  // Output: false
