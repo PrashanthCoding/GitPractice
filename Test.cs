@@ -14,6 +14,13 @@ class Program
             age = studentAge;
         }
 
+        // Copy Constructor
+        public Student(Student student)
+        {
+            name = student.name;
+            age = student.age;
+        }
+
         public void DisplayInfo()
         {
             Console.WriteLine($"Name: {name}, Age: {age}");
@@ -22,7 +29,10 @@ class Program
 
     static void Main()
     {
-        Student student = new Student("John", 20); // Parameterized constructor called
-        student.DisplayInfo();
+        Student student1 = new Student("Alice", 22); // Parameterized constructor
+        Student student2 = new Student(student1); // Copy constructor
+
+        student1.DisplayInfo();
+        student2.DisplayInfo();
     }
 }
