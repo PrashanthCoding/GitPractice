@@ -1,9 +1,12 @@
-function sumOfNaturalNumbers(n) {
-    let sum = 0;
-    for (let i = 1; i <= n; i++) {
-        sum += i;
+function countVowels(str) {
+    let count = 0;
+    const vowels = 'aeiouAEIOU';
+    for (let i = 0; i < str.length; i++) {
+        if (vowels.includes(str[i])) {
+            count++;
+        }
     }
-    return sum;
+    return count;
 }
 
-console.log(sumOfNaturalNumbers(10));  // Output: 55
+console.log(countVowels("hello world"));  // Output: 3
