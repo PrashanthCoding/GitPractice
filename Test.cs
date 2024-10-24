@@ -1,37 +1,15 @@
 ﻿using System;
 
-public delegate void Notify();
-
-class Process
-{
-    public event Notify ProcessCompleted;
-
-    public void StartProcess()
-    {
-        Console.WriteLine("Process started...");
-        OnProcessCompleted();
-    }
-
-    protected virtual void OnProcessCompleted()
-    {
-        if (ProcessCompleted != null)
-        {
-            ProcessCompleted();
-        }
-    }
-}
-
 class Program
 {
-    static void Main()
+    static void PrintMessage(string message)
     {
-        Process process = new Process();
-        process.ProcessCompleted += ProcessCompletedHandler;
-        process.StartProcess();
+        Console.WriteLine("Action Delegate: " + message);
     }
 
-    static void ProcessCompletedHandler()
+    static void Main()
     {
-        Console.WriteLine("Process Completed!");
+        Action<string> action = PrintMessage;
+        action("Hello from Action delegate!");
     }
 }
