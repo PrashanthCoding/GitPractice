@@ -1,27 +1,25 @@
 ﻿using System;
 
-class MonthDisplay
+class PrimeCheck
 {
     static void Main()
     {
-        Console.Write("Enter a number (1-12) for a month: ");
-        int month = int.Parse(Console.ReadLine());
+        Console.Write("Enter a number: ");
+        int number = int.Parse(Console.ReadLine());
+        bool isPrime = true;
 
-        switch (month)
+        for (int i = 2; i <= number / 2; i++)
         {
-            case 1: Console.WriteLine("January"); break;
-            case 2: Console.WriteLine("February"); break;
-            case 3: Console.WriteLine("March"); break;
-            case 4: Console.WriteLine("April"); break;
-            case 5: Console.WriteLine("May"); break;
-            case 6: Console.WriteLine("June"); break;
-            case 7: Console.WriteLine("July"); break;
-            case 8: Console.WriteLine("August"); break;
-            case 9: Console.WriteLine("September"); break;
-            case 10: Console.WriteLine("October"); break;
-            case 11: Console.WriteLine("November"); break;
-            case 12: Console.WriteLine("December"); break;
-            default: Console.WriteLine("Invalid month!"); break;
+            if (number % i == 0)
+            {
+                isPrime = false;
+                break;
+            }
         }
+
+        if (isPrime)
+            Console.WriteLine($"{number} is a Prime number.");
+        else
+            Console.WriteLine($"{number} is not a Prime number.");
     }
 }
