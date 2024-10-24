@@ -1,25 +1,20 @@
 ﻿using System;
-
-class LargestOfThree
+class Program
 {
     static void Main()
     {
-        Console.Write("Enter first number: ");
-        int num1 = Convert.ToInt32(Console.ReadLine());
+        int a = 0, b = 1, c, i, number;
+        Console.Write("Enter the number of elements: ");
+        number = int.Parse(Console.ReadLine());
 
-        Console.Write("Enter second number: ");
-        int num2 = Convert.ToInt32(Console.ReadLine());
+        Console.Write(a + " " + b + " "); // Print 0 and 1
 
-        Console.Write("Enter third number: ");
-        int num3 = Convert.ToInt32(Console.ReadLine());
-
-        int largest = num1;
-
-        if (num2 > largest)
-            largest = num2;
-        if (num3 > largest)
-            largest = num3;
-
-        Console.WriteLine($"Largest number is {largest}");
+        for (i = 2; i < number; ++i) // Loop starts from 2 because 0 and 1 are already printed
+        {
+            c = a + b;
+            Console.Write(c + " ");
+            a = b;
+            b = c;
+        }
     }
 }
