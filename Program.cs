@@ -2,41 +2,29 @@
 
 class Program
 {
-    class Student
-    {
-        public string name;
-        public int age;
-
-        // Constructor chaining
-        public Student() : this("Unknown", 0)
-        {
-        }
-
-        public Student(string studentName) : this(studentName, 0)
-        {
-        }
-
-        public Student(string studentName, int studentAge)
-        {
-            name = studentName;
-            age = studentAge;
-        }
-
-        public void DisplayInfo()
-        {
-            Console.WriteLine($"Name: {name}, Age: {age}");
-        }
-    }
-
     static void Main()
     {
-        Student student1 = new Student();
-        student1.DisplayInfo();
+        int number = 10;
 
-        Student student2 = new Student("Paul");
-        student2.DisplayInfo();
+        // if-else statement
+        if (number > 0)
+            Console.WriteLine("Positive number");
+        else
+            Console.WriteLine("Negative number");
 
-        Student student3 = new Student("Sarah", 23);
-        student3.DisplayInfo();
+        // switch statement
+        switch (number)
+        {
+            case 10:
+                Console.WriteLine("Number is 10");
+                break;
+            default:
+                Console.WriteLine("Number is not 10");
+                break;
+        }
+
+        // for loop
+        for (int i = 1; i <= 5; i++)
+            Console.WriteLine(i);
     }
 }

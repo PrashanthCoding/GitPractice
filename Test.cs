@@ -2,31 +2,13 @@
 
 class Program
 {
-    class Singleton
-    {
-        private static Singleton instance;
-
-        // Private Constructor
-        private Singleton() { }
-
-        public static Singleton GetInstance()
-        {
-            if (instance == null)
-            {
-                instance = new Singleton();
-            }
-            return instance;
-        }
-
-        public void DisplayMessage()
-        {
-            Console.WriteLine("Singleton instance is used.");
-        }
-    }
-
     static void Main()
     {
-        Singleton singleton = Singleton.GetInstance();
-        singleton.DisplayMessage();
+        int age = 25;
+        string name = "John";
+        double salary = 50000.50;
+        bool isEmployed = true;
+
+        Console.WriteLine($"Name: {name}, Age: {age}, Salary: {salary}, Employed: {isEmployed}");
     }
 }
