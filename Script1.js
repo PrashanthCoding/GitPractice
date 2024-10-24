@@ -1,13 +1,9 @@
-class Animal {
-    constructor(name, sound) {
-        this.name = name;
-        this.sound = sound;
+const person = {
+    firstName: "John",
+    lastName: "Doe",
+    fullName: function () {
+        return this.firstName + " " + this.lastName;
     }
+};
 
-    makeSound() {
-        console.log(`${this.name} says ${this.sound}`);
-    }
-}
-
-const dog = new Animal("Dog", "Woof");
-dog.makeSound();  // Output: Dog says Woof
+console.log(person.fullName());  // Output: John Doe
