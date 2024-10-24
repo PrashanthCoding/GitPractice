@@ -1,7 +1,5 @@
-function isPalindrome(str) {
-    const reversed = str.split('').reverse().join('');
-    return str === reversed;
+function reverseString(str) {
+    return str.split("").reverse().join("");
 }
 
-console.log(isPalindrome("madam"));  // Output: true
-console.log(isPalindrome("hello"));  // Output: false
+console.log(reverseString("hello"));  // Output: olleh
