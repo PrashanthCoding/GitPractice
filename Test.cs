@@ -3,13 +3,17 @@ class Program
 {
     static void Main()
     {
-        Console.WriteLine("Enter a number: ");
-        int number = int.Parse(Console.ReadLine());
+        int[] numbers = { 3, 8, 1, 9, 2, 6, 7 };
+        int max = numbers[0];
 
-        for (int i = 0; i <= 10; i++)
+        foreach (int number in numbers)
         {
-            Console.WriteLine(number + " x " + i + " = " + (number * i));
+            if (number > max)
+            {
+                max = number;
+            }
         }
 
+        Console.WriteLine("The maximum number is: " + max);
     }
 }
