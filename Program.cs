@@ -1,18 +1,15 @@
 ﻿using System;
-using System.Threading.Tasks;
+using System.Collections.Generic;
 
 class Program
 {
-    static async Task Main()
+    static void Main()
     {
-        await PerformTask();
-        Console.WriteLine("Main method completed");
-    }
+        List<string> names = new List<string> { "Alice", "Bob", "Charlie" };
 
-    static async Task PerformTask()
-    {
-        Console.WriteLine("Task started...");
-        await Task.Delay(3000);
-        Console.WriteLine("Task completed!");
+        names.Add("David");
+
+        foreach (var name in names)
+            Console.WriteLine(name);
     }
 }
