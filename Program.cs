@@ -1,17 +1,20 @@
 using System;
 
-class Counter
+class Calculator
 {
-    public static int Count = 0;
-
-    public Counter()
+    public int Add(int a, int b)
     {
-        Count++;
+        return a + b;
     }
 
-    public static void DisplayCount()
+    public double Add(double a, double b)
     {
-        Console.WriteLine("Number of instances: " + Count);
+        return a + b;
+    }
+
+    public int Add(int a, int b, int c)
+    {
+        return a + b + c;
     }
 }
 
@@ -19,10 +22,10 @@ class Program
 {
     static void Main()
     {
-        Counter c1 = new Counter();
-        Counter c2 = new Counter();
-        Counter c3 = new Counter();
+        Calculator calc = new Calculator();
 
-        Counter.DisplayCount(); // Displays 3
+        Console.WriteLine(calc.Add(5, 10));
+        Console.WriteLine(calc.Add(3.5, 2.5));
+        Console.WriteLine(calc.Add(1, 2, 3));
     }
 }
