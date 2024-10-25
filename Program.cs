@@ -1,26 +1,27 @@
 using System;
 
-class BinarySearch
+class TransposeMatrix
 {
     static void Main()
     {
-        int[] arr = { 1, 2, 3, 4, 5, 6, 7 };
-        int target = 4;
-        int left = 0, right = arr.Length - 1;
+        int[,] matrix = { { 1, 2, 3 }, { 4, 5, 6 }, { 7, 8, 9 } };
+        int[,] transpose = new int[matrix.GetLength(1), matrix.GetLength(0)];
 
-        while (left <= right)
+        for (int i = 0; i < matrix.GetLength(0); i++)
         {
-            int mid = left + (right - left) / 2;
-
-            if (arr[mid] == target)
+            for (int j = 0; j < matrix.GetLength(1); j++)
             {
-                Console.WriteLine($"Found {target} at index {mid}");
-                return;
+                transpose[j, i] = matrix[i, j];
             }
-            if (arr[mid] < target) left = mid + 1;
-            else right = mid - 1;
         }
 
-        Console.WriteLine($"{target} not found in the array");
+        for (int i = 0; i < transpose.GetLength(0); i++)
+        {
+            for (int j = 0; j < transpose.GetLength(1); j++)
+            {
+                Console.Write(transpose[i, j] + "\t");
+            }
+            Console.WriteLine();
+        }
     }
 }
