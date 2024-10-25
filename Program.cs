@@ -1,28 +1,22 @@
 using System;
+using System.Collections.Generic;
 
-class MatrixRotation
+class CommonElements
 {
     static void Main()
     {
-        int[,] matrix = { { 1, 2, 3 }, { 4, 5, 6 }, { 7, 8, 9 } };
-        int n = matrix.GetLength(0);
-        int[,] rotated = new int[n, n];
+        int[] array1 = { 1, 2, 3, 4, 5 };
+        int[] array2 = { 4, 5, 6, 7, 8 };
+        List<int> common = new List<int>();
 
-        for (int i = 0; i < n; i++)
+        foreach (int num in array1)
         {
-            for (int j = 0; j < n; j++)
+            if (Array.Exists(array2, element => element == num))
             {
-                rotated[j, n - 1 - i] = matrix[i, j];
+                common.Add(num);
             }
         }
 
-        for (int i = 0; i < n; i++)
-        {
-            for (int j = 0; j < n; j++)
-            {
-                Console.Write(rotated[i, j] + "\t");
-            }
-            Console.WriteLine();
-        }
+        Console.WriteLine("Common Elements: " + string.Join(", ", common));
     }
 }
