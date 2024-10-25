@@ -1,20 +1,25 @@
-namespace SimpleWebAPI.Controllers
+using System;
+
+class MatrixMultiplication
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class ProductsController : ControllerBase
+    static void Main()
     {
-        // GET api/products
-        [HttpGet]
-        public ActionResult<Product> Get()
+        int[,] matrix1 = { { 1, 2, 3 }, { 4, 5, 6 } };
+        int[,] matrix2 = { { 7, 8 }, { 9, 10 }, { 11, 12 } };
+        int[,] result = new int[2, 2];
+
+        for (int i = 0; i < 2; i++)
         {
-            var product = new Product
+            for (int j = 0; j < 2; j++)
             {
-                Id = 1,
-                Name = "Laptop",
-                Price = 750.99M
-            };
-            return Ok(product);
+                result[i, j] = 0;
+                for (int k = 0; k < 3; k++)
+                {
+                    result[i, j] += matrix1[i, k] * matrix2[k, j];
+                }
+                Console.Write(result[i, j] + "\t");
+            }
+            Console.WriteLine();
         }
     }
 }
