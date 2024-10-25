@@ -1,22 +1,25 @@
 using System;
-using System.Collections.Generic;
 
-class CommonElements
+class MatrixMultiplication
 {
     static void Main()
     {
-        int[] array1 = { 1, 2, 3, 4, 5 };
-        int[] array2 = { 4, 5, 6, 7, 8 };
-        List<int> common = new List<int>();
+        int[,] matrix1 = { { 1, 2, 3 }, { 4, 5, 6 } };
+        int[,] matrix2 = { { 7, 8 }, { 9, 10 }, { 11, 12 } };
+        int[,] result = new int[2, 2];
 
-        foreach (int num in array1)
+        for (int i = 0; i < 2; i++)
         {
-            if (Array.Exists(array2, element => element == num))
+            for (int j = 0; j < 2; j++)
             {
-                common.Add(num);
+                result[i, j] = 0;
+                for (int k = 0; k < 3; k++)
+                {
+                    result[i, j] += matrix1[i, k] * matrix2[k, j];
+                }
+                Console.Write(result[i, j] + "\t");
             }
+            Console.WriteLine();
         }
-
-        Console.WriteLine("Common Elements: " + string.Join(", ", common));
     }
 }
