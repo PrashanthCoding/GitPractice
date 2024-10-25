@@ -1,26 +1,17 @@
 using System;
 
-class Book
+class Counter
 {
-    private string title;
-    private double price;
+    public static int Count = 0;
 
-    public string Title
+    public Counter()
     {
-        get { return title; }
-        set { title = value; }
+        Count++;
     }
 
-    public double Price
+    public static void DisplayCount()
     {
-        get { return price; }
-        set
-        {
-            if (value > 0)
-                price = value;
-            else
-                Console.WriteLine("Price must be positive.");
-        }
+        Console.WriteLine("Number of instances: " + Count);
     }
 }
 
@@ -28,10 +19,10 @@ class Program
 {
     static void Main()
     {
-        Book book = new Book();
-        book.Title = "C#";
-        book.Price = 19.99;
+        Counter c1 = new Counter();
+        Counter c2 = new Counter();
+        Counter c3 = new Counter();
 
-        Console.WriteLine($"Title: {book.Title}, Price: {book.Price}");
+        Counter.DisplayCount(); // Displays 3
     }
 }
