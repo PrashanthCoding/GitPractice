@@ -1,22 +1,21 @@
 using System;
-using System.Collections.Generic;
 
-class CommonElements
+class PairsWithSum
 {
     static void Main()
     {
-        int[] array1 = { 1, 2, 3, 4, 5 };
-        int[] array2 = { 4, 5, 6, 7, 8 };
-        List<int> common = new List<int>();
+        int[] arr = { 1, 5, 7, -1, 5 };
+        int sum = 6;
 
-        foreach (int num in array1)
+        for (int i = 0; i < arr.Length; i++)
         {
-            if (Array.Exists(array2, element => element == num))
+            for (int j = i + 1; j < arr.Length; j++)
             {
-                common.Add(num);
+                if (arr[i] + arr[j] == sum)
+                {
+                    Console.WriteLine($"Pair: ({arr[i]}, {arr[j]})");
+                }
             }
         }
-
-        Console.WriteLine("Common Elements: " + string.Join(", ", common));
     }
 }
