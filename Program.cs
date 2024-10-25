@@ -1,26 +1,30 @@
 using System;
 
-class BinarySearch
+class MergeSortedArrays
 {
     static void Main()
     {
-        int[] arr = { 1, 2, 3, 4, 5, 6, 7 };
-        int target = 4;
-        int left = 0, right = arr.Length - 1;
+        int[] arr1 = { 1, 3, 5, 7 };
+        int[] arr2 = { 2, 4, 6, 8 };
+        int[] merged = new int[arr1.Length + arr2.Length];
 
-        while (left <= right)
+        int i = 0, j = 0, k = 0;
+
+        while (i < arr1.Length && j < arr2.Length)
         {
-            int mid = left + (right - left) / 2;
-
-            if (arr[mid] == target)
-            {
-                Console.WriteLine($"Found {target} at index {mid}");
-                return;
-            }
-            if (arr[mid] < target) left = mid + 1;
-            else right = mid - 1;
+            merged[k++] = arr1[i] < arr2[j] ? arr1[i++] : arr2[j++];
         }
 
-        Console.WriteLine($"{target} not found in the array");
+        while (i < arr1.Length)
+        {
+            merged[k++] = arr1[i++];
+        }
+
+        while (j < arr2.Length)
+        {
+            merged[k++] = arr2[j++];
+        }
+
+        Console.WriteLine("Merged Array: " + string.Join(", ", merged));
     }
 }
