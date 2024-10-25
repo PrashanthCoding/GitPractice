@@ -29,7 +29,7 @@ class Program
     static void Main()
     {
         Book book = new Book();
-        book.Title = "C# Programming";
+        book.Title = "C#";
         book.Price = 19.99;
 
         Console.WriteLine($"Title: {book.Title}, Price: {book.Price}");
