@@ -1,22 +1,20 @@
 using System;
-using System.Collections.Generic;
 
-class CommonElements
+class MissingNumber
 {
     static void Main()
     {
-        int[] array1 = { 1, 2, 3, 4, 5 };
-        int[] array2 = { 4, 5, 6, 7, 8 };
-        List<int> common = new List<int>();
+        int[] arr = { 1, 2, 4, 5, 6 };
+        int n = arr.Length + 1;
+        int totalSum = (n * (n + 1)) / 2;
+        int arrSum = 0;
 
-        foreach (int num in array1)
+        foreach (int num in arr)
         {
-            if (Array.Exists(array2, element => element == num))
-            {
-                common.Add(num);
-            }
+            arrSum += num;
         }
 
-        Console.WriteLine("Common Elements: " + string.Join(", ", common));
+        int missingNumber = totalSum - arrSum;
+        Console.WriteLine("Missing Number: " + missingNumber);
     }
 }
