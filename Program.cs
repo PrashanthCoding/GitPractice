@@ -1,20 +1,26 @@
 using System;
 
-class MissingNumber
+class BinarySearch
 {
     static void Main()
     {
-        int[] arr = { 1, 2, 4, 5, 6 };
-        int n = arr.Length + 1;
-        int totalSum = (n * (n + 1)) / 2;
-        int arrSum = 0;
+        int[] arr = { 1, 2, 3, 4, 5, 6, 7 };
+        int target = 4;
+        int left = 0, right = arr.Length - 1;
 
-        foreach (int num in arr)
+        while (left <= right)
         {
-            arrSum += num;
+            int mid = left + (right - left) / 2;
+
+            if (arr[mid] == target)
+            {
+                Console.WriteLine($"Found {target} at index {mid}");
+                return;
+            }
+            if (arr[mid] < target) left = mid + 1;
+            else right = mid - 1;
         }
 
-        int missingNumber = totalSum - arrSum;
-        Console.WriteLine("Missing Number: " + missingNumber);
+        Console.WriteLine($"{target} not found in the array");
     }
 }
