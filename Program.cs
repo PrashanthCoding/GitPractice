@@ -1,24 +1,26 @@
 using System;
 
-class Complex
+class Book
 {
-    public int Real { get; set; }
-    public int Imaginary { get; set; }
+    private string title;
+    private double price;
 
-    public Complex(int real, int imaginary)
+    public string Title
     {
-        Real = real;
-        Imaginary = imaginary;
+        get { return title; }
+        set { title = value; }
     }
 
-    public static Complex operator +(Complex c1, Complex c2)
+    public double Price
     {
-        return new Complex(c1.Real + c2.Real, c1.Imaginary + c2.Imaginary);
-    }
-
-    public void Display()
-    {
-        Console.WriteLine($"{Real} + {Imaginary}i");
+        get { return price; }
+        set
+        {
+            if (value > 0)
+                price = value;
+            else
+                Console.WriteLine("Price must be positive.");
+        }
     }
 }
 
@@ -26,10 +28,10 @@ class Program
 {
     static void Main()
     {
-        Complex c1 = new Complex(3, 2);
-        Complex c2 = new Complex(1, 7);
-        Complex sum = c1 + c2;
+        Book book = new Book();
+        book.Title = "C# Programming";
+        book.Price = 19.99;
 
-        sum.Display();
+        Console.WriteLine($"Title: {book.Title}, Price: {book.Price}");
     }
 }
