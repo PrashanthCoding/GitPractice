@@ -1,21 +1,28 @@
 using System;
 
-class PairsWithSum
+class MatrixRotation
 {
     static void Main()
     {
-        int[] arr = { 1, 5, 7, -1, 5 };
-        int sum = 6;
+        int[,] matrix = { { 1, 2, 3 }, { 4, 5, 6 }, { 7, 8, 9 } };
+        int n = matrix.GetLength(0);
+        int[,] rotated = new int[n, n];
 
-        for (int i = 0; i < arr.Length; i++)
+        for (int i = 0; i < n; i++)
         {
-            for (int j = i + 1; j < arr.Length; j++)
+            for (int j = 0; j < n; j++)
             {
-                if (arr[i] + arr[j] == sum)
-                {
-                    Console.WriteLine($"Pair: ({arr[i]}, {arr[j]})");
-                }
+                rotated[j, n - 1 - i] = matrix[i, j];
             }
+        }
+
+        for (int i = 0; i < n; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                Console.Write(rotated[i, j] + "\t");
+            }
+            Console.WriteLine();
         }
     }
 }
