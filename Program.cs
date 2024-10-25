@@ -1,31 +1,24 @@
 using System;
 
-class Product
+class Complex
 {
-    public string Name;
-    public double Price;
+    public int Real { get; set; }
+    public int Imaginary { get; set; }
 
-    public Product()
+    public Complex(int real, int imaginary)
     {
-        Name = "Unknown";
-        Price = 0.0;
+        Real = real;
+        Imaginary = imaginary;
     }
 
-    public Product(string name)
+    public static Complex operator +(Complex c1, Complex c2)
     {
-        Name = name;
-        Price = 0.0;
-    }
-
-    public Product(string name, double price)
-    {
-        Name = name;
-        Price = price;
+        return new Complex(c1.Real + c2.Real, c1.Imaginary + c2.Imaginary);
     }
 
     public void Display()
     {
-        Console.WriteLine($"Product Name: {Name}, Price: {Price}");
+        Console.WriteLine($"{Real} + {Imaginary}i");
     }
 }
 
@@ -33,12 +26,10 @@ class Program
 {
     static void Main()
     {
-        Product product1 = new Product();
-        Product product2 = new Product("Laptop");
-        Product product3 = new Product("Smartphone", 299.99);
+        Complex c1 = new Complex(3, 2);
+        Complex c2 = new Complex(1, 7);
+        Complex sum = c1 + c2;
 
-        product1.Display();
-        product2.Display();
-        product3.Display();
+        sum.Display();
     }
 }
