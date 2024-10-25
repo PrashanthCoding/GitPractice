@@ -1,28 +1,36 @@
 using System;
 
-class MatrixRotation
+class Person
+{
+    private string name;
+    private int age;
+
+    public string Name
+    {
+        get { return name; }
+        set { name = value; }
+    }
+
+    public int Age
+    {
+        get { return age; }
+        set
+        {
+            if (value >= 0)
+                age = value;
+            else
+                Console.WriteLine("Age cannot be negative.");
+        }
+    }
+}
+
+class Program
 {
     static void Main()
     {
-        int[,] matrix = { { 1, 2, 3 }, { 4, 5, 6 }, { 7, 8, 9 } };
-        int n = matrix.GetLength(0);
-        int[,] rotated = new int[n, n];
-
-        for (int i = 0; i < n; i++)
-        {
-            for (int j = 0; j < n; j++)
-            {
-                rotated[j, n - 1 - i] = matrix[i, j];
-            }
-        }
-
-        for (int i = 0; i < n; i++)
-        {
-            for (int j = 0; j < n; j++)
-            {
-                Console.Write(rotated[i, j] + "\t");
-            }
-            Console.WriteLine();
-        }
+        Person person = new Person();
+        person.Name = "John Doe";
+        person.Age = 25;
+        Console.WriteLine($"Name: {person.Name}, Age: {person.Age}");
     }
 }
