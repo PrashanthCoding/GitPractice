@@ -1,6 +1,5 @@
-function elementExists(arr, element) {
-    return arr.includes(element);
+function generateNumbers(n) {
+    return Array.from({ length: n }, (_, i) => i + 1);
 }
 
-console.log(elementExists([1, 2, 3, 4], 3));  // Output: true
-console.log(elementExists([1, 2, 3, 4], 5));  // Output: false
+console.log(generateNumbers(5));  // Output: [1, 2, 3, 4, 5]
