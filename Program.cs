@@ -1,20 +1,21 @@
 using System;
 
-abstract class Employee
+class Animal
 {
-    public abstract void CalculateSalary();
+    public void Eat() => Console.WriteLine("Eating...");
 }
 
-class Developer : Employee
+class Dog : Animal
 {
-    public override void CalculateSalary() => Console.WriteLine("Salary calculated for Developer.");
+    public void Bark() => Console.WriteLine("Barking...");
 }
 
 class Program
 {
     static void Main()
     {
-        Employee emp = new Developer();
-        emp.CalculateSalary();
+        Dog dog = new Dog();
+        dog.Eat();
+        dog.Bark();
     }
 }
