@@ -1,21 +1,25 @@
 using System;
 
-class Animal
+class Vehicle
 {
-    public void Eat() => Console.WriteLine("Eating...");
+    public string Brand { get; set; }
 }
 
-class Dog : Animal
+class Car : Vehicle
 {
-    public void Bark() => Console.WriteLine("Barking...");
+    public int Speed { get; set; }
+}
+
+class ElectricCar : Car
+{
+    public int BatteryCapacity { get; set; }
 }
 
 class Program
 {
     static void Main()
     {
-        Dog dog = new Dog();
-        dog.Eat();
-        dog.Bark();
+        ElectricCar tesla = new ElectricCar { Brand = "Tesla", Speed = 200, BatteryCapacity = 100 };
+        Console.WriteLine($"{tesla.Brand}, Speed: {tesla.Speed}, Battery: {tesla.BatteryCapacity} kWh");
     }
 }
