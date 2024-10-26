@@ -1,27 +1,27 @@
 using System;
 
-class Notification
+interface IPlayable
 {
-    public virtual void Send() => Console.WriteLine("Sending notification...");
+    void Play();
 }
 
-class EmailNotification : Notification
+class Video : IPlayable
 {
-    public override void Send() => Console.WriteLine("Sending email notification...");
+    public void Play() => Console.WriteLine("Playing video...");
 }
 
-class SMSNotification : Notification
+class Audio : IPlayable
 {
-    public override void Send() => Console.WriteLine("Sending SMS notification...");
+    public void Play() => Console.WriteLine("Playing audio...");
 }
 
 class Program
 {
     static void Main()
     {
-        Notification email = new EmailNotification();
-        Notification sms = new SMSNotification();
-        email.Send();
-        sms.Send();
+        IPlayable video = new Video();
+        IPlayable audio = new Audio();
+        video.Play();
+        audio.Play();
     }
 }
