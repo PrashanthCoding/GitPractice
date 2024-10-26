@@ -1,27 +1,20 @@
 using System;
 
-interface IPlayable
+class BankAccount
 {
-    void Play();
+    public virtual void CalculateInterest() => Console.WriteLine("Calculating interest for bank account.");
 }
 
-class Video : IPlayable
+class SavingsAccount : BankAccount
 {
-    public void Play() => Console.WriteLine("Playing video...");
-}
-
-class Audio : IPlayable
-{
-    public void Play() => Console.WriteLine("Playing audio...");
+    public override void CalculateInterest() => Console.WriteLine("Interest calculated at 4% for savings account.");
 }
 
 class Program
 {
     static void Main()
     {
-        IPlayable video = new Video();
-        IPlayable audio = new Audio();
-        video.Play();
-        audio.Play();
+        BankAccount acc = new SavingsAccount();
+        acc.CalculateInterest();
     }
 }
