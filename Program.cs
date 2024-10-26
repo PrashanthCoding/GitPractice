@@ -1,20 +1,20 @@
 using System;
 
-class BankAccount
+abstract class Employee
 {
-    public virtual void CalculateInterest() => Console.WriteLine("Calculating interest for bank account.");
+    public abstract void CalculateSalary();
 }
 
-class SavingsAccount : BankAccount
+class Developer : Employee
 {
-    public override void CalculateInterest() => Console.WriteLine("Interest calculated at 4% for savings account.");
+    public override void CalculateSalary() => Console.WriteLine("Salary calculated for Developer.");
 }
 
 class Program
 {
     static void Main()
     {
-        BankAccount acc = new SavingsAccount();
-        acc.CalculateInterest();
+        Employee emp = new Developer();
+        emp.CalculateSalary();
     }
 }
