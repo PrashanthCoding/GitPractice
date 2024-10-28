@@ -1,27 +1,41 @@
 using System;
 
-class Notification
+class BankAccount
 {
-    public virtual void Send() => Console.WriteLine("Sending notification...");
-}
+    private decimal _balance;
 
-class EmailNotification : Notification
-{
-    public override void Send() => Console.WriteLine("Sending email notification...");
-}
+    public BankAccount(decimal initialBalance)
+    {
+        _balance = initialBalance;
+    }
 
-class SMSNotification : Notification
-{
-    public override void Send() => Console.WriteLine("Sending SMS notification...");
+    public decimal Balance
+    {
+        get { return _balance; }
+    }
+
+    public void Deposit(decimal amount)
+    {
+        if (amount > 0)
+            _balance += amount;
+    }
+
+    public void Withdraw(decimal amount)
+    {
+        if (amount > 0 && amount <= _balance)
+            _balance -= amount;
+        else
+            Console.WriteLine("Insufficient balance or invalid amount.");
+    }
 }
 
 class Program
 {
     static void Main()
     {
-        Notification email = new EmailNotification();
-        Notification sms = new SMSNotification();
-        email.Send();
-        sms.Send();
+        BankAccount account = new BankAccount(500);
+        account.Deposit(200);
+        account.Withdraw(100);
+        Console.WriteLine($"Current Balance: {account.Balance}");
     }
 }
