@@ -1,22 +1,27 @@
 using System;
 
-class Address
+class Notification
 {
-    public string City { get; set; }
+    public virtual void Send() => Console.WriteLine("Sending notification...");
 }
 
-class University
+class EmailNotification : Notification
 {
-    public Address UniversityAddress { get; set; }
-    public University() { UniversityAddress = new Address(); }
+    public override void Send() => Console.WriteLine("Sending email notification...");
+}
+
+class SMSNotification : Notification
+{
+    public override void Send() => Console.WriteLine("Sending SMS notification...");
 }
 
 class Program
 {
     static void Main()
     {
-        University uni = new University();
-        uni.UniversityAddress.City = "New York";
-        Console.WriteLine($"University located in {uni.UniversityAddress.City}");
+        Notification email = new EmailNotification();
+        Notification sms = new SMSNotification();
+        email.Send();
+        sms.Send();
     }
 }
