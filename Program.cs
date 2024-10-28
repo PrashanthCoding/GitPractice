@@ -1,31 +1,31 @@
 using System;
 
-class BankAccount
+class Employee
 {
-    private decimal _balance;
+    private int _employeeId;
+    private string _name;
+    private decimal _hourlyRate;
 
-    public BankAccount(decimal initialBalance)
+    public Employee(int id, string name, decimal hourlyRate)
     {
-        _balance = initialBalance;
+        _employeeId = id;
+        _name = name;
+        _hourlyRate = hourlyRate;
     }
 
-    public decimal Balance
+    public string Name
     {
-        get { return _balance; }
+        get { return _name; }
     }
 
-    public void Deposit(decimal amount)
+    public decimal CalculateSalary(int hoursWorked)
     {
-        if (amount > 0)
-            _balance += amount;
+        return CalculatePay(hoursWorked);
     }
 
-    public void Withdraw(decimal amount)
+    private decimal CalculatePay(int hours)
     {
-        if (amount > 0 && amount <= _balance)
-            _balance -= amount;
-        else
-            Console.WriteLine("Insufficient balance or invalid amount.");
+        return _hourlyRate * hours;
     }
 }
 
@@ -33,9 +33,7 @@ class Program
 {
     static void Main()
     {
-        BankAccount account = new BankAccount(500);
-        account.Deposit(200);
-        account.Withdraw(100);
-        Console.WriteLine($"Current Balance: {account.Balance}");
+        Employee emp = new Employee(101, "John Doe", 25.50m);
+        Console.WriteLine($"{emp.Name} Salary: {emp.CalculateSalary(40)}");
     }
 }
