@@ -1,31 +1,25 @@
 using System;
 
-class Employee
+class Calculator
 {
-    private int _employeeId;
-    private string _name;
-    private decimal _hourlyRate;
-
-    public Employee(int id, string name, decimal hourlyRate)
+    public int Add(int a, int b)
     {
-        _employeeId = id;
-        _name = name;
-        _hourlyRate = hourlyRate;
+        return Calculate(a, b, '+');
     }
 
-    public string Name
+    public int Subtract(int a, int b)
     {
-        get { return _name; }
+        return Calculate(a, b, '-');
     }
 
-    public decimal CalculateSalary(int hoursWorked)
+    private int Calculate(int a, int b, char operation)
     {
-        return CalculatePay(hoursWorked);
-    }
-
-    private decimal CalculatePay(int hours)
-    {
-        return _hourlyRate * hours;
+        return operation switch
+        {
+            '+' => a + b,
+            '-' => a - b,
+            _ => 0
+        };
     }
 }
 
@@ -33,7 +27,8 @@ class Program
 {
     static void Main()
     {
-        Employee emp = new Employee(101, "John Doe", 25.50m);
-        Console.WriteLine($"{emp.Name} Salary: {emp.CalculateSalary(40)}");
+        Calculator calc = new Calculator();
+        Console.WriteLine(calc.Add(10, 5));  // Output: 15
+        Console.WriteLine(calc.Subtract(10, 5));  // Output: 5
     }
 }
