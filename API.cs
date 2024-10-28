@@ -1,29 +1,24 @@
-﻿[ApiController]
-[Route("api/[controller]")]
-public class CalculatorController : ControllerBase
+﻿using System.Collections.Generic;
+
+public class User
 {
-    [HttpGet("add/{a}/{b}")]
-    public IActionResult Add(int a, int b)
-    {
-        return Ok(a + b);
-    }
+    public string Username { get; set; }
+    public string Password { get; set; }
+}
 
-    [HttpGet("subtract/{a}/{b}")]
-    public IActionResult Subtract(int a, int b)
-    {
-        return Ok(a - b);
-    }
+[ApiController]
+[Route("api/[controller]")]
+public class UserController : ControllerBase
+{
+    private static List<User> users = new List<User>();
 
-    [HttpGet("multiply/{a}/{b}")]
-    public IActionResult Multiply(int a, int b)
+    [HttpPost("register")]
+    public IActionResult Register(User user)
     {
-        return Ok(a * b);
-    }
+        if (string.IsNullOrEmpty(user.Username) || string.IsNullOrEmpty(user.Password))
+            return BadRequest("Username and password are required.");
 
-    [HttpGet("divide/{a}/{b}")]
-    public IActionResult Divide(int a, int b)
-    {
-        if (b == 0) return BadRequest("Division by zero is not allowed.");
-        return Ok((double)a / b);
+        users.Add(user);
+        return Ok("User registered successfully.");
     }
 }
