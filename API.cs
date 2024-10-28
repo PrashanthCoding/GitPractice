@@ -185,3 +185,33 @@ public class UploadController : ControllerBase
     }
 }
 
+
+// Simple Product API 
+
+public class Product
+{
+    public int Id { get; set; }
+    public string Name { get; set; }
+    public decimal Price { get; set; }
+}
+
+[ApiController]
+[Route("api/[controller]")]
+public class ProductsController : ControllerBase
+{
+    private static List<Product> products = new List<Product>();
+
+    [HttpGet]
+    public IActionResult GetAll()
+    {
+        return Ok(products);
+    }
+
+    [HttpPost]
+    public IActionResult Create(Product product)
+    {
+        product.Id = products.Count + 1;
+        products.Add(product);
+        return CreatedAtAction(nameof(GetAll), new { id = product.Id }, product);
+    }
+}
